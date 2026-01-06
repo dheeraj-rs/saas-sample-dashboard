@@ -9,6 +9,7 @@ import {
   IconFolder,
   IconHelp,
   IconListDetails,
+  IconPresentation,
   IconReport,
   IconSearch,
   IconSettings,
@@ -26,6 +27,11 @@ import { useAppConfigStore } from "@/store/app-config.store"
 import data from "./data.json"
 
 const sidebarConfig: SidebarConfig = {
+  logo: {
+    icon: IconPresentation,
+    text: "ConferencePrime",
+    href: "#",
+  },
   user: {
     name: "shadcn",
     email: "m@example.com",

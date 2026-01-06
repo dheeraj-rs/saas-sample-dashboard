@@ -28,7 +28,7 @@ export function AppSidebar({ config, ...props }: AppSidebarProps) {
   const logoHref = config.logo?.href || "#"
 
   return (
-    <Sidebar collapsible="icon" className="h-screen border-r z-50" {...props}>
+    <Sidebar collapsible="icon" className="h-screen border-r z-50 bg-gradient-to-b from-transparent via-primary/3 to-primary/5 backdrop-blur-sm bg-background/95" {...props}>
       <SidebarHeader className="h-(--header-height) border-b">
         <SidebarMenu>
           <SidebarMenuItem>

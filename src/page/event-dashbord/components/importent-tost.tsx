@@ -24,7 +24,7 @@ export default function ImportantToast() {
         <div
             className={`w-full border-b ${getToastStyles()}`}
         >
-            <div className="flex items-center justify-between gap-3 px-4 py-3 lg:px-6">
+            <div className="flex items-center justify-between gap-3 px-4 py-2 lg:px-6">
                 <p className="flex-1 text-sm font-medium">{toast.message}</p>
                 <button
                     onClick={hideToast}

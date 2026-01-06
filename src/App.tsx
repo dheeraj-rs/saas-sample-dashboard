@@ -13,7 +13,7 @@ import { FontProvider } from "./components/font";
 import { Toaster } from "./components/refine-ui/notification/toaster";
 import { useNotificationProvider } from "./components/refine-ui/notification/use-notification-provider";
 import { ThemeProvider } from "./components/refine-ui/theme/theme-provider";
-import Page from "./page/dashbord/page";
+import Page from "./page/event-dashbord/page";
 
 function App() {
   return (

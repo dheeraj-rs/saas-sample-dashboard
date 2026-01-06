@@ -3,8 +3,8 @@ import {
     SidebarInset,
     SidebarProvider,
 } from "@/components/ui/sidebar"
-import { AppSidebar } from "@/page/dashbord/components/app-sidebar"
-import { SiteHeader } from "@/page/dashbord/components/site-header"
+import { AppSidebar } from "@/page/event-dashbord/components/app-sidebar"
+import { SiteHeader } from "@/page/event-dashbord/components/site-header"
 import { DashboardLayoutProps } from "./dashboard-layout.types"
 
 export function DashboardLayout({

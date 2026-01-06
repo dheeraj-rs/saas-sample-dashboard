@@ -12,10 +12,10 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
-import { NavDocuments } from "@/page/dashbord/components/nav-documents"
-import { NavMain } from "@/page/dashbord/components/nav-main"
-import { NavSecondary } from "@/page/dashbord/components/nav-secondary"
-import { NavUser } from "@/page/dashbord/components/nav-user"
+import { NavDocuments } from "@/page/event-dashbord/components/nav-documents"
+import { NavMain } from "@/page/event-dashbord/components/nav-main"
+import { NavSecondary } from "@/page/event-dashbord/components/nav-secondary"
+import { NavUser } from "@/page/event-dashbord/components/nav-user"
 import { SidebarConfig } from "@/components/layouts/dashboard-layout.types"
 
 interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {

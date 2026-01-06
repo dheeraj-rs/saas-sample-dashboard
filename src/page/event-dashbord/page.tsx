@@ -17,9 +17,9 @@ import {
 
 import { DashboardLayout } from "@/components/layouts/dashboard-layout"
 import { SidebarConfig, HeaderConfig } from "@/components/layouts/dashboard-layout.types"
-import { ChartAreaInteractive } from "@/page/dashbord/components/chart-area-interactive"
-import { DataTable } from "@/page/dashbord/components/data-table"
-import { SectionCards } from "@/page/dashbord/components/section-cards"
+import { ChartAreaInteractive } from "@/page/event-dashbord/components/chart-area-interactive"
+import { DataTable } from "@/page/event-dashbord/components/data-table"
+import { SectionCards } from "@/page/event-dashbord/components/section-cards"
 import ImportantToast from "./components/importent-tost"
 import { useAppConfigStore } from "@/store/app-config.store"
 

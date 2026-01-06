@@ -1,6 +1,6 @@
 body {
   @apply overscroll-none bg-transparent;
-  font-family: var(--font-sans);
+  /* font-family: var(--font-sans); */
 }
 
 :root {

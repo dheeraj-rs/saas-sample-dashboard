@@ -16,3 +16,23 @@ body {
   --primary: var(--color-blue-500);
   --primary-foreground: var(--color-blue-50);
 }
+
+/* Mobile-specific adjustments */
+@media (max-width: 640px) {
+
+  /* Ensure minimum touch target size on mobile */
+  button,
+  a {
+    min-height: 44px;
+  }
+
+  /* Prevent horizontal scroll on mobile */
+  body {
+    overflow-x: hidden;
+  }
+
+  /* Adjust header height for mobile if needed */
+  :root {
+    --header-height: calc(var(--spacing) * 12 + 1px);
+  }
+}

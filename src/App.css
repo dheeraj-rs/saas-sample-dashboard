@@ -130,6 +130,10 @@
 }
 
 @layer base {
+  html {
+    font-size: 114.5%;
+  }
+
   * {
     @apply border-border outline-ring/50 antialiased;
     font-family: var(--font-sans);

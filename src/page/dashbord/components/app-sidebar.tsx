@@ -150,8 +150,8 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="none" className="h-auto border-r" {...props}>
-      <SidebarHeader className="border-b">
+    <Sidebar collapsible="none" className="h-screen border-r z-50" {...props}>
+      <SidebarHeader className="h-(--header-height) border-b">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton

@@ -9,6 +9,7 @@ import routerProvider, {
 import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes } from "react-router";
 import "./App.css";
+import { FontProvider } from "./components/font";
 import { Toaster } from "./components/refine-ui/notification/toaster";
 import { useNotificationProvider } from "./components/refine-ui/notification/use-notification-provider";
 import { ThemeProvider } from "./components/refine-ui/theme/theme-provider";
@@ -18,29 +19,31 @@ function App() {
   return (
     <BrowserRouter>
       <RefineKbarProvider>
-        <ThemeProvider>
-          <DevtoolsProvider>
-            <Refine
-              dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
-              notificationProvider={useNotificationProvider()}
-              routerProvider={routerProvider}
-              options={{
-                syncWithLocation: true,
-                warnWhenUnsavedChanges: true,
-                projectId: "rIho23-lDpBjT-GpRRFD",
-              }}
-            >
-              <Routes>
-                <Route path="/" element={<Page />} />
-              </Routes>
-              <Toaster />
-              <RefineKbar />
-              <UnsavedChangesNotifier />
-              <DocumentTitleHandler />
-            </Refine>
-            <DevtoolsPanel />
-          </DevtoolsProvider>
-        </ThemeProvider>
+        <FontProvider defaultFont="inter">
+          <ThemeProvider>
+            <DevtoolsProvider>
+              <Refine
+                dataProvider={dataProvider("https://api.fake-rest.refine.dev")}
+                notificationProvider={useNotificationProvider()}
+                routerProvider={routerProvider}
+                options={{
+                  syncWithLocation: true,
+                  warnWhenUnsavedChanges: true,
+                  projectId: "rIho23-lDpBjT-GpRRFD",
+                }}
+              >
+                <Routes>
+                  <Route path="/" element={<Page />} />
+                </Routes>
+                <Toaster />
+                <RefineKbar />
+                <UnsavedChangesNotifier />
+                <DocumentTitleHandler />
+              </Refine>
+              <DevtoolsPanel />
+            </DevtoolsProvider>
+          </ThemeProvider>
+        </FontProvider>
       </RefineKbarProvider>
     </BrowserRouter>
   );

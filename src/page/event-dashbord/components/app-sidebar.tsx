@@ -16,6 +16,7 @@ import { NavDocuments } from "@/page/event-dashbord/components/nav-documents"
 import { NavMain } from "@/page/event-dashbord/components/nav-main"
 import { NavSecondary } from "@/page/event-dashbord/components/nav-secondary"
 import { NavUser } from "@/page/event-dashbord/components/nav-user"
+import { TeamSwitcher } from "@/page/event-dashbord/components/team-switcher"
 import { SidebarConfig } from "@/components/layouts/dashboard-layout.types"
 
 interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
@@ -23,26 +24,10 @@ interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
 }
 
 export function AppSidebar({ config, ...props }: AppSidebarProps) {
-  const LogoIcon = config.logo?.icon || IconInnerShadowTop
-  const logoText = config.logo?.text || "Acme Inc."
-  const logoHref = config.logo?.href || "#"
-
   return (
-    <Sidebar collapsible="icon" className="h-screen border-r z-50 bg-gradient-to-b from-transparent via-primary/3 to-primary/5 backdrop-blur-sm bg-background/95" {...props}>
+    <Sidebar collapsible="icon" className="h-screen border-r z-50" {...props}>
       <SidebarHeader className="h-(--header-height) border-b">
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <SidebarMenuButton
-              asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5"
-            >
-              <a href={logoHref}>
-                <LogoIcon className="!size-5" />
-                <span className="text-base font-semibold">{logoText}</span>
-              </a>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        </SidebarMenu>
+        <TeamSwitcher teams={config.teams || []} />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={config.navMain} />

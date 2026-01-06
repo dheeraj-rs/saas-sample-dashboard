@@ -142,6 +142,26 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  button,
+  [role="button"],
+  select,
+  [role="combobox"],
+  [role="option"],
+  [role="menuitem"],
+  [role="tab"],
+  a,
+  label[for],
+  input[type="checkbox"],
+  input[type="radio"] {
+    cursor: pointer;
+  }
+
+  button:disabled,
+  select:disabled,
+  input:disabled {
+    cursor: not-allowed;
+  }
 }
 
 @layer base {

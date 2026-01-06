@@ -1,5 +1,11 @@
 import { type Icon } from "@tabler/icons-react"
 
+export interface Team {
+    name: string
+    logo: React.ElementType
+    plan: string
+}
+
 export interface NavItem {
     title: string
     url: string
@@ -34,6 +40,7 @@ export interface SidebarConfig {
         text?: string
         href?: string
     }
+    teams?: Team[]
     navMain: NavItem[]
     navClouds?: NavItemWithChildren[]
     navSecondary: NavItem[]

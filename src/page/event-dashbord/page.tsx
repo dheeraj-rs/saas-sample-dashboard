@@ -32,6 +32,23 @@ const sidebarConfig: SidebarConfig = {
     text: "ConferencePrime",
     href: "#",
   },
+  teams: [
+    {
+      name: "Acme Inc",
+      logo: IconPresentation,
+      plan: "Enterprise",
+    },
+    {
+      name: "Acme Corp.",
+      logo: IconFolder,
+      plan: "Startup",
+    },
+    {
+      name: "Evil Corp.",
+      logo: IconDatabase,
+      plan: "Free",
+    },
+  ],
   user: {
     name: "shadcn",
     email: "m@example.com",

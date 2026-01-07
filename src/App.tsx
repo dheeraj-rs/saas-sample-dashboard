@@ -10,7 +10,7 @@ import dataProvider from "@refinedev/simple-rest";
 import { BrowserRouter, Route, Routes } from "react-router";
 import "./App.css";
 import { FontProvider } from "./components/font";
-import { Toaster } from "./components/refine-ui/notification/toaster";
+import { Toaster } from "@/components/ui/sonner";
 import { useNotificationProvider } from "./components/refine-ui/notification/use-notification-provider";
 import { ThemeProvider } from "./components/refine-ui/theme/theme-provider";
 import {

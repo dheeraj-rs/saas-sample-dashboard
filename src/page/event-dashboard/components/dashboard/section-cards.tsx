@@ -1,4 +1,4 @@
-import { IconCalendar, IconTicket, IconTrendingUp, IconUsers } from "@tabler/icons-react"
+import { IconCategory, IconCreditCard, IconUsers, IconUsersGroup } from "@tabler/icons-react"
 
 import { Badge } from "@/components/ui/badge"
 import {
@@ -33,62 +33,21 @@ interface SectionCardsProps {
 export function SectionCards({ events }: SectionCardsProps) {
   // Calculate statistics from events data
   const totalEvents = events.length
-  const activeEvents = events.filter(e => e.status === "active").length
-  const upcomingEvents = events.filter(e => e.status === "upcoming").length
   const totalRegistrations = events.reduce((sum, e) => sum + e.registered, 0)
 
   // Calculate average registrations per event
   const avgRegistrations = totalEvents > 0 ? Math.round(totalRegistrations / totalEvents) : 0
 
-  // Calculate percentage of active events
-  const activePercentage = totalEvents > 0 ? ((activeEvents / totalEvents) * 100).toFixed(1) : "0"
+  // Calculate unique event categories
+  const categories = new Set(events.map(e => e.event_type)).size
+
+  // Mock users details
+  const totalUsers = 1250
+  const activeUsers = 890
 
   return (
     <div className="grid grid-cols-1 gap-3 px-2 sm:gap-4 sm:px-4 lg:px-6 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
-      <Card className="@container/card">
-        <CardHeader>
-          <CardDescription className="text-default">Total Events</CardDescription>
-          <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            {totalEvents}
-          </CardTitle>
-          <CardAction>
-            <Badge variant="outline">
-              <IconCalendar className="size-3" />
-              All Time
-            </Badge>
-          </CardAction>
-        </CardHeader>
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
-          <div className="line-clamp-1 flex gap-2 font-medium">
-            {activeEvents} Active Events
-          </div>
-          <div className="text-muted-foreground">
-            {upcomingEvents} upcoming events scheduled
-          </div>
-        </CardFooter>
-      </Card>
-      <Card className="@container/card">
-        <CardHeader>
-          <CardDescription className="text-default">Active Events</CardDescription>
-          <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            {activeEvents}
-          </CardTitle>
-          <CardAction>
-            <Badge variant="outline">
-              <IconTrendingUp className="size-3" />
-              {activePercentage}%
-            </Badge>
-          </CardAction>
-        </CardHeader>
-        <CardFooter className="flex-col items-start gap-1.5 text-sm">
-          <div className="line-clamp-1 flex gap-2 font-medium">
-            Currently running events
-          </div>
-          <div className="text-muted-foreground">
-            {activePercentage}% of total events are active
-          </div>
-        </CardFooter>
-      </Card>
+      {/* Total Registrations Card - Kept */}
       <Card className="@container/card">
         <CardHeader>
           <CardDescription className="text-default">Total Registrations</CardDescription>
@@ -97,7 +56,7 @@ export function SectionCards({ events }: SectionCardsProps) {
           </CardTitle>
           <CardAction>
             <Badge variant="outline">
-              <IconUsers className="size-3" />
+              <IconUsersGroup className="size-3" />
               All Events
             </Badge>
           </CardAction>
@@ -111,28 +70,79 @@ export function SectionCards({ events }: SectionCardsProps) {
           </div>
         </CardFooter>
       </Card>
+
+      {/* Event Categories Card - Added */}
       <Card className="@container/card">
         <CardHeader>
-          <CardDescription className="text-default">Upcoming Events</CardDescription>
+          <CardDescription className="text-default">Event Categories</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            {upcomingEvents}
+            {categories}
           </CardTitle>
           <CardAction>
             <Badge variant="outline">
-              <IconTicket className="size-3" />
-              Scheduled
+              <IconCategory className="size-3" />
+              Types
             </Badge>
           </CardAction>
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm">
           <div className="line-clamp-1 flex gap-2 font-medium">
-            Events in the pipeline
+            Diverse event portfolio
           </div>
           <div className="text-muted-foreground">
-            Ready for attendee registration
+            Conferences, Summits, Workshops etc.
           </div>
         </CardFooter>
       </Card>
-    </div>
+
+      {/* Users Details Card - Added */}
+      <Card className="@container/card">
+        <CardHeader>
+          <CardDescription className="text-default">Total Users</CardDescription>
+          <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
+            {totalUsers.toLocaleString()}
+          </CardTitle>
+          <CardAction>
+            <Badge variant="outline">
+              <IconUsers className="size-3" />
+              Platform
+            </Badge>
+          </CardAction>
+        </CardHeader>
+        <CardFooter className="flex-col items-start gap-1.5 text-sm">
+          <div className="line-clamp-1 flex gap-2 font-medium">
+            {activeUsers} Active Users
+          </div>
+          <div className="text-muted-foreground">
+            registered on the platform
+          </div>
+        </CardFooter>
+      </Card>
+
+      {/* Total Revenue Card - Added (4th Card) */}
+      <Card className="@container/card">
+        <CardHeader>
+          <CardDescription className="text-default">Total Revenue</CardDescription>
+          <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
+            ${(totalRegistrations * 150).toLocaleString()}
+          </CardTitle>
+          <CardAction>
+            <Badge variant="outline">
+              <IconCreditCard className="size-3" />
+              Est.
+            </Badge>
+          </CardAction>
+        </CardHeader>
+        <CardFooter className="flex-col items-start gap-1.5 text-sm">
+          <div className="line-clamp-1 flex gap-2 font-medium">
+            Revenue Generated
+          </div>
+          <div className="text-muted-foreground">
+            Based on current registrations
+          </div>
+        </CardFooter>
+      </Card>
+
+    </div >
   )
 }

@@ -24,7 +24,7 @@ export function OrgHeader() {
                         }}
                     >
                         <IconCirclePlusFilled />
-                        <span className="hidden sm:inline">New Employee</span>
+                        <span className="hidden sm:inline">New Event</span>
                     </Button>
                 </div>
             </div>

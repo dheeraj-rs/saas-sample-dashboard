@@ -28,6 +28,7 @@ export function NavClouds({
         items?: {
             title: string
             url: string
+            isActive?: boolean
         }[]
     }[]
 }) {
@@ -44,7 +45,7 @@ export function NavClouds({
                     >
                         <SidebarMenuItem>
                             <CollapsibleTrigger asChild>
-                                <SidebarMenuButton tooltip={item.title}>
+                                <SidebarMenuButton tooltip={item.title} isActive={item.isActive}>
                                     {item.icon && <item.icon />}
                                     <span className="whitespace-nowrap">{item.title}</span>
                                     <IconChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
@@ -54,7 +55,7 @@ export function NavClouds({
                                 <SidebarMenuSub>
                                     {item.items?.map((subItem) => (
                                         <SidebarMenuSubItem key={subItem.title}>
-                                            <SidebarMenuSubButton asChild>
+                                            <SidebarMenuSubButton asChild isActive={subItem.isActive}>
                                                 <Link to={subItem.url}>
                                                     <span className="whitespace-nowrap">{subItem.title}</span>
                                                 </Link>

@@ -20,6 +20,7 @@ import {
     IconCalendar,
     IconUser,
 } from "@tabler/icons-react"
+import { useLocation } from "react-router"
 
 import {
     Sidebar,
@@ -172,17 +173,43 @@ const sidebarData = {
 }
 
 export function EventSidebar() {
+    const location = useLocation()
+    const pathname = location.pathname
+
+    const navMain = sidebarData.navMain.map((item) => ({
+        ...item,
+        isActive: pathname === item.url,
+    }))
+
+    const navClouds = sidebarData.navClouds.map((item) => {
+        const items = item.items?.map((subItem) => ({
+            ...subItem,
+            isActive: pathname === subItem.url,
+        }))
+        const isChildActive = items?.some((subItem) => subItem.isActive)
+        return {
+            ...item,
+            isActive: isChildActive,
+            items,
+        }
+    })
+
+    const navSecondary = sidebarData.navSecondary.map((item) => ({
+        ...item,
+        isActive: pathname === item.url,
+    }))
+
     return (
         <Sidebar collapsible="icon" className="h-screen border-r z-50" variant="sidebar">
             <SidebarHeader className="h-(--header-height) border-b">
                 <EventSwitcher events={sidebarData.events || []} />
             </SidebarHeader>
             <SidebarContent>
-                <NavMain items={sidebarData.navMain} />
-                {sidebarData.navClouds && sidebarData.navClouds.length > 0 && (
-                    <NavClouds items={sidebarData.navClouds} />
+                <NavMain items={navMain} />
+                {navClouds && navClouds.length > 0 && (
+                    <NavClouds items={navClouds} />
                 )}
-                <NavSecondary items={sidebarData.navSecondary} className="mt-auto" />
+                <NavSecondary items={navSecondary} className="mt-auto" />
             </SidebarContent>
             <SidebarFooter>
                 <NavUser user={sidebarData.user} />

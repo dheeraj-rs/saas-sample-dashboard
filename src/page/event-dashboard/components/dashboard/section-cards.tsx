@@ -1,4 +1,4 @@
-import { IconTrendingDown, IconTrendingUp } from "@tabler/icons-react"
+import { IconCalendar, IconTicket, IconTrendingUp, IconUsers } from "@tabler/icons-react"
 
 import { Badge } from "@/components/ui/badge"
 import {
@@ -10,91 +10,127 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 
-export function SectionCards() {
+interface Event {
+  id: string
+  name: string
+  organization_name: string
+  event_type: string
+  status: string
+  active_domain?: string
+  registered: number
+  description?: string
+  location: string
+  start_date: string
+  end_date: string
+  created_at: string
+  updated_at: string
+}
+
+interface SectionCardsProps {
+  events: Event[]
+}
+
+export function SectionCards({ events }: SectionCardsProps) {
+  // Calculate statistics from events data
+  const totalEvents = events.length
+  const activeEvents = events.filter(e => e.status === "active").length
+  const upcomingEvents = events.filter(e => e.status === "upcoming").length
+  const totalRegistrations = events.reduce((sum, e) => sum + e.registered, 0)
+
+  // Calculate average registrations per event
+  const avgRegistrations = totalEvents > 0 ? Math.round(totalRegistrations / totalEvents) : 0
+
+  // Calculate percentage of active events
+  const activePercentage = totalEvents > 0 ? ((activeEvents / totalEvents) * 100).toFixed(1) : "0"
+
   return (
     <div className="grid grid-cols-1 gap-3 px-2 sm:gap-4 sm:px-4 lg:px-6 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
       <Card className="@container/card">
         <CardHeader>
-          <CardDescription className="text-default">Total Revenue</CardDescription>
+          <CardDescription className="text-default">Total Events</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            $1,250.00
+            {totalEvents}
           </CardTitle>
           <CardAction>
             <Badge variant="outline">
-              <IconTrendingUp />
-              +12.5%
+              <IconCalendar className="size-3" />
+              All Time
             </Badge>
           </CardAction>
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm">
           <div className="line-clamp-1 flex gap-2 font-medium">
-            Trending up this month <IconTrendingUp className="size-4" />
+            {activeEvents} Active Events
           </div>
           <div className="text-muted-foreground">
-            Visitors for the last 6 months
+            {upcomingEvents} upcoming events scheduled
           </div>
         </CardFooter>
       </Card>
       <Card className="@container/card">
         <CardHeader>
-          <CardDescription className="text-default">New Customers</CardDescription>
+          <CardDescription className="text-default">Active Events</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            1,234
+            {activeEvents}
           </CardTitle>
           <CardAction>
             <Badge variant="outline">
-              <IconTrendingDown />
-              -20%
+              <IconTrendingUp className="size-3" />
+              {activePercentage}%
             </Badge>
           </CardAction>
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm">
           <div className="line-clamp-1 flex gap-2 font-medium">
-            Down 20% this period <IconTrendingDown className="size-4" />
+            Currently running events
           </div>
           <div className="text-muted-foreground">
-            Acquisition needs attention
+            {activePercentage}% of total events are active
           </div>
         </CardFooter>
       </Card>
       <Card className="@container/card">
         <CardHeader>
-          <CardDescription className="text-default">Active Accounts</CardDescription>
+          <CardDescription className="text-default">Total Registrations</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            45,678
+            {totalRegistrations.toLocaleString()}
           </CardTitle>
           <CardAction>
             <Badge variant="outline">
-              <IconTrendingUp />
-              +12.5%
+              <IconUsers className="size-3" />
+              All Events
             </Badge>
           </CardAction>
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm">
           <div className="line-clamp-1 flex gap-2 font-medium">
-            Strong user retention <IconTrendingUp className="size-4" />
+            Strong attendance across events
           </div>
-          <div className="text-muted-foreground">Engagement exceed targets</div>
+          <div className="text-muted-foreground">
+            Avg {avgRegistrations} registrations per event
+          </div>
         </CardFooter>
       </Card>
       <Card className="@container/card">
         <CardHeader>
-          <CardDescription className="text-default">Growth Rate</CardDescription>
+          <CardDescription className="text-default">Upcoming Events</CardDescription>
           <CardTitle className="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-            4.5%
+            {upcomingEvents}
           </CardTitle>
           <CardAction>
             <Badge variant="outline">
-              <IconTrendingUp />
-              +4.5%
+              <IconTicket className="size-3" />
+              Scheduled
             </Badge>
           </CardAction>
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm">
           <div className="line-clamp-1 flex gap-2 font-medium">
-            Steady performance increase <IconTrendingUp className="size-4" />
+            Events in the pipeline
           </div>
-          <div className="text-muted-foreground">Meets growth projections</div>
+          <div className="text-muted-foreground">
+            Ready for attendee registration
+          </div>
         </CardFooter>
       </Card>
     </div>

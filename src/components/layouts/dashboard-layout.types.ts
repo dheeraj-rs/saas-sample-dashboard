@@ -56,8 +56,8 @@ export interface HeaderConfig {
 }
 
 export interface DashboardLayoutProps {
-    sidebarConfig: SidebarConfig
-    headerConfig: HeaderConfig
+    sidebar: React.ReactNode
+    header: React.ReactNode
     children: React.ReactNode
     className?: string
 }

@@ -3,13 +3,11 @@ import {
     SidebarInset,
     SidebarProvider,
 } from "@/components/ui/sidebar"
-import { AppSidebar } from "@/page/event-dashbord/components/app-sidebar"
-import { SiteHeader } from "@/page/event-dashbord/components/site-header"
 import { DashboardLayoutProps } from "./dashboard-layout.types"
 
 export function DashboardLayout({
-    sidebarConfig,
-    headerConfig,
+    sidebar,
+    header,
     children,
     className,
 }: DashboardLayoutProps) {
@@ -23,9 +21,9 @@ export function DashboardLayout({
                 } as React.CSSProperties
             }
         >
-            <AppSidebar variant="sidebar" config={sidebarConfig} />
+            {sidebar}
             <SidebarInset>
-                <SiteHeader config={headerConfig} />
+                {header}
                 {children}
             </SidebarInset>
         </SidebarProvider>

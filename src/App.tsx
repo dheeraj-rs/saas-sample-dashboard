@@ -13,7 +13,7 @@ import { FontProvider } from "./components/font";
 import { Toaster } from "./components/refine-ui/notification/toaster";
 import { useNotificationProvider } from "./components/refine-ui/notification/use-notification-provider";
 import { ThemeProvider } from "./components/refine-ui/theme/theme-provider";
-import Page from "./page/event-dashbord/page";
+import EventDashboard from "./page/event-dashbord/EventDashboard";
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
                 }}
               >
                 <Routes>
-                  <Route path="/" element={<Page />} />
+                  <Route path="/" element={<EventDashboard />} />
                 </Routes>
                 <Toaster />
                 <RefineKbar />

@@ -150,7 +150,7 @@ const sidebarConfig: SidebarConfig = {
   ],
 }
 
-export default function Page() {
+export default function EventDashboard() {
   const { showToast } = useAppConfigStore()
 
   const headerConfig: HeaderConfig = {

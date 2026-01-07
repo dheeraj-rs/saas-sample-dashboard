@@ -25,7 +25,7 @@ interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
 
 export function AppSidebar({ config, ...props }: AppSidebarProps) {
   return (
-    <Sidebar collapsible="icon" className="h-screen border-r z-50" {...props}>
+    <Sidebar collapsible="icon" className="h-screen border-r z-50 bg-red-500" {...props}>
       <SidebarHeader className="h-(--header-height) border-b">
         <TeamSwitcher teams={config.teams || []} />
       </SidebarHeader>

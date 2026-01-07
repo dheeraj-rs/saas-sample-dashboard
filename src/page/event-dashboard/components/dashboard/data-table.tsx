@@ -7,6 +7,7 @@ import {
   IconChevronsRight,
   IconCircleCheckFilled,
   IconDotsVertical,
+  IconEdit,
   IconLayoutColumns,
   IconLoader,
   IconPlus,
@@ -192,16 +193,18 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
   },
   {
     id: "actions",
+    header: "Actions",
     cell: () => (
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button
-            variant="ghost"
-            className="data-[state=open]:bg-muted text-muted-foreground flex size-8"
-            size="icon"
+            variant="outline"
+            size="sm"
+            className="data-[state=open]:bg-muted h-6 text-xs"
           >
-            <IconDotsVertical />
-            <span className="sr-only">Open menu</span>
+            <IconEdit className="size-3" />
+            Actions
+            <IconChevronDown className="size-3" />
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="w-32">

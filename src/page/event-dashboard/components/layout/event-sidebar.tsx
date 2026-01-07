@@ -43,6 +43,18 @@ const sidebarData = {
             plan: "Completed",
         },
     ],
+    organizations: [
+        {
+            name: "Conference Prime",
+            logo: IconCalendar, // Using same icon as placeholder or suggest importing IconBuilding if available
+            plan: "Enterprise",
+        },
+        {
+            name: "Global Operations",
+            logo: IconCalendar,
+            plan: "Pro",
+        },
+    ],
     user: {
         name: "shadcn",
         email: "m@example.com",
@@ -193,7 +205,7 @@ export function EventSidebar() {
     return (
         <Sidebar collapsible="icon" className="h-screen border-r z-50" variant="sidebar">
             <SidebarHeader className="h-(--header-height) border-b">
-                <EventSwitcher events={sidebarData.events || []} />
+                <EventSwitcher events={sidebarData.events || []} organizations={sidebarData.organizations || []} />
             </SidebarHeader>
             <SidebarContent>
                 <NavMain items={navMain} />

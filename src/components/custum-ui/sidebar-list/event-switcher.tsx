@@ -1,5 +1,6 @@
 import * as React from "react"
 import { ChevronDown, Plus, Search } from "lucide-react"
+import { useNavigate } from "react-router"
 
 import {
     DropdownMenu,
@@ -19,9 +20,10 @@ import {
 } from "@/components/ui/sidebar"
 import { Team } from "@/components/layouts/dashboard-layout.types"
 
-export function EventSwitcher({ events }: { events: Team[] }) {
+export function EventSwitcher({ events, organizations }: { events: Team[], organizations?: Team[] }) {
     const { isMobile } = useSidebar()
     const [activeEvent, setActiveEvent] = React.useState(events[0])
+    const navigate = useNavigate()
 
     return (
         <SidebarMenu>
@@ -76,6 +78,26 @@ export function EventSwitcher({ events }: { events: Team[] }) {
                             </div>
                             <div className="font-medium text-muted-foreground">Add event</div>
                         </DropdownMenuItem>
+                        {organizations && organizations.length > 0 && (
+                            <>
+                                <DropdownMenuSeparator />
+                                <DropdownMenuLabel className="p-0 text-muted-foreground text-xs">
+                                    Organizations
+                                </DropdownMenuLabel>
+                                {organizations.map((org, index) => (
+                                    <DropdownMenuItem
+                                        key={org.name}
+                                        className="gap-2 p-2"
+                                        onClick={() => navigate("/org-dashboard")}
+                                    >
+                                        <div className="flex size-7 items-center justify-center rounded-sm border">
+                                            <org.logo className="size-4 shrink-0" />
+                                        </div>
+                                        {org.name}
+                                    </DropdownMenuItem>
+                                ))}
+                            </>
+                        )}
                     </DropdownMenuContent>
                 </DropdownMenu>
             </SidebarMenuItem>

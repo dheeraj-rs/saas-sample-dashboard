@@ -29,7 +29,7 @@ export function NavMain({
               <SidebarMenuButton tooltip={item.title} asChild>
                 <Link to={item.url}>
                   {item.icon && <item.icon />}
-                  <span>{item.title}</span>
+                  <span className="whitespace-nowrap">{item.title}</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>

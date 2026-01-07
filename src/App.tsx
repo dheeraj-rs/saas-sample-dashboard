@@ -51,6 +51,8 @@ import SecurityPage from "./page/org-dashboard/pages/security";
 import OrgSupportPage from "./page/org-dashboard/pages/support";
 import OrgSearchPage from "./page/org-dashboard/pages/search";
 
+import { NotFound } from "./components/custum-ui/reusing-pages/NotFound";
+
 function App() {
   return (
     <BrowserRouter>
@@ -107,6 +109,7 @@ function App() {
                   <Route path="/org-dashboard/security" element={<SecurityPage />} />
                   <Route path="/org-dashboard/support" element={<OrgSupportPage />} />
                   <Route path="/org-dashboard/search" element={<OrgSearchPage />} />
+                  <Route path="*" element={<NotFound />} />
                 </Routes>
                 <Toaster />
                 <RefineKbar />

@@ -29,7 +29,7 @@ export function NavSecondary({
               <SidebarMenuButton asChild>
                 <Link to={item.url}>
                   <item.icon />
-                  <span>{item.title}</span>
+                  <span className="whitespace-nowrap">{item.title}</span>
                 </Link>
               </SidebarMenuButton>
             </SidebarMenuItem>

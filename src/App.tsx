@@ -13,6 +13,10 @@ import { FontProvider } from "./components/font";
 import { Toaster } from "./components/refine-ui/notification/toaster";
 import { useNotificationProvider } from "./components/refine-ui/notification/use-notification-provider";
 import { ThemeProvider } from "./components/refine-ui/theme/theme-provider";
+import {
+  EVENT_DASHBOARD_RESOURCES,
+  ORG_DASHBOARD_RESOURCES,
+} from "./config/resources";
 import OrgDashboardPage from "./page/org-dashboard/page";
 import EventDashboardPage from "./page/event-dashboard/page";
 import UsersListPage from "./page/event-dashboard/pages/users-list";
@@ -69,6 +73,10 @@ function App() {
                   warnWhenUnsavedChanges: true,
                   projectId: "rIho23-lDpBjT-GpRRFD",
                 }}
+                resources={[
+                  ...EVENT_DASHBOARD_RESOURCES,
+                  ...ORG_DASHBOARD_RESOURCES,
+                ]}
               >
                 <Routes>
                   <Route path="/" element={<EventDashboardPage />} />

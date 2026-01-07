@@ -13,6 +13,7 @@ import {
     IconBuilding,
     IconFolders,
     IconTrendingUp,
+    IconCalendar,
 } from "@tabler/icons-react"
 import { useLocation } from "react-router"
 
@@ -44,6 +45,23 @@ const sidebarData = {
             name: "Startup Hub",
             logo: IconTrendingUp,
             plan: "Business",
+        },
+    ],
+    events: [
+        {
+            name: "Tech Conference",
+            logo: IconCalendar,
+            plan: "Active",
+        },
+        {
+            name: "Annual Summit",
+            logo: IconCalendar,
+            plan: "Draft",
+        },
+        {
+            name: "Workshop Series",
+            logo: IconCalendar,
+            plan: "Completed",
         },
     ],
     user: {
@@ -201,7 +219,7 @@ export function OrgSidebar() {
     return (
         <Sidebar collapsible="icon" className="h-screen border-r z-50" variant="sidebar">
             <SidebarHeader className="h-(--header-height) border-b">
-                <OrgSwitcher organizations={sidebarData.organizations || []} />
+                <OrgSwitcher organizations={sidebarData.organizations || []} events={sidebarData.events || []} />
             </SidebarHeader>
             <SidebarContent>
                 <NavMain items={navMain} />

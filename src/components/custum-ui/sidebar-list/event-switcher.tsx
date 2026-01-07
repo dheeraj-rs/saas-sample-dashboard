@@ -84,7 +84,7 @@ export function EventSwitcher({ events, organizations }: { events: Team[], organ
                                 <DropdownMenuLabel className="p-0 text-muted-foreground text-xs">
                                     Organizations
                                 </DropdownMenuLabel>
-                                {organizations.map((org, index) => (
+                                {organizations.map((org) => (
                                     <DropdownMenuItem
                                         key={org.name}
                                         className="gap-2 p-2"

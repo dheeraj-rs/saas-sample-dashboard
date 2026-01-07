@@ -1,0 +1,101 @@
+{
+    "overview": {
+        "totalRevenue": 1250000,
+        "activeEvents": 12,
+        "totalEvents": 45,
+        "teamMembers": 28,
+        "activePlan": "Enterprise"
+    },
+    "revenueHistory": [
+        {
+            "month": "Jan",
+            "revenue": 150000
+        },
+        {
+            "month": "Feb",
+            "revenue": 180000
+        },
+        {
+            "month": "Mar",
+            "revenue": 160000
+        },
+        {
+            "month": "Apr",
+            "revenue": 210000
+        },
+        {
+            "month": "May",
+            "revenue": 190000
+        },
+        {
+            "month": "Jun",
+            "revenue": 240000
+        },
+        {
+            "month": "Jul",
+            "revenue": 220000
+        },
+        {
+            "month": "Aug",
+            "revenue": 260000
+        },
+        {
+            "month": "Sep",
+            "revenue": 250000
+        },
+        {
+            "month": "Oct",
+            "revenue": 290000
+        },
+        {
+            "month": "Nov",
+            "revenue": 310000
+        },
+        {
+            "month": "Dec",
+            "revenue": 350000
+        }
+    ],
+    "recentActivity": [
+        {
+            "id": "1",
+            "action": "New Event Created",
+            "target": "Global Tech Summit 2026",
+            "user": "Sarah Johnson",
+            "date": "2026-01-07T10:30:00Z",
+            "status": "success"
+        },
+        {
+            "id": "2",
+            "action": "User Role Updated",
+            "target": "Mike Smith (Admin)",
+            "user": "John Doe",
+            "date": "2026-01-06T14:15:00Z",
+            "status": "warning"
+        },
+        {
+            "id": "3",
+            "action": "Payout Processed",
+            "target": "$45,000.00",
+            "user": "System",
+            "date": "2026-01-05T09:00:00Z",
+            "status": "success"
+        },
+        {
+            "id": "4",
+            "action": "New Team Member",
+            "target": "Alex Wilson invited",
+            "user": "Sarah Johnson",
+            "date": "2026-01-04T16:45:00Z",
+            "status": "info"
+        },
+        {
+            "id": "5",
+            "action": "Event Settings Changed",
+            "target": "Annual Developer Conference",
+            "user": "Emily Chen",
+            "date": "2026-01-03T11:20:00Z",
+            "status": "info"
+        }
+    ]
+}

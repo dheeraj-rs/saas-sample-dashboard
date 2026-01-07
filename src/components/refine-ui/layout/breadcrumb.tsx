@@ -1,8 +1,7 @@
-"use client";
-
 import {
   Breadcrumb as ShadcnBreadcrumb,
   BreadcrumbItem as ShadcnBreadcrumbItem,
+  BreadcrumbLink as ShadcnBreadcrumbLink,
   BreadcrumbList as ShadcnBreadcrumbList,
   BreadcrumbPage as ShadcnBreadcrumbPage,
   BreadcrumbSeparator as ShadcnBreadcrumbSeparator,
@@ -13,7 +12,7 @@ import {
   useLink,
   useResourceParams,
 } from "@refinedev/core";
-import { Home, SlashIcon } from "lucide-react";
+import { Home } from "lucide-react";
 import { Fragment, useMemo } from "react";
 
 export function Breadcrumb({ homePath }: { homePath?: string }) {
@@ -26,7 +25,8 @@ export function Breadcrumb({ homePath }: { homePath?: string }) {
     const list: {
       key: string;
       href: string;
-      Component: React.ReactNode;
+      icon?: React.ReactNode;
+      label: React.ReactNode;
     }[] = [];
 
     const homeHref = homePath ?? rootRouteResource.matchedRoute ?? "/";
@@ -34,20 +34,15 @@ export function Breadcrumb({ homePath }: { homePath?: string }) {
     list.push({
       key: "breadcrumb-item-home",
       href: homeHref,
-      Component: (
-        <Link to={homeHref}>
-          {rootRouteResource?.resource?.meta?.icon ?? (
-            <Home className="h-4 w-4" />
-          )}
-        </Link>
-      ),
+      icon: rootRouteResource?.resource?.meta?.icon ?? <Home className="h-4 w-4" />,
+      label: "Home",
     });
 
     for (const { label, href } of breadcrumbs) {
       list.push({
         key: `breadcrumb-item-${label}`,
         href: href ?? "",
-        Component: href ? <Link to={href}>{label}</Link> : <span>{label}</span>,
+        label: label,
       });
     }
 
@@ -58,22 +53,42 @@ export function Breadcrumb({ homePath }: { homePath?: string }) {
     <ShadcnBreadcrumb>
       <ShadcnBreadcrumbList>
         {breadCrumbItems.map((item, index) => {
-          if (index === breadCrumbItems.length - 1) {
+          const isLast = index === breadCrumbItems.length - 1;
+
+          if (isLast) {
             return (
-              <ShadcnBreadcrumbPage key={item.key}>
-                {item.Component}
-              </ShadcnBreadcrumbPage>
+              <ShadcnBreadcrumbItem key={item.key}>
+                <ShadcnBreadcrumbPage>
+                  {item.icon ? (
+                    <div className="flex items-center gap-2">
+                      {item.icon}
+                      <span>{item.label}</span>
+                    </div>
+                  ) : (
+                    item.label
+                  )}
+                </ShadcnBreadcrumbPage>
+              </ShadcnBreadcrumbItem>
             );
           }
 
           return (
             <Fragment key={item.key}>
-              <ShadcnBreadcrumbItem key={item.key}>
-                {item.Component}
+              <ShadcnBreadcrumbItem>
+                <ShadcnBreadcrumbLink asChild>
+                  <Link to={item.href}>
+                    {item.icon ? (
+                      <span className="flex items-center gap-2">
+                        {item.icon}
+                        {index === 0 && <span className="sr-only">Home</span>}
+                      </span>
+                    ) : (
+                      item.label
+                    )}
+                  </Link>
+                </ShadcnBreadcrumbLink>
               </ShadcnBreadcrumbItem>
-              <ShadcnBreadcrumbSeparator>
-                <SlashIcon />
-              </ShadcnBreadcrumbSeparator>
+              <ShadcnBreadcrumbSeparator />
             </Fragment>
           );
         })}

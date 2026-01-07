@@ -1,7 +1,6 @@
 import {
     IconCalendarEvent,
     IconChartBar,
-    IconCreditCard,
     IconTicket,
     IconTrendingUp,
 } from "@tabler/icons-react"

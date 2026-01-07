@@ -1,4 +1,4 @@
-import { CreateEventModal } from "@/page/org-dashboard/components/create-event-modal"
+import { CreateEventModal } from "@/page/org-dashboard/components/modals/create-event-modal"
 import { OrgEventsTable } from "@/page/org-dashboard/components/dashboard/org-events-table"
 import eventsData from "@/page/event-dashboard/data/events-data.json"
 import OrgDashboardLayout from "../layout"

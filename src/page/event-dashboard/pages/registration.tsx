@@ -7,8 +7,8 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { Badge } from "@/components/ui/badge"
 import { IconCheck, IconClock, IconSettings, IconShieldCheck } from "@tabler/icons-react"
+import { toast } from "sonner"
 import configData from "../data/registraction-config.json"
 
 interface ConfigOption {
@@ -33,8 +33,7 @@ export default function RegistrationPage() {
     const config = configData as RegistrationConfig
     const [formData, setFormData] = React.useState<Record<string, any>>({})
 
-    // Initialize form data from config
-    React.useEffect(() => {
+    const getInitialData = () => {
         const initialData: Record<string, any> = {}
         config.sections.forEach(section => {
             if (section.type === "radio") {
@@ -53,7 +52,12 @@ export default function RegistrationPage() {
                 }
             }
         })
-        setFormData(initialData)
+        return initialData
+    }
+
+    // Initialize form data from config
+    React.useEffect(() => {
+        setFormData(getInitialData())
     }, [])
 
     const handleRadioChange = (sectionKey: string, optionKey: string) => {
@@ -70,6 +74,12 @@ export default function RegistrationPage() {
 
     const handleSave = () => {
         console.log("Saving configuration:", formData)
+        toast.success("Configuration saved successfully")
+    }
+
+    const handleReset = () => {
+        setFormData(getInitialData())
+        toast.info("Configuration reset to defaults")
     }
 
     return (
@@ -77,39 +87,22 @@ export default function RegistrationPage() {
             <div className="flex flex-1 flex-col">
                 <div className="flex flex-1 flex-col">
                     {/* Header Section */}
-                    <div className="border-b bg-background">
-                        <div className="flex flex-col gap-4 p-6">
-                            <div className="flex items-center justify-between">
-                                <div className="space-y-1">
-                                    <h1 className="text-2xl font-semibold tracking-tight">Registration Settings</h1>
-                                    <p className="text-sm text-muted-foreground">
-                                        Configure how attendees register and checkout for your event
-                                    </p>
-                                </div>
-                                <div className="flex gap-2">
-                                    <Button variant="outline">
-                                        <IconSettings className="mr-2 h-4 w-4" />
-                                        Reset
-                                    </Button>
-                                    <Button onClick={handleSave}>
-                                        <IconCheck className="mr-2 h-4 w-4" />
-                                        Save Changes
-                                    </Button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
                     {/* Main Content */}
                     <div className="flex-1 overflow-auto">
                         <div className="py-6 px-6 space-y-8">
                             {/* Registration Flow */}
                             <section className="space-y-4">
-                                <div>
-                                    <h2 className="text-lg font-semibold">Registration Flow</h2>
-                                    <p className="text-sm text-muted-foreground">
-                                        Control the order and requirements for your registration process
-                                    </p>
+                                <div className="flex items-center justify-between">
+                                    <div>
+                                        <h2 className="text-lg font-semibold">Registration Flow</h2>
+                                        <p className="text-sm text-muted-foreground">
+                                            Control the order and requirements for your registration process
+                                        </p>
+                                    </div>
+                                    <Button variant="outline" size="sm" onClick={handleReset}>
+                                        <IconSettings className="mr-2 h-4 w-4" />
+                                        Reset
+                                    </Button>
                                 </div>
                                 <div className="grid gap-4 md:grid-cols-2">
                                     {/* Flow Order */}

@@ -1,0 +1,502 @@
+[
+    {
+        "id": "usr_001",
+        "name": "John Anderson",
+        "email": "john.anderson@company.com",
+        "role": "Admin",
+        "status": "active",
+        "department": "Engineering",
+        "joined_date": "2023-01-15",
+        "phone": "+1 (555) 123-4567"
+    },
+    {
+        "id": "usr_002",
+        "name": "Sarah Mitchell",
+        "email": "sarah.mitchell@company.com",
+        "role": "Manager",
+        "status": "active",
+        "department": "Marketing",
+        "joined_date": "2023-02-20",
+        "phone": "+1 (555) 234-5678"
+    },
+    {
+        "id": "usr_003",
+        "name": "Michael Chen",
+        "email": "michael.chen@company.com",
+        "role": "Developer",
+        "status": "active",
+        "department": "Engineering",
+        "joined_date": "2023-03-10",
+        "phone": "+1 (555) 345-6789"
+    },
+    {
+        "id": "usr_004",
+        "name": "Emily Rodriguez",
+        "email": "emily.rodriguez@company.com",
+        "role": "Designer",
+        "status": "active",
+        "department": "Design",
+        "joined_date": "2023-04-05",
+        "phone": "+1 (555) 456-7890"
+    },
+    {
+        "id": "usr_005",
+        "name": "David Thompson",
+        "email": "david.thompson@company.com",
+        "role": "Developer",
+        "status": "inactive",
+        "department": "Engineering",
+        "joined_date": "2023-01-25",
+        "phone": "+1 (555) 567-8901"
+    },
+    {
+        "id": "usr_006",
+        "name": "Jessica Lee",
+        "email": "jessica.lee@company.com",
+        "role": "Manager",
+        "status": "active",
+        "department": "Sales",
+        "joined_date": "2023-05-12",
+        "phone": "+1 (555) 678-9012"
+    },
+    {
+        "id": "usr_007",
+        "name": "Robert Williams",
+        "email": "robert.williams@company.com",
+        "role": "Developer",
+        "status": "active",
+        "department": "Engineering",
+        "joined_date": "2023-06-18",
+        "phone": "+1 (555) 789-0123"
+    },
+    {
+        "id": "usr_008",
+        "name": "Amanda Garcia",
+        "email": "amanda.garcia@company.com",
+        "role": "Analyst",
+        "status": "active",
+        "department": "Finance",
+        "joined_date": "2023-07-22",
+        "phone": "+1 (555) 890-1234"
+    },
+    {
+        "id": "usr_009",
+        "name": "Christopher Brown",
+        "email": "christopher.brown@company.com",
+        "role": "Developer",
+        "status": "active",
+        "department": "Engineering",
+        "joined_date": "2023-08-14",
+        "phone": "+1 (555) 901-2345"
+    },
+    {
+        "id": "usr_010",
+        "name": "Lisa Martinez",
+        "email": "lisa.martinez@company.com",
+        "role": "Designer",
+        "status": "active",
+        "department": "Design",
+        "joined_date": "2023-09-03",
+        "phone": "+1 (555) 012-3456"
+    },
+    {
+        "id": "usr_011",
+        "name": "James Wilson",
+        "email": "james.wilson@company.com",
+        "role": "Manager",
+        "status": "active",
+        "department": "Operations",
+        "joined_date": "2023-02-28",
+        "phone": "+1 (555) 123-4568"
+    },
+    {
+        "id": "usr_012",
+        "name": "Patricia Taylor",
+        "email": "patricia.taylor@company.com",
+        "role": "Developer",
+        "status": "active",
+        "department": "Engineering",
+        "joined_date": "2023-10-11",
+        "phone": "+1 (555) 234-5679"
+    },
+    {
+        "id": "usr_013",
+        "name": "Daniel Moore",
+        "email": "daniel.moore@company.com",
+        "role": "Admin",
+        "status": "active",
+        "department": "IT",
+        "joined_date": "2023-01-08",
+        "phone": "+1 (555) 345-6780"
+    },
+    {
+        "id": "usr_014",
+        "name": "Jennifer Jackson",
+        "email": "jennifer.jackson@company.com",
+        "role": "Analyst",
+        "status": "active",
+        "department": "Marketing",
+        "joined_date": "2023-11-20",
+        "phone": "+1 (555) 456-7891"
+    },
+    {
+        "id": "usr_015",
+        "name": "Matthew White",
+        "email": "matthew.white@company.com",
+        "role": "Developer",
+        "status": "pending",
+        "department": "Engineering",
+        "joined_date": "2024-01-05",
+        "phone": "+1 (555) 567-8902"
+    },
+    {
+        "id": "usr_016",
+        "name": "Michelle Harris",
+        "email": "michelle.harris@company.com",
+        "role": "Designer",
+        "status": "active",
+        "department": "Design",
+        "joined_date": "2023-12-15",
+        "phone": "+1 (555) 678-9013"
+    },
+    {
+        "id": "usr_017",
+        "name": "Kevin Martin",
+        "email": "kevin.martin@company.com",
+        "role": "Manager",
+        "status": "active",
+        "department": "Engineering",
+        "joined_date": "2023-03-22",
+        "phone": "+1 (555) 789-0124"
+    },
+    {
+        "id": "usr_018",
+        "name": "Laura Thompson",
+        "email": "laura.thompson@company.com",
+        "role": "Developer",
+        "status": "active",
+        "department": "Engineering",
+        "joined_date": "2023-04-17",
+        "phone": "+1 (555) 890-1235"
+    },
+    {
+        "id": "usr_019",
+        "name": "Steven Garcia",
+        "email": "steven.garcia@company.com",
+        "role": "Analyst",
+        "status": "active",
+        "department": "Finance",
+        "joined_date": "2023-05-29",
+        "phone": "+1 (555) 901-2346"
+    },
+    {
+        "id": "usr_020",
+        "name": "Nancy Martinez",
+        "email": "nancy.martinez@company.com",
+        "role": "Manager",
+        "status": "inactive",
+        "department": "HR",
+        "joined_date": "2023-02-14",
+        "phone": "+1 (555) 012-3457"
+    },
+    {
+        "id": "usr_021",
+        "name": "Paul Robinson",
+        "email": "paul.robinson@company.com",
+        "role": "Developer",
+        "status": "active",
+        "department": "Engineering",
+        "joined_date": "2023-06-25",
+        "phone": "+1 (555) 123-4569"
+    },
+    {
+        "id": "usr_022",
+        "name": "Karen Clark",
+        "email": "karen.clark@company.com",
+        "role": "Designer",
+        "status": "active",
+        "department": "Design",
+        "joined_date": "2023-07-30",
+        "phone": "+1 (555) 234-5680"
+    },
+    {
+        "id": "usr_023",
+        "name": "Mark Rodriguez",
+        "email": "mark.rodriguez@company.com",
+        "role": "Admin",
+        "status": "active",
+        "department": "IT",
+        "joined_date": "2023-08-19",
+        "phone": "+1 (555) 345-6781"
+    },
+    {
+        "id": "usr_024",
+        "name": "Betty Lewis",
+        "email": "betty.lewis@company.com",
+        "role": "Analyst",
+        "status": "active",
+        "department": "Sales",
+        "joined_date": "2023-09-24",
+        "phone": "+1 (555) 456-7892"
+    },
+    {
+        "id": "usr_025",
+        "name": "Donald Lee",
+        "email": "donald.lee@company.com",
+        "role": "Developer",
+        "status": "active",
+        "department": "Engineering",
+        "joined_date": "2023-10-28",
+        "phone": "+1 (555) 567-8903"
+    },
+    {
+        "id": "usr_026",
+        "name": "Sandra Walker",
+        "email": "sandra.walker@company.com",
+        "role": "Manager",
+        "status": "active",
+        "department": "Marketing",
+        "joined_date": "2023-11-12",
+        "phone": "+1 (555) 678-9014"
+    },
+    {
+        "id": "usr_027",
+        "name": "Kenneth Hall",
+        "email": "kenneth.hall@company.com",
+        "role": "Developer",
+        "status": "active",
+        "department": "Engineering",
+        "joined_date": "2023-12-07",
+        "phone": "+1 (555) 789-0125"
+    },
+    {
+        "id": "usr_028",
+        "name": "Ashley Allen",
+        "email": "ashley.allen@company.com",
+        "role": "Designer",
+        "status": "pending",
+        "department": "Design",
+        "joined_date": "2024-01-15",
+        "phone": "+1 (555) 890-1236"
+    },
+    {
+        "id": "usr_029",
+        "name": "Brian Young",
+        "email": "brian.young@company.com",
+        "role": "Analyst",
+        "status": "active",
+        "department": "Finance",
+        "joined_date": "2023-01-30",
+        "phone": "+1 (555) 901-2347"
+    },
+    {
+        "id": "usr_030",
+        "name": "Dorothy Hernandez",
+        "email": "dorothy.hernandez@company.com",
+        "role": "Manager",
+        "status": "active",
+        "department": "Operations",
+        "joined_date": "2023-02-18",
+        "phone": "+1 (555) 012-3458"
+    },
+    {
+        "id": "usr_031",
+        "name": "George King",
+        "email": "george.king@company.com",
+        "role": "Developer",
+        "status": "active",
+        "department": "Engineering",
+        "joined_date": "2023-03-26",
+        "phone": "+1 (555) 123-4570"
+    },
+    {
+        "id": "usr_032",
+        "name": "Helen Wright",
+        "email": "helen.wright@company.com",
+        "role": "Admin",
+        "status": "active",
+        "department": "IT",
+        "joined_date": "2023-04-21",
+        "phone": "+1 (555) 234-5681"
+    },
+    {
+        "id": "usr_033",
+        "name": "Jason Lopez",
+        "email": "jason.lopez@company.com",
+        "role": "Developer",
+        "status": "active",
+        "department": "Engineering",
+        "joined_date": "2023-05-16",
+        "phone": "+1 (555) 345-6782"
+    },
+    {
+        "id": "usr_034",
+        "name": "Deborah Hill",
+        "email": "deborah.hill@company.com",
+        "role": "Designer",
+        "status": "active",
+        "department": "Design",
+        "joined_date": "2023-06-11",
+        "phone": "+1 (555) 456-7893"
+    },
+    {
+        "id": "usr_035",
+        "name": "Ryan Scott",
+        "email": "ryan.scott@company.com",
+        "role": "Analyst",
+        "status": "active",
+        "department": "Marketing",
+        "joined_date": "2023-07-06",
+        "phone": "+1 (555) 567-8904"
+    },
+    {
+        "id": "usr_036",
+        "name": "Kimberly Green",
+        "email": "kimberly.green@company.com",
+        "role": "Manager",
+        "status": "active",
+        "department": "Sales",
+        "joined_date": "2023-08-01",
+        "phone": "+1 (555) 678-9015"
+    },
+    {
+        "id": "usr_037",
+        "name": "Gary Adams",
+        "email": "gary.adams@company.com",
+        "role": "Developer",
+        "status": "inactive",
+        "department": "Engineering",
+        "joined_date": "2023-03-12",
+        "phone": "+1 (555) 789-0126"
+    },
+    {
+        "id": "usr_038",
+        "name": "Carol Baker",
+        "email": "carol.baker@company.com",
+        "role": "Designer",
+        "status": "active",
+        "department": "Design",
+        "joined_date": "2023-09-20",
+        "phone": "+1 (555) 890-1237"
+    },
+    {
+        "id": "usr_039",
+        "name": "Nicholas Gonzalez",
+        "email": "nicholas.gonzalez@company.com",
+        "role": "Admin",
+        "status": "active",
+        "department": "IT",
+        "joined_date": "2023-10-15",
+        "phone": "+1 (555) 901-2348"
+    },
+    {
+        "id": "usr_040",
+        "name": "Ruth Nelson",
+        "email": "ruth.nelson@company.com",
+        "role": "Analyst",
+        "status": "active",
+        "department": "Finance",
+        "joined_date": "2023-11-08",
+        "phone": "+1 (555) 012-3459"
+    },
+    {
+        "id": "usr_041",
+        "name": "Eric Carter",
+        "email": "eric.carter@company.com",
+        "role": "Developer",
+        "status": "active",
+        "department": "Engineering",
+        "joined_date": "2023-12-03",
+        "phone": "+1 (555) 123-4571"
+    },
+    {
+        "id": "usr_042",
+        "name": "Sharon Mitchell",
+        "email": "sharon.mitchell@company.com",
+        "role": "Manager",
+        "status": "active",
+        "department": "HR",
+        "joined_date": "2023-01-19",
+        "phone": "+1 (555) 234-5682"
+    },
+    {
+        "id": "usr_043",
+        "name": "Stephen Perez",
+        "email": "stephen.perez@company.com",
+        "role": "Developer",
+        "status": "active",
+        "department": "Engineering",
+        "joined_date": "2024-01-22",
+        "phone": "+1 (555) 345-6783"
+    },
+    {
+        "id": "usr_044",
+        "name": "Cynthia Roberts",
+        "email": "cynthia.roberts@company.com",
+        "role": "Designer",
+        "status": "active",
+        "department": "Design",
+        "joined_date": "2023-02-25",
+        "phone": "+1 (555) 456-7894"
+    },
+    {
+        "id": "usr_045",
+        "name": "Andrew Turner",
+        "email": "andrew.turner@company.com",
+        "role": "Analyst",
+        "status": "active",
+        "department": "Sales",
+        "joined_date": "2023-03-30",
+        "phone": "+1 (555) 567-8905"
+    },
+    {
+        "id": "usr_046",
+        "name": "Donna Phillips",
+        "email": "donna.phillips@company.com",
+        "role": "Manager",
+        "status": "active",
+        "department": "Operations",
+        "joined_date": "2023-04-24",
+        "phone": "+1 (555) 678-9016"
+    },
+    {
+        "id": "usr_047",
+        "name": "Joshua Campbell",
+        "email": "joshua.campbell@company.com",
+        "role": "Developer",
+        "status": "active",
+        "department": "Engineering",
+        "joined_date": "2023-05-19",
+        "phone": "+1 (555) 789-0127"
+    },
+    {
+        "id": "usr_048",
+        "name": "Virginia Parker",
+        "email": "virginia.parker@company.com",
+        "role": "Admin",
+        "status": "active",
+        "department": "IT",
+        "joined_date": "2023-06-14",
+        "phone": "+1 (555) 890-1238"
+    },
+    {
+        "id": "usr_049",
+        "name": "Raymond Evans",
+        "email": "raymond.evans@company.com",
+        "role": "Developer",
+        "status": "pending",
+        "department": "Engineering",
+        "joined_date": "2024-01-28",
+        "phone": "+1 (555) 901-2349"
+    },
+    {
+        "id": "usr_050",
+        "name": "Kathleen Edwards",
+        "email": "kathleen.edwards@company.com",
+        "role": "Designer",
+        "status": "active",
+        "department": "Design",
+        "joined_date": "2023-07-09",
+        "phone": "+1 (555) 012-3460"
+    }
+]

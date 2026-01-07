@@ -1,0 +1,133 @@
+{
+    "sections": [
+        {
+            "key": "flowOrder",
+            "title": "Flow Order",
+            "type": "radio",
+            "options": [
+                {
+                    "key": "ticketFirst",
+                    "label": "Ticket first",
+                    "value": true
+                },
+                {
+                    "key": "registrationFirst",
+                    "label": "Registration first",
+                    "value": false
+                }
+            ]
+        },
+        {
+            "key": "registrationMode",
+            "title": "Registration Mode",
+            "type": "radio",
+            "options": [
+                {
+                    "key": "none",
+                    "label": "None",
+                    "value": true
+                },
+                {
+                    "key": "optional",
+                    "label": "Optional",
+                    "value": false
+                },
+                {
+                    "key": "required",
+                    "label": "Required",
+                    "value": false
+                }
+            ]
+        },
+        {
+            "key": "primaryIdentity",
+            "title": "Primary Identity",
+            "type": "radio",
+            "options": [
+                {
+                    "key": "email",
+                    "label": "Email",
+                    "value": true
+                },
+                {
+                    "key": "phone",
+                    "label": "Phone",
+                    "value": false
+                }
+            ]
+        },
+        {
+            "key": "checkoutSettings",
+            "title": "Checkout Settings",
+            "type": "checkbox",
+            "options": [
+                {
+                    "key": "singlePageCheckout",
+                    "label": "Enable single page checkout",
+                    "value": false
+                },
+                {
+                    "key": "enableBackNavigation",
+                    "label": "Enable back navigation",
+                    "value": true
+                }
+            ]
+        },
+        {
+            "key": "sessionTimeout",
+            "title": "Session Timeout",
+            "type": "time",
+            "options": [
+                {
+                    "key": "duration",
+                    "label": "Duration (HH:MM:SS)",
+                    "value": "00:15:00"
+                }
+            ]
+        },
+        {
+            "key": "ticketFormBehavior",
+            "title": "Ticket Form Behavior",
+            "type": "checkbox-card",
+            "options": [
+                {
+                    "key": "dataPerTicket",
+                    "label": "Data per ticket",
+                    "description": "Collect details separately for each ticket holder",
+                    "value": false
+                },
+                {
+                    "key": "oneSharedForm",
+                    "label": "One shared form",
+                    "description": "Use a single registration form for the entire order",
+                    "value": false
+                },
+                {
+                    "key": "editablePerTicket",
+                    "label": "Editable per ticket",
+                    "description": "Allow attendees to update details later",
+                    "value": false
+                }
+            ]
+        },
+        {
+            "key": "additionalSettings",
+            "title": "Additional Settings",
+            "type": "checkbox",
+            "options": [
+                {
+                    "key": "enableEventEnrollers",
+                    "label": "Enable Event Enrollers",
+                    "description": "Allow staff to enroll participants",
+                    "value": false
+                },
+                {
+                    "key": "enableCaptcha",
+                    "label": "Enable CAPTCHA",
+                    "description": "Protect forms from spam bots",
+                    "value": false
+                }
+            ]
+        }
+    ]
+}

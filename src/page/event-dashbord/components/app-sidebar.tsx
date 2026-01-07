@@ -12,6 +12,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar"
+import { NavClouds } from "@/page/event-dashbord/components/nav-clouds"
 import { NavDocuments } from "@/page/event-dashbord/components/nav-documents"
 import { NavMain } from "@/page/event-dashbord/components/nav-main"
 import { NavSecondary } from "@/page/event-dashbord/components/nav-secondary"
@@ -25,12 +26,15 @@ interface AppSidebarProps extends React.ComponentProps<typeof Sidebar> {
 
 export function AppSidebar({ config, ...props }: AppSidebarProps) {
   return (
-    <Sidebar collapsible="icon" className="h-screen border-r z-50 bg-red-500" {...props}>
+    <Sidebar collapsible="icon" className="h-screen border-r z-50" {...props}>
       <SidebarHeader className="h-(--header-height) border-b">
         <TeamSwitcher teams={config.teams || []} />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={config.navMain} />
+        {config.navClouds && config.navClouds.length > 0 && (
+          <NavClouds items={config.navClouds} />
+        )}
         <NavDocuments items={config.documents || []} />
         <NavSecondary items={config.navSecondary} className="mt-auto" />
       </SidebarContent>

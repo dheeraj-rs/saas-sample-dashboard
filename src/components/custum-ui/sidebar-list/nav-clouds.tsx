@@ -1,4 +1,5 @@
 import { IconChevronRight, type Icon } from "@tabler/icons-react"
+import { Link } from "react-router"
 
 import {
     Collapsible,
@@ -54,9 +55,9 @@ export function NavClouds({
                                     {item.items?.map((subItem) => (
                                         <SidebarMenuSubItem key={subItem.title}>
                                             <SidebarMenuSubButton asChild>
-                                                <a href={subItem.url}>
+                                                <Link to={subItem.url}>
                                                     <span>{subItem.title}</span>
-                                                </a>
+                                                </Link>
                                             </SidebarMenuSubButton>
                                         </SidebarMenuSubItem>
                                     ))}

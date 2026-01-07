@@ -2,7 +2,7 @@ import { ChartAreaInteractive } from "@/page/event-dashboard/components/dashboar
 import { DataTable } from "@/page/event-dashboard/components/dashboard/data-table"
 import { SectionCards } from "@/page/event-dashboard/components/dashboard/section-cards"
 import ImportantToast from "../../components/custum-ui/toast/importent-tost"
-import data from "./data/data.json"
+import data from "./data/events-data.json"
 import EventDashboardLayout from "./layout"
 
 export default function EventDashboardPage() {

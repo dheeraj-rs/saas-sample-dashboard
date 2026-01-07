@@ -1,18 +1,24 @@
 import * as React from "react"
 import {
-    IconCamera,
-    IconDatabase,
-    IconFileAi,
-    IconFileDescription,
-    IconFileWord,
-    IconFolder,
-    IconHelp,
-    IconListDetails,
-    IconPresentation,
-    IconReport,
-    IconSearch,
-    IconSettings,
     IconDashboard,
+    IconClipboardList,
+    IconHeadset,
+    IconMapPin,
+    IconCalendarEvent,
+    IconCurrencyDollar,
+    IconTicket,
+    IconDiscount,
+    IconPuzzle,
+    IconForms,
+    IconLock,
+    IconCreditCard,
+    IconRefresh,
+    IconBell,
+    IconSettings,
+    IconHelp,
+    IconSearch,
+    IconCalendar,
+    IconUser,
 } from "@tabler/icons-react"
 
 import {
@@ -22,28 +28,27 @@ import {
     SidebarHeader,
 } from "@/components/ui/sidebar"
 import { NavClouds } from "@/components/custum-ui/sidebar-list/nav-clouds"
-import { NavDocuments } from "@/components/custum-ui/sidebar-list/nav-documents"
 import { NavMain } from "@/components/custum-ui/sidebar-list/nav-main"
 import { NavSecondary } from "@/components/custum-ui/sidebar-list/nav-secondary"
 import { NavUser } from "@/components/custum-ui/sidebar-list/nav-user"
-import { TeamSwitcher } from "@/components/custum-ui/sidebar-list/team-switcher"
+import { EventSwitcher } from "@/components/custum-ui/sidebar-list/event-switcher"
 
 const sidebarData = {
-    teams: [
+    events: [
         {
-            name: "Acme Inc",
-            logo: IconPresentation,
-            plan: "Enterprise",
+            name: "Tech Conference",
+            logo: IconCalendar,
+            plan: "Active",
         },
         {
-            name: "Acme Corp.",
-            logo: IconFolder,
-            plan: "Startup",
+            name: "Annual Summit",
+            logo: IconCalendar,
+            plan: "Draft",
         },
         {
-            name: "Evil Corp.",
-            logo: IconDatabase,
-            plan: "Free",
+            name: "Workshop Series",
+            logo: IconCalendar,
+            plan: "Completed",
         },
     ],
     user: {
@@ -54,59 +59,95 @@ const sidebarData = {
     navMain: [
         {
             title: "Dashboard",
-            url: "#",
+            url: "/event-dashboard",
             icon: IconDashboard,
         },
         {
-            title: "Registration",
-            url: "#",
-            icon: IconListDetails,
+            title: "Users List",
+            url: "/event-dashboard/users",
+            icon: IconUser,
+        },
+        {
+            title: "App Support",
+            url: "/event-dashboard/support",
+            icon: IconHeadset,
         },
     ],
     navClouds: [
         {
-            title: "Capture",
-            icon: IconCamera,
+            title: "Registration & Attendees",
+            icon: IconClipboardList,
             isActive: true,
             url: "#",
             items: [
                 {
-                    title: "Active Proposals",
-                    url: "#",
+                    title: "Registration",
+                    url: "/event-dashboard/registration",
                 },
                 {
-                    title: "Archived",
-                    url: "#",
-                },
-            ],
-        },
-        {
-            title: "Proposal",
-            icon: IconFileDescription,
-            url: "#",
-            items: [
-                {
-                    title: "Active Proposals",
-                    url: "#",
+                    title: "Attendee Fields",
+                    url: "/event-dashboard/attendee-fields",
                 },
                 {
-                    title: "Archived",
-                    url: "#",
+                    title: "Restrictions",
+                    url: "/event-dashboard/restrictions",
                 },
             ],
         },
         {
-            title: "Prompts",
-            icon: IconFileAi,
+            title: "Event Setup",
+            icon: IconCalendarEvent,
             url: "#",
             items: [
                 {
-                    title: "Active Proposals",
-                    url: "#",
+                    title: "Location",
+                    url: "/event-dashboard/location",
                 },
                 {
-                    title: "Archived",
-                    url: "#",
+                    title: "Sessions",
+                    url: "/event-dashboard/sessions",
+                },
+            ],
+        },
+        {
+            title: "Pricing & Tickets",
+            icon: IconTicket,
+            url: "#",
+            items: [
+                {
+                    title: "Price Slabs",
+                    url: "/event-dashboard/price-slabs",
+                },
+                {
+                    title: "Tickets",
+                    url: "/event-dashboard/tickets",
+                },
+                {
+                    title: "Discounts",
+                    url: "/event-dashboard/discounts",
+                },
+                {
+                    title: "Add-ons",
+                    url: "/event-dashboard/add-ons",
+                },
+            ],
+        },
+        {
+            title: "Settings & Payments",
+            icon: IconCreditCard,
+            url: "#",
+            items: [
+                {
+                    title: "Payment Settings",
+                    url: "/event-dashboard/payment-settings",
+                },
+                {
+                    title: "Refund Settings",
+                    url: "/event-dashboard/refund-settings",
+                },
+                {
+                    title: "Notifications",
+                    url: "/event-dashboard/notifications",
                 },
             ],
         },
@@ -114,35 +155,18 @@ const sidebarData = {
     navSecondary: [
         {
             title: "Settings",
-            url: "#",
+            url: "/event-dashboard/settings",
             icon: IconSettings,
         },
         {
             title: "Get Help",
-            url: "#",
+            url: "/event-dashboard/help",
             icon: IconHelp,
         },
         {
             title: "Search",
-            url: "#",
+            url: "/event-dashboard/search",
             icon: IconSearch,
-        },
-    ],
-    documents: [
-        {
-            name: "Data Library",
-            url: "#",
-            icon: IconDatabase,
-        },
-        {
-            name: "Reports",
-            url: "#",
-            icon: IconReport,
-        },
-        {
-            name: "Word Assistant",
-            url: "#",
-            icon: IconFileWord,
         },
     ],
 }
@@ -151,14 +175,13 @@ export function EventSidebar() {
     return (
         <Sidebar collapsible="icon" className="h-screen border-r z-50" variant="sidebar">
             <SidebarHeader className="h-(--header-height) border-b">
-                <TeamSwitcher teams={sidebarData.teams || []} />
+                <EventSwitcher events={sidebarData.events || []} />
             </SidebarHeader>
             <SidebarContent>
                 <NavMain items={sidebarData.navMain} />
                 {sidebarData.navClouds && sidebarData.navClouds.length > 0 && (
                     <NavClouds items={sidebarData.navClouds} />
                 )}
-                <NavDocuments items={sidebarData.documents || []} />
                 <NavSecondary items={sidebarData.navSecondary} className="mt-auto" />
             </SidebarContent>
             <SidebarFooter>

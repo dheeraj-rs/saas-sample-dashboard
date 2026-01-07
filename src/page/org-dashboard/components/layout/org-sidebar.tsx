@@ -1,19 +1,19 @@
 import * as React from "react"
 import {
-    IconBuilding,
-    IconBriefcase,
-    IconCoin,
-    IconUserCheck,
+    IconDashboard,
+    IconCalendarEvent,
+    IconUsers,
+    IconUsersGroup,
+    IconSettings,
+    IconCreditCard,
+    IconChartBar,
+    IconBell,
+    IconShield,
     IconHelp,
     IconSearch,
-    IconSettings,
-    IconUsers,
-    IconCalendar,
-    IconClipboardList,
+    IconBuilding,
     IconFolders,
-    IconReportAnalytics,
     IconTrendingUp,
-    IconChartPie,
 } from "@tabler/icons-react"
 
 import {
@@ -23,14 +23,13 @@ import {
     SidebarHeader,
 } from "@/components/ui/sidebar"
 import { NavClouds } from "@/components/custum-ui/sidebar-list/nav-clouds"
-import { NavDocuments } from "@/components/custum-ui/sidebar-list/nav-documents"
 import { NavMain } from "@/components/custum-ui/sidebar-list/nav-main"
 import { NavSecondary } from "@/components/custum-ui/sidebar-list/nav-secondary"
 import { NavUser } from "@/components/custum-ui/sidebar-list/nav-user"
-import { TeamSwitcher } from "@/components/custum-ui/sidebar-list/team-switcher"
+import { OrgSwitcher } from "@/components/custum-ui/sidebar-list/org-switcher"
 
 const sidebarData = {
-    teams: [
+    organizations: [
         {
             name: "Global Operations",
             logo: IconBuilding,
@@ -54,127 +53,120 @@ const sidebarData = {
     },
     navMain: [
         {
-            title: "Overview",
-            url: "#",
-            icon: IconChartPie,
+            title: "Dashboard",
+            url: "/org-dashboard",
+            icon: IconDashboard,
         },
         {
-            title: "Workforce",
-            url: "#",
+            title: "Manage Events",
+            url: "/org-dashboard/events",
+            icon: IconCalendarEvent,
+        },
+        {
+            title: "Manage Users",
+            url: "/org-dashboard/users",
             icon: IconUsers,
         },
     ],
     navClouds: [
         {
-            title: "Human Resources",
-            icon: IconUserCheck,
+            title: "Teams & Roles",
+            icon: IconUsersGroup,
             isActive: true,
             url: "#",
             items: [
                 {
-                    title: "Employees",
-                    url: "#",
+                    title: "Team Members",
+                    url: "/org-dashboard/team-members",
                 },
                 {
-                    title: "Recruitment",
-                    url: "#",
+                    title: "Roles & Permissions",
+                    url: "/org-dashboard/roles-permissions",
                 },
                 {
-                    title: "Onboarding",
-                    url: "#",
-                },
-            ],
-        },
-        {
-            title: "Finance",
-            icon: IconCoin,
-            url: "#",
-            items: [
-                {
-                    title: "Budget Planning",
-                    url: "#",
-                },
-                {
-                    title: "Expenses",
-                    url: "#",
-                },
-                {
-                    title: "Payroll",
-                    url: "#",
+                    title: "Departments",
+                    url: "/org-dashboard/departments",
                 },
             ],
         },
         {
-            title: "Projects",
-            icon: IconBriefcase,
+            title: "Settings & Configuration",
+            icon: IconSettings,
             url: "#",
             items: [
                 {
-                    title: "Active Projects",
-                    url: "#",
+                    title: "Organization Settings",
+                    url: "/org-dashboard/organization-settings",
                 },
                 {
-                    title: "Completed",
-                    url: "#",
+                    title: "Branding",
+                    url: "/org-dashboard/branding",
                 },
                 {
-                    title: "Planning",
-                    url: "#",
+                    title: "Integrations",
+                    url: "/org-dashboard/integrations",
                 },
             ],
         },
         {
-            title: "Departments",
-            icon: IconFolders,
+            title: "Billing & Subscription",
+            icon: IconCreditCard,
             url: "#",
             items: [
                 {
-                    title: "Engineering",
-                    url: "#",
+                    title: "Subscription Plans",
+                    url: "/org-dashboard/subscription-plans",
                 },
                 {
-                    title: "Marketing",
-                    url: "#",
+                    title: "Payment Methods",
+                    url: "/org-dashboard/payment-methods",
                 },
                 {
-                    title: "Sales",
-                    url: "#",
+                    title: "Invoices",
+                    url: "/org-dashboard/invoices",
+                },
+            ],
+        },
+        {
+            title: "Analytics & Reports",
+            icon: IconChartBar,
+            url: "#",
+            items: [
+                {
+                    title: "Event Analytics",
+                    url: "/org-dashboard/event-analytics",
+                },
+                {
+                    title: "User Activity",
+                    url: "/org-dashboard/user-activity",
+                },
+                {
+                    title: "Revenue Reports",
+                    url: "/org-dashboard/revenue-reports",
                 },
             ],
         },
     ],
     navSecondary: [
         {
-            title: "Admin Settings",
-            url: "#",
-            icon: IconSettings,
+            title: "Notifications",
+            url: "/org-dashboard/notifications",
+            icon: IconBell,
         },
         {
-            title: "Support Center",
-            url: "#",
+            title: "Security",
+            url: "/org-dashboard/security",
+            icon: IconShield,
+        },
+        {
+            title: "Help & Support",
+            url: "/org-dashboard/support",
             icon: IconHelp,
         },
         {
-            title: "Global Search",
-            url: "#",
+            title: "Search",
+            url: "/org-dashboard/search",
             icon: IconSearch,
-        },
-    ],
-    documents: [
-        {
-            name: "Task Manager",
-            url: "#",
-            icon: IconClipboardList,
-        },
-        {
-            name: "Performance Reports",
-            url: "#",
-            icon: IconReportAnalytics,
-        },
-        {
-            name: "Company Calendar",
-            url: "#",
-            icon: IconCalendar,
         },
     ],
 }
@@ -183,14 +175,13 @@ export function OrgSidebar() {
     return (
         <Sidebar collapsible="icon" className="h-screen border-r z-50" variant="sidebar">
             <SidebarHeader className="h-(--header-height) border-b">
-                <TeamSwitcher teams={sidebarData.teams || []} />
+                <OrgSwitcher organizations={sidebarData.organizations || []} />
             </SidebarHeader>
             <SidebarContent>
                 <NavMain items={sidebarData.navMain} />
                 {sidebarData.navClouds && sidebarData.navClouds.length > 0 && (
                     <NavClouds items={sidebarData.navClouds} />
                 )}
-                <NavDocuments items={sidebarData.documents || []} />
                 <NavSecondary items={sidebarData.navSecondary} className="mt-auto" />
             </SidebarContent>
             <SidebarFooter>

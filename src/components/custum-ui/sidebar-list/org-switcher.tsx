@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ChevronDown, Plus, Search } from "lucide-react"
+import { Check, ChevronDown, Plus, Search } from "lucide-react"
 import { useNavigate } from "react-router"
 
 import {
@@ -68,7 +68,11 @@ export function OrgSwitcher({ organizations, events }: { organizations: Team[], 
                                     <org.logo className="size-4 shrink-0" />
                                 </div>
                                 {org.name}
-                                <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
+                                {activeOrg.name === org.name ? (
+                                    <Check className="ml-auto size-4 text-blue-600" />
+                                ) : (
+                                    <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
+                                )}
                             </DropdownMenuItem>
                         ))}
                         <DropdownMenuSeparator />

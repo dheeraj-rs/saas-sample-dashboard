@@ -1,5 +1,5 @@
 import * as React from "react"
-import { ChevronDown, Plus, Search } from "lucide-react"
+import { Check, ChevronDown, Plus, Search } from "lucide-react"
 import { useNavigate } from "react-router"
 
 import {
@@ -68,7 +68,11 @@ export function EventSwitcher({ events, organizations }: { events: Team[], organ
                                     <event.logo className="size-4 shrink-0" />
                                 </div>
                                 {event.name}
-                                <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
+                                {activeEvent.name === event.name ? (
+                                    <Check className="ml-auto size-4 text-blue-600" />
+                                ) : (
+                                    <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
+                                )}
                             </DropdownMenuItem>
                         ))}
                         <DropdownMenuSeparator />

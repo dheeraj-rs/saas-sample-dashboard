@@ -1,9 +1,9 @@
-import { getApiUrl, getAuthHeaders, handleApiError } from '@/lib/api.utils';
+// import { getApiUrl, getAuthHeaders, handleApiError } from '@/lib/api.utils';
 import type { LoginCredentials, AuthResponse, LogoutResponse, ForgotPasswordRequest, ForgotPasswordResponse, ResetPasswordRequest, ResetPasswordResponse } from '@/types/auth.types';
 
 export async function login(credentials: LoginCredentials): Promise<AuthResponse> {
-    // MOCK RESPONSE FOR TESTING - Remove this when backend is ready
-    await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network delay
+    // MOCK RESPONSE FOR TESTING
+    await new Promise(resolve => setTimeout(resolve, 1000));
     const mockResponse: AuthResponse = {
         status: "success",
         data: {
@@ -19,7 +19,7 @@ export async function login(credentials: LoginCredentials): Promise<AuthResponse
 
     return mockResponse;
 
-    /* REAL API CALL - Uncomment when backend is ready
+    /* REAL API CALL 
     try {
         const response = await fetch(getApiUrl('/auth/login'), {
             method: 'POST',
@@ -51,8 +51,8 @@ export async function login(credentials: LoginCredentials): Promise<AuthResponse
 }
 
 export async function logout(_token: string): Promise<LogoutResponse> {
-    // MOCK RESPONSE FOR TESTING - Remove this when backend is ready
-    await new Promise(resolve => setTimeout(resolve, 500)); // Simulate network delay
+    // MOCK RESPONSE FOR TESTING
+    await new Promise(resolve => setTimeout(resolve, 500));
     const mockResponse: LogoutResponse = {
         status: "success",
         data: {
@@ -61,7 +61,7 @@ export async function logout(_token: string): Promise<LogoutResponse> {
     };
     return mockResponse;
 
-    /* REAL API CALL - Uncomment when backend is ready
+    /* REAL API CALL 
     try {
         const response = await fetch(getApiUrl('/auth/logout'), {
             method: 'POST',
@@ -87,8 +87,8 @@ export async function logout(_token: string): Promise<LogoutResponse> {
 }
 
 export async function forgotPassword(_request: ForgotPasswordRequest): Promise<ForgotPasswordResponse> {
-    // MOCK RESPONSE FOR TESTING - Remove this when backend is ready
-    await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network delay
+    // MOCK RESPONSE FOR TESTING
+    await new Promise(resolve => setTimeout(resolve, 1000));
     const mockResponse: ForgotPasswordResponse = {
         status: "success",
         data: {
@@ -97,7 +97,7 @@ export async function forgotPassword(_request: ForgotPasswordRequest): Promise<F
     };
     return mockResponse;
 
-    /* REAL API CALL - Uncomment when backend is ready
+    /* REAL API CALL
     try {
         const response = await fetch(getApiUrl('/auth/forgot-password'), {
             method: 'POST',
@@ -128,8 +128,8 @@ export async function forgotPassword(_request: ForgotPasswordRequest): Promise<F
 }
 
 export async function resetPassword(_request: ResetPasswordRequest): Promise<ResetPasswordResponse> {
-    // MOCK RESPONSE FOR TESTING - Remove this when backend is ready
-    await new Promise(resolve => setTimeout(resolve, 1000)); // Simulate network delay
+    // MOCK RESPONSE FOR TESTING
+    await new Promise(resolve => setTimeout(resolve, 1000));
     const mockResponse: ResetPasswordResponse = {
         status: "success",
         data: {
@@ -138,7 +138,7 @@ export async function resetPassword(_request: ResetPasswordRequest): Promise<Res
     };
     return mockResponse;
 
-    /* REAL API CALL - Uncomment when backend is ready
+    /* REAL API CALL
     try {
         const response = await fetch(getApiUrl('/auth/reset-password'), {
             method: 'POST',

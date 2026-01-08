@@ -407,7 +407,7 @@ export function OrgUsersTable({
                         <CreateUserModal
                             trigger={
                                 <Button variant="outline" className="h-9">
-                                    <IconPlus />
+                                    <IconPlus className="size-4" />
                                     <span className="hidden lg:inline">Add User</span>
                                 </Button>
                             }

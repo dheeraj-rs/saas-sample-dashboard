@@ -140,7 +140,7 @@ export function CreateUserModal({ trigger }: { trigger?: React.ReactNode }) {
                                                 name="name"
                                                 render={({ field }) => (
                                                     <FormItem>
-                                                        <FormLabel>Full Name</FormLabel>
+                                                        <FormLabel>Full Name <span className="text-destructive">*</span></FormLabel>
                                                         <FormControl>
                                                             <div className="relative">
                                                                 <User className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -156,7 +156,7 @@ export function CreateUserModal({ trigger }: { trigger?: React.ReactNode }) {
                                                 name="email"
                                                 render={({ field }) => (
                                                     <FormItem>
-                                                        <FormLabel>Email</FormLabel>
+                                                        <FormLabel>Email <span className="text-destructive">*</span></FormLabel>
                                                         <FormControl>
                                                             <div className="relative">
                                                                 <Mail className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -175,10 +175,10 @@ export function CreateUserModal({ trigger }: { trigger?: React.ReactNode }) {
                                                 name="role"
                                                 render={({ field }) => (
                                                     <FormItem>
-                                                        <FormLabel>Role</FormLabel>
+                                                        <FormLabel>Role <span className="text-destructive">*</span></FormLabel>
                                                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                             <FormControl>
-                                                                <SelectTrigger>
+                                                                <SelectTrigger className="w-full">
                                                                     <div className="flex items-center gap-2">
                                                                         <Trophy className="h-4 w-4 text-muted-foreground" />
                                                                         <SelectValue placeholder="Select role" />
@@ -202,10 +202,10 @@ export function CreateUserModal({ trigger }: { trigger?: React.ReactNode }) {
                                                 name="department"
                                                 render={({ field }) => (
                                                     <FormItem>
-                                                        <FormLabel>Department</FormLabel>
+                                                        <FormLabel>Department <span className="text-destructive">*</span></FormLabel>
                                                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                             <FormControl>
-                                                                <SelectTrigger>
+                                                                <SelectTrigger className="w-full">
                                                                     <div className="flex items-center gap-2">
                                                                         <Building className="h-4 w-4 text-muted-foreground" />
                                                                         <SelectValue placeholder="Select dept" />
@@ -235,10 +235,10 @@ export function CreateUserModal({ trigger }: { trigger?: React.ReactNode }) {
                                                 name="status"
                                                 render={({ field }) => (
                                                     <FormItem>
-                                                        <FormLabel>Status</FormLabel>
+                                                        <FormLabel>Status <span className="text-destructive">*</span></FormLabel>
                                                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                             <FormControl>
-                                                                <SelectTrigger>
+                                                                <SelectTrigger className="w-full">
                                                                     <div className="flex items-center gap-2">
                                                                         <Activity className="h-4 w-4 text-muted-foreground" />
                                                                         <SelectValue placeholder="Select status" />
@@ -279,7 +279,10 @@ export function CreateUserModal({ trigger }: { trigger?: React.ReactNode }) {
                                     <Button type="button" variant="secondary" onClick={() => setOpen(false)}>
                                         Cancel
                                     </Button>
-                                    <Button type="submit">Add User</Button>
+                                    <Button type="submit">
+                                        <Plus className="mr-2 size-4" />
+                                        Add User
+                                    </Button>
                                 </DialogFooter>
                             </form>
                         </Form>

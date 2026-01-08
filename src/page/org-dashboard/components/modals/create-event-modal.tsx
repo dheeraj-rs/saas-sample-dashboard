@@ -160,14 +160,13 @@ export function CreateEventModal({ trigger }: { trigger?: React.ReactNode }) {
                         <Form {...form}>
                             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                                 <div className="space-y-4">
-                                    <h3 className="text-sm font-medium text-muted-foreground">Event Details</h3>
                                     <div className="grid gap-4">
                                         <FormField
                                             control={form.control}
                                             name="name"
                                             render={({ field }) => (
                                                 <FormItem>
-                                                    <FormLabel>Event Name</FormLabel>
+                                                    <FormLabel>Event Name <span className="text-destructive">*</span></FormLabel>
                                                     <FormControl>
                                                         <Input placeholder="e.g. Annual Tech Summit" {...field} />
                                                     </FormControl>
@@ -181,10 +180,10 @@ export function CreateEventModal({ trigger }: { trigger?: React.ReactNode }) {
                                                 name="type"
                                                 render={({ field }) => (
                                                     <FormItem>
-                                                        <FormLabel>Event Type</FormLabel>
+                                                        <FormLabel>Event Type <span className="text-destructive">*</span></FormLabel>
                                                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                             <FormControl>
-                                                                <SelectTrigger>
+                                                                <SelectTrigger className="w-full">
                                                                     <div className="flex items-center gap-2">
                                                                         <LayoutTemplate className="h-4 w-4 text-muted-foreground" />
                                                                         <SelectValue placeholder="Select type" />
@@ -210,10 +209,10 @@ export function CreateEventModal({ trigger }: { trigger?: React.ReactNode }) {
                                                 name="status"
                                                 render={({ field }) => (
                                                     <FormItem>
-                                                        <FormLabel>Status</FormLabel>
+                                                        <FormLabel>Status <span className="text-destructive">*</span></FormLabel>
                                                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                             <FormControl>
-                                                                <SelectTrigger>
+                                                                <SelectTrigger className="w-full">
                                                                     <div className="flex items-center gap-2">
                                                                         <Activity className="h-4 w-4 text-muted-foreground" />
                                                                         <SelectValue placeholder="Select status" />
@@ -237,14 +236,13 @@ export function CreateEventModal({ trigger }: { trigger?: React.ReactNode }) {
                                 <Separator />
 
                                 <div className="space-y-4">
-                                    <h3 className="text-sm font-medium text-muted-foreground">Schedule & Location</h3>
                                     <div className="grid gap-4">
                                         <FormField
                                             control={form.control}
                                             name="location"
                                             render={({ field }) => (
                                                 <FormItem>
-                                                    <FormLabel>Location</FormLabel>
+                                                    <FormLabel>Location <span className="text-destructive">*</span></FormLabel>
                                                     <FormControl>
                                                         <div className="relative">
                                                             <MapPin className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
@@ -260,7 +258,7 @@ export function CreateEventModal({ trigger }: { trigger?: React.ReactNode }) {
                                             name="dateRange"
                                             render={({ field }) => (
                                                 <FormItem>
-                                                    <FormLabel>Date Range</FormLabel>
+                                                    <FormLabel>Date Range <span className="text-destructive">*</span></FormLabel>
                                                     <Popover>
                                                         <PopoverTrigger asChild>
                                                             <FormControl>
@@ -309,7 +307,10 @@ export function CreateEventModal({ trigger }: { trigger?: React.ReactNode }) {
                                     <Button type="button" variant="secondary" onClick={() => setOpen(false)}>
                                         Cancel
                                     </Button>
-                                    <Button type="submit">Create Event</Button>
+                                    <Button type="submit">
+                                        <Plus className="mr-2 size-4" />
+                                        Create Event
+                                    </Button>
                                 </DialogFooter>
                             </form>
                         </Form>

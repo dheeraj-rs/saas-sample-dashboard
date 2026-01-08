@@ -1,4 +1,4 @@
-import { EmptyPage } from "./EmptyPage";
+import { EmptyPage } from "./empty-page";
 
 interface UnderDevelopmentProps {
     pageName?: string;

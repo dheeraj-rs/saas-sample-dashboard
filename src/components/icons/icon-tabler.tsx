@@ -1,3 +1,3 @@
-import { createIconLoader } from "./create-icon-loader"
+import { createIconLoader } from "./createIcon-loader"
 
 export const IconTabler = createIconLoader("tabler")

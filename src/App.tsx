@@ -53,7 +53,7 @@ import OrgNotificationsPage from "./page/org-dashboard/pages/notifications";
 import SecurityPage from "./page/org-dashboard/pages/security";
 import OrgSupportPage from "./page/org-dashboard/pages/support";
 import OrgSearchPage from "./page/org-dashboard/pages/search";
-import { NotFound } from "./components/custum-ui/reusing-pages/NotFound";
+import { NotFound } from "./components/custum-ui/reusing-pages/not-found";
 
 function App() {
   return (

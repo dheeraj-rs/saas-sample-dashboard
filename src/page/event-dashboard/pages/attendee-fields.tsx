@@ -1,4 +1,4 @@
-import { UnderDevelopment } from "@/components/custum-ui/reusing-pages/UnderDevelopment"
+import { UnderDevelopment } from "@/components/custum-ui/reusing-pages/under-development"
 import EventDashboardLayout from "../layout"
 
 export default function AttendeeFieldsPage() {

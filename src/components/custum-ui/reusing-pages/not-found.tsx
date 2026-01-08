@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router";
-import { EmptyPage } from "./EmptyPage";
+import { EmptyPage } from "./empty-page";
 
 export function NotFound() {
     const navigate = useNavigate();

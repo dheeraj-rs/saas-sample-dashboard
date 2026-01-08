@@ -69,7 +69,7 @@ const eventFormSchema = z.object({
 
 type EventFormValues = z.infer<typeof eventFormSchema>
 
-export function CreateEventModal() {
+export function CreateEventModal({ trigger }: { trigger?: React.ReactNode }) {
     const [open, setOpen] = useState(false)
     const [isSuccess, setIsSuccess] = useState(false)
 
@@ -108,10 +108,14 @@ export function CreateEventModal() {
     return (
         <Dialog open={open} onOpenChange={handleOpenChange}>
             <DialogTrigger asChild>
-                <Button>
-                    <Plus className="mr-2 size-4" />
-                    Create New Event
-                </Button>
+                {trigger ? (
+                    trigger
+                ) : (
+                    <Button>
+                        <Plus className="mr-2 size-4" />
+                        Create New Event
+                    </Button>
+                )}
             </DialogTrigger>
             <DialogContent className={isSuccess ? "sm:max-w-[425px]" : "sm:max-w-[600px]"}>
                 {isSuccess ? (

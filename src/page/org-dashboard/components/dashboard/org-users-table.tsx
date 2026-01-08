@@ -10,7 +10,6 @@ import {
     IconLayoutColumns,
     IconLoader,
     IconPlus,
-    IconTrendingUp,
 } from "@tabler/icons-react"
 import {
     flexRender,
@@ -26,18 +25,11 @@ import {
     type SortingState,
     type VisibilityState,
 } from "@tanstack/react-table"
-import { Area, AreaChart, CartesianGrid, XAxis } from "recharts"
 import { z } from "zod"
 
 import { useIsMobile } from "@/hooks/use-mobile"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import {
-    ChartContainer,
-    ChartTooltip,
-    ChartTooltipContent,
-    type ChartConfig,
-} from "@/components/ui/chart"
 import { Checkbox } from "@/components/ui/checkbox"
 import {
     Drawer,
@@ -66,7 +58,6 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { Separator } from "@/components/ui/separator"
 import {
     Table,
     TableBody,
@@ -75,31 +66,20 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table"
-import {
-    Tabs,
-    TabsContent,
-    TabsList,
-    TabsTrigger,
-} from "@/components/ui/tabs"
-import { CreateEventModal } from "../modals/create-event-modal"
+import { Tabs, TabsContent } from "@/components/ui/tabs"
 
-export const schema = z.object({
+export const userSchema = z.object({
     id: z.string(),
     name: z.string(),
-    organization_name: z.string(),
-    event_type: z.string(),
+    email: z.string(),
+    role: z.string(),
     status: z.string(),
-    active_domain: z.string().optional(),
-    registered: z.number(),
-    description: z.string().optional(),
-    location: z.string(),
-    start_date: z.string(),
-    end_date: z.string(),
-    created_at: z.string(),
-    updated_at: z.string(),
+    department: z.string(),
+    joined_date: z.string(),
+    phone: z.string(),
 })
 
-const columns: ColumnDef<z.infer<typeof schema>>[] = [
+const columns: ColumnDef<z.infer<typeof userSchema>>[] = [
     {
         id: "select",
         header: ({ table }) => (
@@ -130,26 +110,34 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
         accessorKey: "name",
         header: "Name",
         cell: ({ row }) => {
-            return <TableCellViewer item={row.original} />
+            return <UserCellViewer user={row.original} />
         },
         enableHiding: false,
     },
     {
-        accessorKey: "organization_name",
-        header: "Organization",
+        accessorKey: "email",
+        header: "Email",
         cell: ({ row }) => (
-            <div className="truncate font-medium">
-                {row.original.organization_name}
+            <div>
+                {row.original.email}
             </div>
         ),
     },
-
+    {
+        accessorKey: "role",
+        header: "Role",
+        cell: ({ row }) => (
+            <Badge variant="outline" className="capitalize px-1.5">
+                {row.original.role}
+            </Badge>
+        ),
+    },
     {
         accessorKey: "status",
         header: "Status",
         cell: ({ row }) => (
             <Badge variant="outline" className="capitalize text-muted-foreground px-1.5 gap-1">
-                {row.original.status === "active" || row.original.status === "upcoming" ? (
+                {row.original.status === "active" ? (
                     <IconCircleCheckFilled className="size-3 fill-green-500 dark:fill-green-400" />
                 ) : (
                     <IconLoader className="size-3" />
@@ -159,26 +147,20 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
         ),
     },
     {
-        accessorKey: "active_domain",
-        header: "Active Domain",
+        accessorKey: "department",
+        header: "Department",
         cell: ({ row }) => (
-            <div className="max-w-[200px] truncate">
-                {row.original.active_domain ? (
-                    <a href={row.original.active_domain} target="_blank" rel="noreferrer" className="hover:underline">
-                        {row.original.active_domain}
-                    </a>
-                ) : (
-                    "-"
-                )}
+            <div className="font-medium">
+                {row.original.department}
             </div>
         ),
     },
     {
-        accessorKey: "start_date",
-        header: "Date",
+        accessorKey: "joined_date",
+        header: "Joined Date",
         cell: ({ row }) => (
             <div>
-                {new Date(row.original.start_date).toLocaleDateString()} - {new Date(row.original.end_date).toLocaleDateString()}
+                {new Date(row.original.joined_date).toLocaleDateString()}
             </div>
         ),
     },
@@ -200,20 +182,82 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-32">
                     <DropdownMenuItem>Edit</DropdownMenuItem>
-                    <DropdownMenuItem>Make a copy</DropdownMenuItem>
-                    <DropdownMenuItem>Favorite</DropdownMenuItem>
+                    <DropdownMenuItem>View Profile</DropdownMenuItem>
+                    <DropdownMenuItem>Send Email</DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
+                    <DropdownMenuItem variant="destructive">Deactivate</DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
         ),
     },
 ]
 
-export function OrgEventsTable({
+function UserCellViewer({ user }: { user: z.infer<typeof userSchema> }) {
+    const isMobile = useIsMobile()
+
+    return (
+        <Drawer direction={isMobile ? "bottom" : "right"}>
+            <DrawerTrigger asChild>
+                <Button variant="link" className="text-foreground w-fit px-0 text-left">
+                    {user.name}
+                </Button>
+            </DrawerTrigger>
+            <DrawerContent>
+                <DrawerHeader className="gap-1">
+                    <DrawerTitle>{user.name}</DrawerTitle>
+                    <DrawerDescription>
+                        {user.email}
+                    </DrawerDescription>
+                </DrawerHeader>
+                <div className="flex flex-col gap-4 overflow-y-auto px-4 text-sm">
+                    <form className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-3">
+                            <Label htmlFor="name">Name</Label>
+                            <Input id="name" defaultValue={user.name} />
+                        </div>
+                        <div className="flex flex-col gap-3">
+                            <Label htmlFor="email">Email</Label>
+                            <Input id="email" type="email" defaultValue={user.email} />
+                        </div>
+                        <div className="grid grid-cols-2 gap-4">
+                            <div className="flex flex-col gap-3">
+                                <Label htmlFor="role">Role</Label>
+                                <Input id="role" defaultValue={user.role} />
+                            </div>
+                            <div className="flex flex-col gap-3">
+                                <Label htmlFor="status">Status</Label>
+                                <Input id="status" defaultValue={user.status} />
+                            </div>
+                        </div>
+                        <div className="flex flex-col gap-3">
+                            <Label htmlFor="department">Department</Label>
+                            <Input id="department" defaultValue={user.department} />
+                        </div>
+                        <div className="flex flex-col gap-3">
+                            <Label htmlFor="phone">Phone</Label>
+                            <Input id="phone" defaultValue={user.phone} />
+                        </div>
+                        <div className="flex flex-col gap-3">
+                            <Label htmlFor="joined_date">Joined Date</Label>
+                            <Input id="joined_date" type="date" defaultValue={user.joined_date} />
+                        </div>
+                    </form>
+                </div>
+                <DrawerFooter>
+                    <Button>Save Changes</Button>
+                    <DrawerClose asChild>
+                        <Button variant="outline">Cancel</Button>
+                    </DrawerClose>
+                </DrawerFooter>
+            </DrawerContent>
+        </Drawer>
+    )
+}
+
+export function OrgUsersTable({
     data: initialData,
 }: {
-    data: z.infer<typeof schema>[]
+    data: z.infer<typeof userSchema>[]
 }) {
     const [data] = React.useState(() => initialData)
     const [rowSelection, setRowSelection] = React.useState({})
@@ -262,7 +306,7 @@ export function OrgEventsTable({
                 <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2 flex-1">
                         <Input
-                            placeholder="Search events..."
+                            placeholder="Search users..."
                             value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
                             onChange={(event) =>
                                 table.getColumn("name")?.setFilterValue(event.target.value)
@@ -281,12 +325,49 @@ export function OrgEventsTable({
                             <SelectContent>
                                 <SelectItem value="all">All Status</SelectItem>
                                 <SelectItem value="active">Active</SelectItem>
-                                <SelectItem value="upcoming">Upcoming</SelectItem>
-                                <SelectItem value="past">Past</SelectItem>
-                                <SelectItem value="cancelled">Cancelled</SelectItem>
+                                <SelectItem value="inactive">Inactive</SelectItem>
+                                <SelectItem value="pending">Pending</SelectItem>
                             </SelectContent>
                         </Select>
-
+                        <Select
+                            value={(table.getColumn("role")?.getFilterValue() as string) ?? "all"}
+                            onValueChange={(value) =>
+                                table.getColumn("role")?.setFilterValue(value === "all" ? "" : value)
+                            }
+                        >
+                            <SelectTrigger className="h-9 w-[150px]">
+                                <SelectValue placeholder="Role" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="all">All Roles</SelectItem>
+                                <SelectItem value="Admin">Admin</SelectItem>
+                                <SelectItem value="Manager">Manager</SelectItem>
+                                <SelectItem value="Developer">Developer</SelectItem>
+                                <SelectItem value="Designer">Designer</SelectItem>
+                                <SelectItem value="Analyst">Analyst</SelectItem>
+                            </SelectContent>
+                        </Select>
+                        <Select
+                            value={(table.getColumn("department")?.getFilterValue() as string) ?? "all"}
+                            onValueChange={(value) =>
+                                table.getColumn("department")?.setFilterValue(value === "all" ? "" : value)
+                            }
+                        >
+                            <SelectTrigger className="h-9 w-[180px]">
+                                <SelectValue placeholder="Department" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="all">All Departments</SelectItem>
+                                <SelectItem value="Engineering">Engineering</SelectItem>
+                                <SelectItem value="Design">Design</SelectItem>
+                                <SelectItem value="Marketing">Marketing</SelectItem>
+                                <SelectItem value="Sales">Sales</SelectItem>
+                                <SelectItem value="Finance">Finance</SelectItem>
+                                <SelectItem value="HR">HR</SelectItem>
+                                <SelectItem value="IT">IT</SelectItem>
+                                <SelectItem value="Operations">Operations</SelectItem>
+                            </SelectContent>
+                        </Select>
                     </div>
                     <div className="flex items-center gap-2">
                         <DropdownMenu>
@@ -322,14 +403,10 @@ export function OrgEventsTable({
                                     })}
                             </DropdownMenuContent>
                         </DropdownMenu>
-                        <CreateEventModal
-                            trigger={
-                                <Button variant="outline" className="h-9">
-                                    <IconPlus />
-                                    <span className="hidden lg:inline">Create Event</span>
-                                </Button>
-                            }
-                        />
+                        <Button variant="outline" className="h-9">
+                            <IconPlus />
+                            <span className="hidden lg:inline">Add User</span>
+                        </Button>
                     </div>
                 </div>
             </div>
@@ -462,150 +539,6 @@ export function OrgEventsTable({
                     </div>
                 </div>
             </TabsContent>
-            <TabsContent
-                value="past-performance"
-                className="flex flex-col px-4 lg:px-6"
-            >
-                <div className="aspect-video w-full flex-1 rounded-lg border border-dashed"></div>
-            </TabsContent>
-            <TabsContent value="key-personnel" className="flex flex-col px-4 lg:px-6">
-                <div className="aspect-video w-full flex-1 rounded-lg border border-dashed"></div>
-            </TabsContent>
-            <TabsContent
-                value="focus-documents"
-                className="flex flex-col px-4 lg:px-6"
-            >
-                <div className="aspect-video w-full flex-1 rounded-lg border border-dashed"></div>
-            </TabsContent>
         </Tabs>
-    )
-}
-
-const chartData = [
-    { month: "January", desktop: 186, mobile: 80 },
-    { month: "February", desktop: 305, mobile: 200 },
-    { month: "March", desktop: 237, mobile: 120 },
-    { month: "April", desktop: 73, mobile: 190 },
-    { month: "May", desktop: 209, mobile: 130 },
-    { month: "June", desktop: 214, mobile: 140 },
-]
-
-const chartConfig = {
-    desktop: {
-        label: "Desktop",
-        color: "var(--primary)",
-    },
-    mobile: {
-        label: "Mobile",
-        color: "var(--primary)",
-    },
-} satisfies ChartConfig
-
-function TableCellViewer({ item }: { item: z.infer<typeof schema> }) {
-    const isMobile = useIsMobile()
-
-    return (
-        <Drawer direction={isMobile ? "bottom" : "right"}>
-            <DrawerTrigger asChild>
-                <Button variant="link" className="text-foreground w-fit px-0 text-left">
-                    {item.name}
-                </Button>
-            </DrawerTrigger>
-            <DrawerContent>
-                <DrawerHeader className="gap-1">
-                    <DrawerTitle>{item.name}</DrawerTitle>
-                    <DrawerDescription>
-                        {item.description}
-                    </DrawerDescription>
-                </DrawerHeader>
-                <div className="flex flex-col gap-4 overflow-y-auto px-4 text-sm">
-                    {!isMobile && (
-                        <>
-                            <ChartContainer config={chartConfig}>
-                                <AreaChart
-                                    accessibilityLayer
-                                    data={chartData}
-                                    margin={{
-                                        left: 0,
-                                        right: 10,
-                                    }}
-                                >
-                                    <CartesianGrid vertical={false} />
-                                    <XAxis
-                                        dataKey="month"
-                                        tickLine={false}
-                                        axisLine={false}
-                                        tickMargin={8}
-                                        tickFormatter={(value) => value.slice(0, 3)}
-                                        hide
-                                    />
-                                    <ChartTooltip
-                                        cursor={false}
-                                        content={<ChartTooltipContent indicator="dot" />}
-                                    />
-                                    <Area
-                                        dataKey="mobile"
-                                        type="natural"
-                                        fill="var(--color-mobile)"
-                                        fillOpacity={0.6}
-                                        stroke="var(--color-mobile)"
-                                        stackId="a"
-                                    />
-                                    <Area
-                                        dataKey="desktop"
-                                        type="natural"
-                                        fill="var(--color-desktop)"
-                                        fillOpacity={0.4}
-                                        stroke="var(--color-desktop)"
-                                        stackId="a"
-                                    />
-                                </AreaChart>
-                            </ChartContainer>
-                            <Separator />
-                            <div className="grid gap-2">
-                                <div className="flex gap-2 leading-none font-medium">
-                                    Trending up by 5.2% this month{" "}
-                                    <IconTrendingUp className="size-4" />
-                                </div>
-                                <div className="text-muted-foreground">
-                                    Showing total visitors for the last 6 months.
-                                </div>
-                            </div>
-                            <Separator />
-                        </>
-                    )}
-                    <form className="flex flex-col gap-4">
-                        <div className="flex flex-col gap-3">
-                            <Label htmlFor="name">Name</Label>
-                            <Input id="name" defaultValue={item.name} />
-                        </div>
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="flex flex-col gap-3">
-                                <Label htmlFor="event_type">Type</Label>
-                                <Input id="event_type" defaultValue={item.event_type} />
-                            </div>
-                            <div className="flex flex-col gap-3">
-                                <Label htmlFor="status">Status</Label>
-                                <Input id="status" defaultValue={item.status} />
-                            </div>
-                        </div>
-                        <div className="flex flex-col gap-3">
-                            <Label htmlFor="organization">Organization</Label>
-                            <Input id="organization" defaultValue={item.organization_name} />
-                        </div>
-                        <div className="flex flex-col gap-3">
-                            <Label htmlFor="location">Location</Label>
-                            <Input id="location" defaultValue={item.location} />
-                        </div>
-                    </form>
-                </div>
-                <DrawerFooter>
-                    <Button>Submit</Button>
-                    <DrawerClose asChild>
-                        <Button variant="outline">Done</Button>
-                    </DrawerClose>
-                </DrawerFooter>
-            </DrawerContent>
-        </Drawer>
     )
 }

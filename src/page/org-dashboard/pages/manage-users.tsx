@@ -1,3 +1,5 @@
+import { OrgUsersTable } from "@/page/org-dashboard/components/dashboard/org-users-table"
+import usersData from "@/page/event-dashboard/data/users-data.json"
 import OrgDashboardLayout from "../layout"
 
 export default function ManageUsersPage() {
@@ -10,6 +12,7 @@ export default function ManageUsersPage() {
                             <h1 className="text-2xl font-bold mb-4">Manage Users</h1>
                             <p className="text-muted-foreground">Manage organization users and access</p>
                         </div>
+                        <OrgUsersTable data={usersData} />
                     </div>
                 </div>
             </div>

@@ -14,7 +14,6 @@ export default function ManageEventsPage() {
                                 <h1 className="text-2xl font-bold">Manage Events</h1>
                                 <p className="text-muted-foreground">View and manage all organization events</p>
                             </div>
-                            <CreateEventModal />
                         </div>
                         <OrgEventsTable data={eventsData} />
                     </div>

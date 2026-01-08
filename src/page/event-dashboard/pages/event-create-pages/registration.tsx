@@ -55,7 +55,6 @@ export default function RegistrationPage() {
         return initialData
     }
 
-    // Initialize form data from config
     React.useEffect(() => {
         setFormData(getInitialData())
     }, [])
@@ -86,11 +85,8 @@ export default function RegistrationPage() {
         <EventDashboardLayout>
             <div className="flex flex-1 flex-col">
                 <div className="flex flex-1 flex-col">
-                    {/* Header Section */}
-                    {/* Main Content */}
                     <div className="flex-1 overflow-auto">
                         <div className="py-6 px-6 space-y-8">
-                            {/* Registration Flow */}
                             <section className="space-y-4">
                                 <div className="flex items-center justify-between">
                                     <div>
@@ -105,7 +101,6 @@ export default function RegistrationPage() {
                                     </Button>
                                 </div>
                                 <div className="grid gap-4 md:grid-cols-2">
-                                    {/* Flow Order */}
                                     <Card>
                                         <CardHeader>
                                             <CardTitle className="text-base">Flow Order</CardTitle>
@@ -129,8 +124,6 @@ export default function RegistrationPage() {
                                             </RadioGroup>
                                         </CardContent>
                                     </Card>
-
-                                    {/* Registration Mode */}
                                     <Card>
                                         <CardHeader>
                                             <CardTitle className="text-base">Registration Mode</CardTitle>
@@ -156,10 +149,7 @@ export default function RegistrationPage() {
                                     </Card>
                                 </div>
                             </section>
-
                             <Separator />
-
-                            {/* Identity & Checkout */}
                             <section className="space-y-4">
                                 <div>
                                     <h2 className="text-lg font-semibold">Identity & Checkout</h2>
@@ -168,7 +158,6 @@ export default function RegistrationPage() {
                                     </p>
                                 </div>
                                 <div className="grid gap-4 md:grid-cols-2">
-                                    {/* Primary Identity */}
                                     <Card>
                                         <CardHeader>
                                             <CardTitle className="text-base">Primary Identity</CardTitle>
@@ -192,8 +181,6 @@ export default function RegistrationPage() {
                                             </RadioGroup>
                                         </CardContent>
                                     </Card>
-
-                                    {/* Checkout Settings */}
                                     <Card>
                                         <CardHeader>
                                             <CardTitle className="text-base">Checkout Settings</CardTitle>
@@ -222,10 +209,7 @@ export default function RegistrationPage() {
                                     </Card>
                                 </div>
                             </section>
-
                             <Separator />
-
-                            {/* Session & Security */}
                             <section className="space-y-4">
                                 <div>
                                     <h2 className="text-lg font-semibold">Session & Security</h2>
@@ -234,7 +218,6 @@ export default function RegistrationPage() {
                                     </p>
                                 </div>
                                 <div className="grid gap-4 md:grid-cols-2">
-                                    {/* Session Timeout */}
                                     <Card>
                                         <CardHeader>
                                             <CardTitle className="text-base flex items-center gap-2">
@@ -257,8 +240,6 @@ export default function RegistrationPage() {
                                             </div>
                                         </CardContent>
                                     </Card>
-
-                                    {/* Additional Settings */}
                                     <Card>
                                         <CardHeader>
                                             <CardTitle className="text-base flex items-center gap-2">
@@ -298,7 +279,6 @@ export default function RegistrationPage() {
 
                             <Separator />
 
-                            {/* Ticket Form Behavior */}
                             <section className="space-y-4">
                                 <div>
                                     <h2 className="text-lg font-semibold">Ticket Form Behavior</h2>
@@ -347,8 +327,6 @@ export default function RegistrationPage() {
                             </section>
                         </div>
                     </div>
-
-                    {/* Footer */}
                     <div className="border-t bg-background">
                         <div className="flex items-center justify-between p-4">
                             <p className="text-sm text-muted-foreground">

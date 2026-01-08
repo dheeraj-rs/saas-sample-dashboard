@@ -1,6 +1,6 @@
 import { OrgUsersTable } from "@/page/org-dashboard/components/dashboard/org-users-table"
 import usersData from "@/page/event-dashboard/data/users-data.json"
-import OrgDashboardLayout from "../layout"
+import OrgDashboardLayout from "../../layout"
 
 export default function ManageUsersPage() {
     return (

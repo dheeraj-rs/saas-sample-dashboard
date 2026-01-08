@@ -1,29 +1,29 @@
 // Main Navigation
-export { default as ManageEventsPage } from './manage-events';
-export { default as ManageUsersPage } from './manage-users';
+export { default as ManageEventsPage } from './manage-events/manage-events';
+export { default as ManageUsersPage } from './manage-users/manage-users';
 
 // Teams & Roles
-export { default as TeamMembersPage } from './team-members';
-export { default as RolesPermissionsPage } from './roles-permissions';
-export { default as DepartmentsPage } from './departments';
+export { default as TeamMembersPage } from './dashbord-pages/team-members';
+export { default as RolesPermissionsPage } from './dashbord-pages/roles-permissions';
+export { default as DepartmentsPage } from './dashbord-pages/departments';
 
 // Settings & Configuration
-export { default as OrganizationSettingsPage } from './organization-settings';
-export { default as BrandingPage } from './branding';
-export { default as IntegrationsPage } from './integrations';
+export { default as OrganizationSettingsPage } from './dashbord-pages/organization-settings';
+export { default as BrandingPage } from './dashbord-pages/branding';
+export { default as IntegrationsPage } from './dashbord-pages/integrations';
 
 // Billing & Subscription
-export { default as SubscriptionPlansPage } from './subscription-plans';
-export { default as PaymentMethodsPage } from './payment-methods';
-export { default as InvoicesPage } from './invoices';
+export { default as SubscriptionPlansPage } from './dashbord-pages/subscription-plans';
+export { default as PaymentMethodsPage } from './dashbord-pages/payment-methods';
+export { default as InvoicesPage } from './dashbord-pages/invoices';
 
 // Analytics & Reports
-export { default as EventAnalyticsPage } from './event-analytics';
-export { default as UserActivityPage } from './user-activity';
-export { default as RevenueReportsPage } from './revenue-reports';
+export { default as EventAnalyticsPage } from './dashbord-pages/event-analytics';
+export { default as UserActivityPage } from './dashbord-pages/user-activity';
+export { default as RevenueReportsPage } from './dashbord-pages/revenue-reports';
 
 // Secondary Navigation
-export { default as NotificationsPage } from './notifications';
-export { default as SecurityPage } from './security';
-export { default as SupportPage } from './support';
-export { default as SearchPage } from './search';
+export { default as NotificationsPage } from './dashbord-pages/notifications';
+export { default as SecurityPage } from './dashbord-pages/security';
+export { default as SupportPage } from './dashbord-pages/support';
+export { default as SearchPage } from './dashbord-pages/search';

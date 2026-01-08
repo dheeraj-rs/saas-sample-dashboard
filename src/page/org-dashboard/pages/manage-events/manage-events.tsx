@@ -1,7 +1,6 @@
-import { CreateEventModal } from "@/page/org-dashboard/components/modals/create-event-modal"
 import { OrgEventsTable } from "@/page/org-dashboard/components/dashboard/org-events-table"
 import eventsData from "@/page/event-dashboard/data/events-data.json"
-import OrgDashboardLayout from "../layout"
+import OrgDashboardLayout from "../../layout"
 
 export default function ManageEventsPage() {
     return (

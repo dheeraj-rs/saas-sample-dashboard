@@ -66,11 +66,8 @@ export function ChartAreaInteractive({ events }: ChartAreaInteractiveProps) {
   const isMobile = useIsMobile()
   const [timeRange, setTimeRange] = React.useState("30d")
 
-  // Generate chart data from events
   const chartData = React.useMemo(() => {
-    // Group events by month based on start_date
     const monthlyData: Record<string, { active: number; upcoming: number; total: number }> = {}
-
     events.forEach(event => {
       const date = new Date(event.start_date)
       const monthKey = date.toLocaleDateString("en-US", { year: "numeric", month: "short" })
@@ -87,7 +84,6 @@ export function ChartAreaInteractive({ events }: ChartAreaInteractiveProps) {
       monthlyData[monthKey].total += event.registered
     })
 
-    // Convert to array and sort by date
     return Object.entries(monthlyData)
       .map(([month, data]) => ({
         month,
@@ -95,7 +91,7 @@ export function ChartAreaInteractive({ events }: ChartAreaInteractiveProps) {
         upcoming: data.upcoming,
       }))
       .sort((a, b) => new Date(a.month).getTime() - new Date(b.month).getTime())
-      .slice(-6) // Last 6 months
+      .slice(-6)
   }, [events])
 
   const filteredData = React.useMemo(() => {

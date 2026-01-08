@@ -45,20 +45,14 @@ interface OrgOverviewCardsProps {
 }
 
 export function OrgOverviewCards({ data, events = [] }: OrgOverviewCardsProps) {
-    // Calculate statistics from events data
     const totalEvents = events.length
     const activeEvents = events.filter(e => e.status === "active").length
     const upcomingEvents = events.filter(e => e.status === "upcoming").length
-
-    // Calculate percentage of active events
     const activePercentage = totalEvents > 0 ? ((activeEvents / totalEvents) * 100).toFixed(1) : "0"
-
-    // Mock percentage changes
     const revenueGrowth = 12.5
 
     return (
         <div className="grid grid-cols-1 gap-3 px-2 sm:gap-4 sm:px-4 lg:px-6 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
-            {/* Total Events Card */}
             <Card className="@container/card">
                 <CardHeader>
                     <CardDescription className="text-default">Total Events</CardDescription>
@@ -81,8 +75,6 @@ export function OrgOverviewCards({ data, events = [] }: OrgOverviewCardsProps) {
                     </div>
                 </CardFooter>
             </Card>
-
-            {/* Active Events Card */}
             <Card className="@container/card">
                 <CardHeader>
                     <CardDescription className="text-default">Active Events</CardDescription>
@@ -105,8 +97,6 @@ export function OrgOverviewCards({ data, events = [] }: OrgOverviewCardsProps) {
                     </div>
                 </CardFooter>
             </Card>
-
-            {/* Upcoming Events Card */}
             <Card className="@container/card">
                 <CardHeader>
                     <CardDescription className="text-default">Upcoming Events</CardDescription>
@@ -129,8 +119,6 @@ export function OrgOverviewCards({ data, events = [] }: OrgOverviewCardsProps) {
                     </div>
                 </CardFooter>
             </Card>
-
-            {/* Revenue Card (Kept from existing Org Dashboard) */}
             <Card className="@container/card">
                 <CardHeader>
                     <CardDescription className="text-default">Total Revenue</CardDescription>

@@ -67,8 +67,8 @@ import {
 } from "@/components/ui/table"
 import { Tabs, TabsContent } from "@/components/ui/tabs"
 import { useIsMobile } from "@/hooks/use-mobile"
-import data from "../data/users-data.json"
-import EventDashboardLayout from "../layout"
+import data from "../../data/users-data.json"
+import EventDashboardLayout from "../../layout"
 
 export const userSchema = z.object({
     id: z.string(),

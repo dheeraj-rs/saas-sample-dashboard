@@ -1,6 +1,5 @@
-import { ChartAreaInteractive } from "@/page/event-dashboard/components/dashboard/chart-area-interactive"
-// import { DataTable } from "@/page/event-dashboard/components/dashboard/data-table"
-import { SectionCards } from "@/page/event-dashboard/components/dashboard/section-cards"
+import { ChartAreaInteractive } from "@/page/event-dashboard/components/dashboard-pages/chart-area-interactive"
+import { SectionCards } from "@/page/event-dashboard/components/dashboard-pages/section-cards"
 import data from "./data/events-data.json"
 import EventDashboardLayout from "./layout"
 
@@ -14,7 +13,6 @@ export default function EventDashboardPage() {
                         <div className="px-2 sm:px-4 lg:px-6">
                             <ChartAreaInteractive events={data} />
                         </div>
-                        {/* <DataTable data={data} /> */}
                     </div>
                 </div>
             </div>

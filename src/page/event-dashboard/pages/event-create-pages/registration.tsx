@@ -1,5 +1,5 @@
 import * as React from "react"
-import EventDashboardLayout from "../layout"
+import EventDashboardLayout from "../../layout"
 import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Checkbox } from "@/components/ui/checkbox"
@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { IconCheck, IconClock, IconSettings, IconShieldCheck } from "@tabler/icons-react"
 import { toast } from "sonner"
-import configData from "../data/registraction-config.json"
+import configData from "../../data/registraction-config.json"
 
 interface ConfigOption {
     key: string

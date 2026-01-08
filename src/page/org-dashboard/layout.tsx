@@ -1,6 +1,7 @@
 import { DashboardLayout } from "@/components/layouts/dashboard-layout"
-import { OrgSidebar } from "@/page/org-dashboard/components/layout/org-sidebar"
-import { OrgHeader } from "@/page/org-dashboard/components/layout/org-header"
+import { OrgSidebar } from "@/page/org-dashboard/components/org-layout/org-sidebar"
+import { OrgHeader } from "@/page/org-dashboard/components/org-layout/org-header"
+import ImportantToast from "@/components/custum-ui/toast/important-toast"
 
 export default function OrgDashboardLayout({ children }: { children: React.ReactNode }) {
     return (
@@ -8,6 +9,7 @@ export default function OrgDashboardLayout({ children }: { children: React.React
             sidebar={<OrgSidebar />}
             header={<OrgHeader />}
         >
+            <ImportantToast />
             {children}
         </DashboardLayout>
     )

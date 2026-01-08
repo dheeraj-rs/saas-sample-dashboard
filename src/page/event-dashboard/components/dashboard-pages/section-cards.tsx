@@ -31,23 +31,16 @@ interface SectionCardsProps {
 }
 
 export function SectionCards({ events }: SectionCardsProps) {
-  // Calculate statistics from events data
+
   const totalEvents = events.length
   const totalRegistrations = events.reduce((sum, e) => sum + e.registered, 0)
-
-  // Calculate average registrations per event
   const avgRegistrations = totalEvents > 0 ? Math.round(totalRegistrations / totalEvents) : 0
-
-  // Calculate unique event categories
   const categories = new Set(events.map(e => e.event_type)).size
-
-  // Mock users details
   const totalUsers = 1250
   const activeUsers = 890
 
   return (
     <div className="grid grid-cols-1 gap-3 px-2 sm:gap-4 sm:px-4 lg:px-6 *:data-[slot=card]:bg-gradient-to-t *:data-[slot=card]:shadow-xs @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
-      {/* Total Registrations Card - Kept */}
       <Card className="@container/card">
         <CardHeader>
           <CardDescription className="text-default">Total Registrations</CardDescription>
@@ -70,8 +63,6 @@ export function SectionCards({ events }: SectionCardsProps) {
           </div>
         </CardFooter>
       </Card>
-
-      {/* Event Categories Card - Added */}
       <Card className="@container/card">
         <CardHeader>
           <CardDescription className="text-default">Event Categories</CardDescription>
@@ -94,8 +85,6 @@ export function SectionCards({ events }: SectionCardsProps) {
           </div>
         </CardFooter>
       </Card>
-
-      {/* Users Details Card - Added */}
       <Card className="@container/card">
         <CardHeader>
           <CardDescription className="text-default">Total Users</CardDescription>
@@ -118,8 +107,6 @@ export function SectionCards({ events }: SectionCardsProps) {
           </div>
         </CardFooter>
       </Card>
-
-      {/* Total Revenue Card - Added (4th Card) */}
       <Card className="@container/card">
         <CardHeader>
           <CardDescription className="text-default">Total Revenue</CardDescription>

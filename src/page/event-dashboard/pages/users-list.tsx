@@ -350,7 +350,7 @@ function UsersDataTable() {
                                 table.getColumn("department")?.setFilterValue(value === "all" ? "" : value)
                             }
                         >
-                            <SelectTrigger className="h-9 w-[150px]">
+                            <SelectTrigger className="h-9 w-[180px]">
                                 <SelectValue placeholder="Department" />
                             </SelectTrigger>
                             <SelectContent>

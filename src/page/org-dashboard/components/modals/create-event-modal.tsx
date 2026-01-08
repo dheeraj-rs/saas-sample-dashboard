@@ -75,7 +75,7 @@ export function CreateEventModal({ trigger }: { trigger?: React.ReactNode }) {
 
     const defaultValues: Partial<EventFormValues> = {
         organization: "Conference Prime", // Pre-filled active organization
-        status: "draft",
+        // Status field should be empty to show validation
     }
 
     const form = useForm<EventFormValues>({
@@ -243,12 +243,12 @@ export function CreateEventModal({ trigger }: { trigger?: React.ReactNode }) {
                                             render={({ field }) => (
                                                 <FormItem>
                                                     <FormLabel>Location <span className="text-destructive">*</span></FormLabel>
-                                                    <FormControl>
-                                                        <div className="relative">
-                                                            <MapPin className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                                                    <div className="relative">
+                                                        <MapPin className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none" />
+                                                        <FormControl>
                                                             <Input className="pl-9" placeholder="City, Country or Venue" {...field} />
-                                                        </div>
-                                                    </FormControl>
+                                                        </FormControl>
+                                                    </div>
                                                     <FormMessage />
                                                 </FormItem>
                                             )}

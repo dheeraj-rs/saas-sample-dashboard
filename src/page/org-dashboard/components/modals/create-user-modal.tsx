@@ -57,7 +57,7 @@ export function CreateUserModal({ trigger }: { trigger?: React.ReactNode }) {
     const [isSuccess, setIsSuccess] = useState(false)
 
     const defaultValues: Partial<UserFormValues> = {
-        status: "active",
+        // Status field should be empty to show validation
     }
 
     const form = useForm<UserFormValues>({
@@ -141,12 +141,12 @@ export function CreateUserModal({ trigger }: { trigger?: React.ReactNode }) {
                                                 render={({ field }) => (
                                                     <FormItem>
                                                         <FormLabel>Full Name <span className="text-destructive">*</span></FormLabel>
-                                                        <FormControl>
-                                                            <div className="relative">
-                                                                <User className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                                                        <div className="relative">
+                                                            <User className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none" />
+                                                            <FormControl>
                                                                 <Input className="pl-9" placeholder="John Doe" {...field} />
-                                                            </div>
-                                                        </FormControl>
+                                                            </FormControl>
+                                                        </div>
                                                         <FormMessage />
                                                     </FormItem>
                                                 )}
@@ -157,12 +157,12 @@ export function CreateUserModal({ trigger }: { trigger?: React.ReactNode }) {
                                                 render={({ field }) => (
                                                     <FormItem>
                                                         <FormLabel>Email <span className="text-destructive">*</span></FormLabel>
-                                                        <FormControl>
-                                                            <div className="relative">
-                                                                <Mail className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                                                        <div className="relative">
+                                                            <Mail className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none" />
+                                                            <FormControl>
                                                                 <Input className="pl-9" placeholder="john@example.com" {...field} />
-                                                            </div>
-                                                        </FormControl>
+                                                            </FormControl>
+                                                        </div>
                                                         <FormMessage />
                                                     </FormItem>
                                                 )}
@@ -235,7 +235,7 @@ export function CreateUserModal({ trigger }: { trigger?: React.ReactNode }) {
                                                 name="status"
                                                 render={({ field }) => (
                                                     <FormItem>
-                                                        <FormLabel>Status <span className="text-destructive">*</span></FormLabel>
+                                                        <FormLabel>Status<span className="text-destructive">*</span></FormLabel>
                                                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                                                             <FormControl>
                                                                 <SelectTrigger className="w-full">
@@ -261,12 +261,12 @@ export function CreateUserModal({ trigger }: { trigger?: React.ReactNode }) {
                                                 render={({ field }) => (
                                                     <FormItem>
                                                         <FormLabel>Phone (Optional)</FormLabel>
-                                                        <FormControl>
-                                                            <div className="relative">
-                                                                <Phone className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+                                                        <div className="relative">
+                                                            <Phone className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none" />
+                                                            <FormControl>
                                                                 <Input className="pl-9" placeholder="+1 (555) 000-0000" {...field} />
-                                                            </div>
-                                                        </FormControl>
+                                                            </FormControl>
+                                                        </div>
                                                         <FormMessage />
                                                     </FormItem>
                                                 )}

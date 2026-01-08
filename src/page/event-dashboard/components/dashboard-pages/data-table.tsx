@@ -196,9 +196,8 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
           <Button
             variant="outline"
             size="sm"
-            className="data-[state=open]:bg-muted h-6 text-xs"
+            className="data-[state=open]:bg-muted h-6 text-xs border-primary"
           >
-            <IconEdit className="size-3" />
             Actions
             <IconChevronDown className="size-3" />
           </Button>

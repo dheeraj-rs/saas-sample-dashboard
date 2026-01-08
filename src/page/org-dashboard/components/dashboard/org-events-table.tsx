@@ -141,15 +141,7 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
             </div>
         ),
     },
-    {
-        accessorKey: "event_type",
-        header: "Type",
-        cell: ({ row }) => (
-            <Badge variant="outline" className="capitalize text-muted-foreground px-1.5">
-                {row.original.event_type}
-            </Badge>
-        ),
-    },
+
     {
         accessorKey: "status",
         header: "Status",
@@ -168,7 +160,7 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
         accessorKey: "active_domain",
         header: "Active Domain",
         cell: ({ row }) => (
-            <div className="max-w-[200px] truncate text-muted-foreground">
+            <div className="max-w-[200px] truncate">
                 {row.original.active_domain ? (
                     <a href={row.original.active_domain} target="_blank" rel="noreferrer" className="hover:underline">
                         {row.original.active_domain}
@@ -183,8 +175,8 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
         accessorKey: "start_date",
         header: "Date",
         cell: ({ row }) => (
-            <div className="text-muted-foreground">
-                {new Date(row.original.start_date).toLocaleDateString()}
+            <div>
+                {new Date(row.original.start_date).toLocaleDateString()} - {new Date(row.original.end_date).toLocaleDateString()}
             </div>
         ),
     },
@@ -292,26 +284,7 @@ export function OrgEventsTable({
                                 <SelectItem value="cancelled">Cancelled</SelectItem>
                             </SelectContent>
                         </Select>
-                        <Select
-                            value={(table.getColumn("event_type")?.getFilterValue() as string) ?? "all"}
-                            onValueChange={(value) =>
-                                table.getColumn("event_type")?.setFilterValue(value === "all" ? "" : value)
-                            }
-                        >
-                            <SelectTrigger className="h-9 w-[150px]">
-                                <SelectValue placeholder="Type" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="all">All Types</SelectItem>
-                                <SelectItem value="conference">Conference</SelectItem>
-                                <SelectItem value="summit">Summit</SelectItem>
-                                <SelectItem value="workshop">Workshop</SelectItem>
-                                <SelectItem value="symposium">Symposium</SelectItem>
-                                <SelectItem value="expo">Expo</SelectItem>
-                                <SelectItem value="forum">Forum</SelectItem>
-                                <SelectItem value="seminar">Seminar</SelectItem>
-                            </SelectContent>
-                        </Select>
+
                     </div>
                     <div className="flex items-center gap-2">
                         <DropdownMenu>

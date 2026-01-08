@@ -120,7 +120,7 @@ const columns: ColumnDef<z.infer<typeof userSchema>>[] = [
         accessorKey: "email",
         header: "Email",
         cell: ({ row }) => (
-            <div className="text-muted-foreground">
+            <div>
                 {row.original.email}
             </div>
         ),
@@ -129,7 +129,7 @@ const columns: ColumnDef<z.infer<typeof userSchema>>[] = [
         accessorKey: "role",
         header: "Role",
         cell: ({ row }) => (
-            <Badge variant="outline" className="capitalize text-muted-foreground px-1.5">
+            <Badge variant="outline" className="capitalize px-1.5">
                 {row.original.role}
             </Badge>
         ),
@@ -161,7 +161,7 @@ const columns: ColumnDef<z.infer<typeof userSchema>>[] = [
         accessorKey: "joined_date",
         header: "Joined Date",
         cell: ({ row }) => (
-            <div className="text-muted-foreground">
+            <div>
                 {new Date(row.original.joined_date).toLocaleDateString()}
             </div>
         ),

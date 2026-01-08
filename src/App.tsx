@@ -16,6 +16,10 @@ import {
   EVENT_DASHBOARD_RESOURCES,
   ORG_DASHBOARD_RESOURCES,
 } from "./config/resources";
+import { ProtectedRoute } from "./components/auth/ProtectedRoute";
+import LoginFormPage from "./page/auth/login-form/page";
+import ForgotPasswordPage from "./page/auth/forgot-password/page";
+import ResetPasswordPage from "./page/auth/reset-password/page";
 import OrgDashboardPage from "./page/org-dashboard/page";
 import EventDashboardPage from "./page/event-dashboard/page";
 import UsersListPage from "./page/event-dashboard/pages/event-create-pages/users-list";
@@ -77,44 +81,50 @@ function App() {
                 ]}
               >
                 <Routes>
-                  <Route path="/" element={<EventDashboardPage />} />
-                  <Route path="/event-dashboard" element={<EventDashboardPage />} />
-                  <Route path="/event-dashboard/users" element={<UsersListPage />} />
-                  <Route path="/event-dashboard/support" element={<AppSupportPage />} />
-                  <Route path="/event-dashboard/registration" element={<RegistrationPage />} />
-                  <Route path="/event-dashboard/attendee-fields" element={<AttendeeFieldsPage />} />
-                  <Route path="/event-dashboard/restrictions" element={<RestrictionsPage />} />
-                  <Route path="/event-dashboard/location" element={<LocationPage />} />
-                  <Route path="/event-dashboard/sessions" element={<SessionsPage />} />
-                  <Route path="/event-dashboard/price-slabs" element={<PriceSlabsPage />} />
-                  <Route path="/event-dashboard/tickets" element={<TicketsPage />} />
-                  <Route path="/event-dashboard/discounts" element={<DiscountsPage />} />
-                  <Route path="/event-dashboard/add-ons" element={<AddOnsPage />} />
-                  <Route path="/event-dashboard/payment-settings" element={<PaymentSettingsPage />} />
-                  <Route path="/event-dashboard/refund-settings" element={<RefundSettingsPage />} />
-                  <Route path="/event-dashboard/notifications" element={<NotificationsPage />} />
-                  <Route path="/event-dashboard/settings" element={<SettingsPage />} />
-                  <Route path="/event-dashboard/help" element={<HelpPage />} />
-                  <Route path="/event-dashboard/search" element={<SearchPage />} />
-                  <Route path="/org-dashboard" element={<OrgDashboardPage />} />
-                  <Route path="/org-dashboard/events" element={<ManageEventsPage />} />
-                  <Route path="/org-dashboard/users" element={<ManageUsersPage />} />
-                  <Route path="/org-dashboard/team-members" element={<TeamMembersPage />} />
-                  <Route path="/org-dashboard/roles-permissions" element={<RolesPermissionsPage />} />
-                  <Route path="/org-dashboard/departments" element={<DepartmentsPage />} />
-                  <Route path="/org-dashboard/organization-settings" element={<OrganizationSettingsPage />} />
-                  <Route path="/org-dashboard/branding" element={<BrandingPage />} />
-                  <Route path="/org-dashboard/integrations" element={<IntegrationsPage />} />
-                  <Route path="/org-dashboard/subscription-plans" element={<SubscriptionPlansPage />} />
-                  <Route path="/org-dashboard/payment-methods" element={<PaymentMethodsPage />} />
-                  <Route path="/org-dashboard/invoices" element={<InvoicesPage />} />
-                  <Route path="/org-dashboard/event-analytics" element={<EventAnalyticsPage />} />
-                  <Route path="/org-dashboard/user-activity" element={<UserActivityPage />} />
-                  <Route path="/org-dashboard/revenue-reports" element={<RevenueReportsPage />} />
-                  <Route path="/org-dashboard/notifications" element={<OrgNotificationsPage />} />
-                  <Route path="/org-dashboard/security" element={<SecurityPage />} />
-                  <Route path="/org-dashboard/support" element={<OrgSupportPage />} />
-                  <Route path="/org-dashboard/search" element={<OrgSearchPage />} />
+                  {/* Public Routes */}
+                  <Route path="/login" element={<LoginFormPage />} />
+                  <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+                  <Route path="/reset-password" element={<ResetPasswordPage />} />
+
+                  {/* Protected Routes */}
+                  <Route path="/" element={<ProtectedRoute><EventDashboardPage /></ProtectedRoute>} />
+                  <Route path="/event-dashboard" element={<ProtectedRoute><EventDashboardPage /></ProtectedRoute>} />
+                  <Route path="/event-dashboard/users" element={<ProtectedRoute><UsersListPage /></ProtectedRoute>} />
+                  <Route path="/event-dashboard/support" element={<ProtectedRoute><AppSupportPage /></ProtectedRoute>} />
+                  <Route path="/event-dashboard/registration" element={<ProtectedRoute><RegistrationPage /></ProtectedRoute>} />
+                  <Route path="/event-dashboard/attendee-fields" element={<ProtectedRoute><AttendeeFieldsPage /></ProtectedRoute>} />
+                  <Route path="/event-dashboard/restrictions" element={<ProtectedRoute><RestrictionsPage /></ProtectedRoute>} />
+                  <Route path="/event-dashboard/location" element={<ProtectedRoute><LocationPage /></ProtectedRoute>} />
+                  <Route path="/event-dashboard/sessions" element={<ProtectedRoute><SessionsPage /></ProtectedRoute>} />
+                  <Route path="/event-dashboard/price-slabs" element={<ProtectedRoute><PriceSlabsPage /></ProtectedRoute>} />
+                  <Route path="/event-dashboard/tickets" element={<ProtectedRoute><TicketsPage /></ProtectedRoute>} />
+                  <Route path="/event-dashboard/discounts" element={<ProtectedRoute><DiscountsPage /></ProtectedRoute>} />
+                  <Route path="/event-dashboard/add-ons" element={<ProtectedRoute><AddOnsPage /></ProtectedRoute>} />
+                  <Route path="/event-dashboard/payment-settings" element={<ProtectedRoute><PaymentSettingsPage /></ProtectedRoute>} />
+                  <Route path="/event-dashboard/refund-settings" element={<ProtectedRoute><RefundSettingsPage /></ProtectedRoute>} />
+                  <Route path="/event-dashboard/notifications" element={<ProtectedRoute><NotificationsPage /></ProtectedRoute>} />
+                  <Route path="/event-dashboard/settings" element={<ProtectedRoute><SettingsPage /></ProtectedRoute>} />
+                  <Route path="/event-dashboard/help" element={<ProtectedRoute><HelpPage /></ProtectedRoute>} />
+                  <Route path="/event-dashboard/search" element={<ProtectedRoute><SearchPage /></ProtectedRoute>} />
+                  <Route path="/org-dashboard" element={<ProtectedRoute><OrgDashboardPage /></ProtectedRoute>} />
+                  <Route path="/org-dashboard/events" element={<ProtectedRoute><ManageEventsPage /></ProtectedRoute>} />
+                  <Route path="/org-dashboard/users" element={<ProtectedRoute><ManageUsersPage /></ProtectedRoute>} />
+                  <Route path="/org-dashboard/team-members" element={<ProtectedRoute><TeamMembersPage /></ProtectedRoute>} />
+                  <Route path="/org-dashboard/roles-permissions" element={<ProtectedRoute><RolesPermissionsPage /></ProtectedRoute>} />
+                  <Route path="/org-dashboard/departments" element={<ProtectedRoute><DepartmentsPage /></ProtectedRoute>} />
+                  <Route path="/org-dashboard/organization-settings" element={<ProtectedRoute><OrganizationSettingsPage /></ProtectedRoute>} />
+                  <Route path="/org-dashboard/branding" element={<ProtectedRoute><BrandingPage /></ProtectedRoute>} />
+                  <Route path="/org-dashboard/integrations" element={<ProtectedRoute><IntegrationsPage /></ProtectedRoute>} />
+                  <Route path="/org-dashboard/subscription-plans" element={<ProtectedRoute><SubscriptionPlansPage /></ProtectedRoute>} />
+                  <Route path="/org-dashboard/payment-methods" element={<ProtectedRoute><PaymentMethodsPage /></ProtectedRoute>} />
+                  <Route path="/org-dashboard/invoices" element={<ProtectedRoute><InvoicesPage /></ProtectedRoute>} />
+                  <Route path="/org-dashboard/event-analytics" element={<ProtectedRoute><EventAnalyticsPage /></ProtectedRoute>} />
+                  <Route path="/org-dashboard/user-activity" element={<ProtectedRoute><UserActivityPage /></ProtectedRoute>} />
+                  <Route path="/org-dashboard/revenue-reports" element={<ProtectedRoute><RevenueReportsPage /></ProtectedRoute>} />
+                  <Route path="/org-dashboard/notifications" element={<ProtectedRoute><OrgNotificationsPage /></ProtectedRoute>} />
+                  <Route path="/org-dashboard/security" element={<ProtectedRoute><SecurityPage /></ProtectedRoute>} />
+                  <Route path="/org-dashboard/support" element={<ProtectedRoute><OrgSupportPage /></ProtectedRoute>} />
+                  <Route path="/org-dashboard/search" element={<ProtectedRoute><OrgSearchPage /></ProtectedRoute>} />
                   <Route path="*" element={<NotFound />} />
                 </Routes>
                 <Toaster />

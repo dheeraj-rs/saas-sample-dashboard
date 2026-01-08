@@ -67,6 +67,7 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { Tabs, TabsContent } from "@/components/ui/tabs"
+import { CreateUserModal } from "../modals/create-user-modal"
 
 export const userSchema = z.object({
     id: z.string(),
@@ -403,10 +404,14 @@ export function OrgUsersTable({
                                     })}
                             </DropdownMenuContent>
                         </DropdownMenu>
-                        <Button variant="outline" className="h-9">
-                            <IconPlus />
-                            <span className="hidden lg:inline">Add User</span>
-                        </Button>
+                        <CreateUserModal
+                            trigger={
+                                <Button variant="outline" className="h-9">
+                                    <IconPlus />
+                                    <span className="hidden lg:inline">Add User</span>
+                                </Button>
+                            }
+                        />
                     </div>
                 </div>
             </div>

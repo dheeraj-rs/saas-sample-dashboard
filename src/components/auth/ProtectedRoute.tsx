@@ -1,16 +1,10 @@
 import { useAuthStore } from "@/store/auth.store";
-import { Navigate, useLocation } from "react-router";
-import { ReactNode } from "react";
+import { Navigate, useLocation, Outlet } from "react-router";
 
-interface ProtectedRouteProps {
-    children: ReactNode;
-}
-
-export function ProtectedRoute({ children }: ProtectedRouteProps) {
+export function ProtectedRoute() {
     const { isAuthenticated, isLoading } = useAuthStore();
     const location = useLocation();
 
-    // Show loading state while checking authentication
     if (isLoading) {
         return (
             <div className="flex items-center justify-center min-h-screen">
@@ -22,10 +16,9 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
         );
     }
 
-    // Redirect to login if not authenticated, preserving the intended destination
     if (!isAuthenticated) {
         return <Navigate to="/login" state={{ from: location }} replace />;
     }
 
-    return <>{children}</>;
+    return <Outlet />;
 }

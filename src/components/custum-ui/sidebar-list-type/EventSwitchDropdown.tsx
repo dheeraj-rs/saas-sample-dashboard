@@ -1,7 +1,6 @@
 import * as React from "react"
 import { Check, ChevronDown, Plus, Search } from "lucide-react"
 import { useNavigate } from "react-router"
-
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -16,13 +15,11 @@ import {
     SidebarMenuAction,
     SidebarMenuButton,
     SidebarMenuItem,
-    useSidebar,
 } from "@/components/ui/sidebar"
 import { Team } from "@/components/layouts/dashboard-layout.types"
 
-export function OrgSwitcher({ organizations, events }: { organizations: Team[], events?: Team[] }) {
-    const { isMobile } = useSidebar()
-    const [activeOrg, setActiveOrg] = React.useState(organizations[0])
+export function EventSwitchDropdown({ events, organizations }: { events: Team[], organizations?: Team[] }) {
+    const [activeEvent, setActiveEvent] = React.useState(events[0])
     const navigate = useNavigate()
 
     return (
@@ -35,14 +32,14 @@ export function OrgSwitcher({ organizations, events }: { organizations: Team[], 
                             className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground h-full w-full focus-visible:ring-0"
                         >
                             <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-black text-white">
-                                <span className="text-sm font-semibold">{activeOrg.name.substring(0, 2).toUpperCase()}</span>
+                                <span className="text-sm font-semibold">{activeEvent.name.substring(0, 2).toUpperCase()}</span>
                             </div>
                             <div className="grid flex-1 text-left text-sm leading-tight">
                                 <div className="flex items-center gap-1">
-                                    <span className="truncate font-semibold">{activeOrg.name}</span>
+                                    <span className="truncate font-semibold">{activeEvent.name}</span>
                                     <ChevronDown className="size-3 text-muted-foreground" />
                                 </div>
-                                <span className="truncate text-xs text-muted-foreground">{activeOrg.plan}</span>
+                                <span className="truncate text-xs text-muted-foreground">{activeEvent.plan}</span>
                             </div>
                         </SidebarMenuButton>
                     </DropdownMenuTrigger>
@@ -56,19 +53,19 @@ export function OrgSwitcher({ organizations, events }: { organizations: Team[], 
                         sideOffset={4}
                     >
                         <DropdownMenuLabel className="p-0 text-muted-foreground text-xs">
-                            Organizations
+                            Events
                         </DropdownMenuLabel>
-                        {organizations.map((org, index) => (
+                        {events.map((event, index) => (
                             <DropdownMenuItem
-                                key={org.name}
-                                onClick={() => setActiveOrg(org)}
+                                key={event.name}
+                                onClick={() => setActiveEvent(event)}
                                 className="gap-2 p-2"
                             >
                                 <div className="flex size-7 items-center justify-center rounded-sm border">
-                                    <org.logo className="size-4 shrink-0" />
+                                    <event.logo className="size-4 shrink-0" />
                                 </div>
-                                {org.name}
-                                {activeOrg.name === org.name ? (
+                                {event.name}
+                                {activeEvent.name === event.name ? (
                                     <Check className="ml-auto size-4 text-blue-600" />
                                 ) : (
                                     <DropdownMenuShortcut>⌘{index + 1}</DropdownMenuShortcut>
@@ -80,24 +77,24 @@ export function OrgSwitcher({ organizations, events }: { organizations: Team[], 
                             <div className="flex size-6 items-center justify-center rounded-md border bg-background">
                                 <Plus className="size-4" />
                             </div>
-                            <div className="font-medium text-muted-foreground">Add organization</div>
+                            <div className="font-medium text-muted-foreground">Add event</div>
                         </DropdownMenuItem>
-                        {events && events.length > 0 && (
+                        {organizations && organizations.length > 0 && (
                             <>
                                 <DropdownMenuSeparator />
                                 <DropdownMenuLabel className="p-0 text-muted-foreground text-xs">
-                                    Events
+                                    Organizations
                                 </DropdownMenuLabel>
-                                {events.map((event) => (
+                                {organizations.map((org) => (
                                     <DropdownMenuItem
-                                        key={event.name}
+                                        key={org.name}
                                         className="gap-2 p-2"
-                                        onClick={() => navigate("/event-dashboard")}
+                                        onClick={() => navigate("/org-dashboard")}
                                     >
                                         <div className="flex size-7 items-center justify-center rounded-sm border">
-                                            <event.logo className="size-4 shrink-0" />
+                                            <org.logo className="size-4 shrink-0" />
                                         </div>
-                                        {event.name}
+                                        {org.name}
                                     </DropdownMenuItem>
                                 ))}
                             </>

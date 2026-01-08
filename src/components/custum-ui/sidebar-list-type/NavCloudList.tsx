@@ -17,7 +17,7 @@ import {
     SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
 
-export function NavClouds({
+export function NavCloudList({
     items,
 }: {
     items: {

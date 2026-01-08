@@ -44,7 +44,6 @@
 }
 
 :root {
-  /* Font families */
   --font-inter: 'Inter', sans-serif;
   --font-noto-sans: 'Noto Sans', sans-serif;
   --font-nunito-sans: 'Nunito Sans', sans-serif;
@@ -56,7 +55,6 @@
   --font-outfit: 'Outfit', sans-serif;
   --font-jetbrains-mono: 'JetBrains Mono', monospace;
 
-  /* Theme variables */
   --radius: 0.325rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0.03 264);
@@ -65,7 +63,6 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0.03 264);
   --primary: #0a4d9d;
-  /* Blue */
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0.02 264);
@@ -85,7 +82,6 @@
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0.03 264);
   --sidebar-primary: oklch(49.107% 0.24121 264.248 / 0.336);
-  /* Blue */
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.97 0 0);
   --sidebar-accent-foreground: oklch(0.205 0.02 264);
@@ -101,7 +97,6 @@
   --popover: oklch(0.205 0 0);
   --popover-foreground: oklch(0.985 0 0);
   --primary: oklch(0.6 0.22 264);
-  /* Blue */
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
@@ -121,7 +116,6 @@
   --sidebar: oklch(0.205 0 0);
   --sidebar-foreground: oklch(0.985 0 0);
   --sidebar-primary: oklch(0.55 0.22 264);
-  /* Blue */
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-accent: oklch(0.269 0 0);
   --sidebar-accent-foreground: oklch(0.985 0 0);

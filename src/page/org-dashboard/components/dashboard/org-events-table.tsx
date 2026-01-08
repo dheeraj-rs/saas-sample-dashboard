@@ -308,18 +308,18 @@ export function OrgEventsTable({
                     <div className="flex items-center gap-2">
                         <div className="flex bg-muted/50 p-1 rounded-lg border">
                             <Button
-                                variant={view === "table" ? "secondary" : "ghost"}
+                                variant="ghost"
                                 size="sm"
-                                className="h-7 px-2"
+                                className={`h-7 px-2 transition-all ${view === "table" ? "bg-background shadow-sm text-foreground hover:bg-background" : "text-muted-foreground hover:text-foreground"}`}
                                 onClick={() => setView("table")}
                             >
                                 <IconList className="size-4 mr-1.5" />
                                 <span className="text-xs font-medium">List</span>
                             </Button>
                             <Button
-                                variant={view === "card" ? "secondary" : "ghost"}
+                                variant="ghost"
                                 size="sm"
-                                className="h-7 px-2"
+                                className={`h-7 px-2 transition-all ${view === "card" ? "bg-background shadow-sm text-foreground hover:bg-background" : "text-muted-foreground hover:text-foreground"}`}
                                 onClick={() => setView("card")}
                             >
                                 <IconLayoutGrid className="size-4 mr-1.5" />

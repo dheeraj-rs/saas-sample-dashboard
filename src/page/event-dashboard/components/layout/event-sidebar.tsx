@@ -19,11 +19,11 @@ import {
     SidebarFooter,
     SidebarHeader,
 } from "@/components/ui/sidebar"
-import { NavClouds } from "@/components/custum-ui/sidebar-list/nav-clouds"
-import { NavMain } from "@/components/custum-ui/sidebar-list/nav-main"
-import { NavSecondary } from "@/components/custum-ui/sidebar-list/nav-secondary"
-import { NavUser } from "@/components/custum-ui/sidebar-list/nav-user"
-import { EventSwitcher } from "@/components/custum-ui/sidebar-list/event-switcher"
+import { NavCloudList } from "@/components/custum-ui/sidebar-list-type/NavCloudList"
+import { NavMainList } from "@/components/custum-ui/sidebar-list-type/NavMainList"
+import { NavSecondaryList } from "@/components/custum-ui/sidebar-list-type/NavSecondaryList"
+import { UserProfile } from "@/components/custum-ui/sidebar-list-type/UserProfile"
+import { EventSwitchDropdown } from "@/components/custum-ui/sidebar-list-type/EventSwitchDropdown"
 
 const sidebarData = {
     events: [
@@ -205,17 +205,17 @@ export function EventSidebar() {
     return (
         <Sidebar collapsible="icon" className="h-screen border-r z-50" variant="sidebar">
             <SidebarHeader className="h-(--header-height) border-b">
-                <EventSwitcher events={sidebarData.events || []} organizations={sidebarData.organizations || []} />
+                <EventSwitchDropdown events={sidebarData.events || []} organizations={sidebarData.organizations || []} />
             </SidebarHeader>
             <SidebarContent>
-                <NavMain items={navMain} />
+                <NavMainList items={navMain} />
                 {navClouds && navClouds.length > 0 && (
-                    <NavClouds items={navClouds} />
+                    <NavCloudList items={navClouds} />
                 )}
-                <NavSecondary items={navSecondary} className="mt-auto" />
+                <NavSecondaryList items={navSecondary} className="mt-auto" />
             </SidebarContent>
             <SidebarFooter>
-                <NavUser user={sidebarData.user} />
+                <UserProfile user={sidebarData.user} />
             </SidebarFooter>
         </Sidebar>
     )

@@ -26,7 +26,7 @@ interface OrgRevenueChartProps {
 const chartConfig = {
     revenue: {
         label: "Revenue",
-        color: "hsl(var(--primary))",
+        color: "var(--primary)",
     },
 } satisfies ChartConfig
 

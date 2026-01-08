@@ -3,6 +3,7 @@ import { OrgRecentActivity } from "./org-recent-activity"
 import { OrgRevenueChart } from "./org-revenue-chart"
 import eventsData from "@/page/event-dashboard/data/events-data.json"
 import orgData from "../../data/org-data.json"
+// import { ChartAreaInteractive } from "@/page/event-dashboard/components/dashboard/chart-area-interactive"
 
 export default function OrgDashboard() {
     return (
@@ -12,6 +13,7 @@ export default function OrgDashboard() {
                     <OrgOverviewCards data={orgData.overview} events={eventsData} />
                     <div className="grid grid-cols-1 gap-4 px-2 sm:px-4 lg:grid-cols-3 lg:px-6">
                         <OrgRevenueChart data={orgData.revenueHistory} />
+                        {/* <ChartAreaInteractive events={eventsData} /> */}
                         <OrgRecentActivity data={orgData.recentActivity} />
                     </div>
                 </div>

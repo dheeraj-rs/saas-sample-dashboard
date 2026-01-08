@@ -1,7 +1,6 @@
 import { Refine } from "@refinedev/core";
-import { DevtoolsPanel, DevtoolsProvider } from "@refinedev/devtools";
+import { DevtoolsProvider } from "@refinedev/devtools";
 import { RefineKbar, RefineKbarProvider } from "@refinedev/kbar";
-
 import routerProvider, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
@@ -54,7 +53,6 @@ import OrgNotificationsPage from "./page/org-dashboard/pages/notifications";
 import SecurityPage from "./page/org-dashboard/pages/security";
 import OrgSupportPage from "./page/org-dashboard/pages/support";
 import OrgSearchPage from "./page/org-dashboard/pages/search";
-
 import { NotFound } from "./components/custum-ui/reusing-pages/NotFound";
 
 function App() {
@@ -124,7 +122,6 @@ function App() {
                 <UnsavedChangesNotifier />
                 <DocumentTitleHandler />
               </Refine>
-              {/* <DevtoolsPanel /> */}
             </DevtoolsProvider>
           </ThemeProvider>
         </FontProvider>

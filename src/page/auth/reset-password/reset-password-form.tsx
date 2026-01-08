@@ -1,7 +1,6 @@
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
 import { InputPassword } from "@/components/refine-ui/form/input-password"
 import { Label } from "@/components/ui/label"
 import { useForm } from "react-hook-form"
@@ -28,7 +27,6 @@ export function ResetPasswordForm({ className, ...props }: React.ComponentProps<
     const [isLoading, setIsLoading] = useState(false)
     const [isSuccess, setIsSuccess] = useState(false)
     const [token, setToken] = useState<string | null>(null)
-
     const { register, handleSubmit, formState: { errors } } = useForm<ResetPasswordFormData>({
         resolver: zodResolver(resetPasswordSchema),
     })

@@ -8,9 +8,17 @@ import {
     IconCircleCheckFilled,
     IconEdit,
     IconLayoutColumns,
+    IconLayoutGrid,
+    IconList,
     IconLoader,
     IconPlus,
     IconTrendingUp,
+    IconCalendar,
+    IconMapPin,
+    IconUsers,
+    IconExternalLink,
+    IconDotsVertical,
+
 } from "@tabler/icons-react"
 import {
     flexRender,
@@ -32,6 +40,14 @@ import { z } from "zod"
 import { useIsMobile } from "@/hooks/use-mobile"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
 import {
     ChartContainer,
     ChartTooltip,
@@ -223,6 +239,7 @@ export function OrgEventsTable({
         []
     )
     const [sorting, setSorting] = React.useState<SortingState>([])
+    const [view, setView] = React.useState<"table" | "card">("table")
     const [pagination, setPagination] = React.useState({
         pageIndex: 0,
         pageSize: 10,
@@ -289,6 +306,26 @@ export function OrgEventsTable({
 
                     </div>
                     <div className="flex items-center gap-2">
+                        <div className="flex bg-muted/50 p-1 rounded-lg border">
+                            <Button
+                                variant={view === "table" ? "secondary" : "ghost"}
+                                size="sm"
+                                className="h-7 px-2"
+                                onClick={() => setView("table")}
+                            >
+                                <IconList className="size-4 mr-1.5" />
+                                <span className="text-xs font-medium">List</span>
+                            </Button>
+                            <Button
+                                variant={view === "card" ? "secondary" : "ghost"}
+                                size="sm"
+                                className="h-7 px-2"
+                                onClick={() => setView("card")}
+                            >
+                                <IconLayoutGrid className="size-4 mr-1.5" />
+                                <span className="text-xs font-medium">Card</span>
+                            </Button>
+                        </div>
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button variant="outline" className="h-9">
@@ -333,57 +370,129 @@ export function OrgEventsTable({
                     </div>
                 </div>
             </div>
+
             <TabsContent
                 value="outline"
                 className="relative flex flex-col gap-4 overflow-auto px-4 lg:px-6"
             >
-                <div className="overflow-hidden rounded-lg border">
-                    <Table>
-                        <TableHeader className="bg-muted sticky top-0 z-10">
-                            {table.getHeaderGroups().map((headerGroup) => (
-                                <TableRow key={headerGroup.id}>
-                                    {headerGroup.headers.map((header) => {
-                                        return (
-                                            <TableHead key={header.id} colSpan={header.colSpan}>
-                                                {header.isPlaceholder
-                                                    ? null
-                                                    : flexRender(
-                                                        header.column.columnDef.header,
-                                                        header.getContext()
-                                                    )}
-                                            </TableHead>
-                                        )
-                                    })}
-                                </TableRow>
-                            ))}
-                        </TableHeader>
-                        <TableBody>
-                            {table.getRowModel().rows?.length ? (
-                                table.getRowModel().rows.map((row) => (
-                                    <TableRow
-                                        key={row.id}
-                                        data-state={row.getIsSelected() && "selected"}
-                                    >
-                                        {row.getVisibleCells().map((cell) => (
-                                            <TableCell key={cell.id}>
-                                                {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                            </TableCell>
-                                        ))}
+                {view === "table" ? (
+                    <div className="overflow-hidden rounded-lg border">
+                        <Table>
+                            <TableHeader className="bg-muted sticky top-0 z-10">
+                                {table.getHeaderGroups().map((headerGroup) => (
+                                    <TableRow key={headerGroup.id}>
+                                        {headerGroup.headers.map((header) => {
+                                            return (
+                                                <TableHead key={header.id} colSpan={header.colSpan}>
+                                                    {header.isPlaceholder
+                                                        ? null
+                                                        : flexRender(
+                                                            header.column.columnDef.header,
+                                                            header.getContext()
+                                                        )}
+                                                </TableHead>
+                                            )
+                                        })}
                                     </TableRow>
-                                ))
-                            ) : (
-                                <TableRow>
-                                    <TableCell
-                                        colSpan={columns.length}
-                                        className="h-24 text-center"
-                                    >
-                                        No results.
-                                    </TableCell>
-                                </TableRow>
-                            )}
-                        </TableBody>
-                    </Table>
-                </div>
+                                ))}
+                            </TableHeader>
+                            <TableBody>
+                                {table.getRowModel().rows?.length ? (
+                                    table.getRowModel().rows.map((row) => (
+                                        <TableRow
+                                            key={row.id}
+                                            data-state={row.getIsSelected() && "selected"}
+                                        >
+                                            {row.getVisibleCells().map((cell) => (
+                                                <TableCell key={cell.id}>
+                                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                                </TableCell>
+                                            ))}
+                                        </TableRow>
+                                    ))
+                                ) : (
+                                    <TableRow>
+                                        <TableCell
+                                            colSpan={columns.length}
+                                            className="h-24 text-center"
+                                        >
+                                            No results.
+                                        </TableCell>
+                                    </TableRow>
+                                )}
+                            </TableBody>
+                        </Table>
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {table.getRowModel().rows?.length ? (
+                            table.getRowModel().rows.map((row) => (
+                                <Card key={row.id} className="group relative flex flex-col overflow-hidden transition-all hover:shadow-md">
+                                    <CardHeader className="p-3 pb-1 space-y-0">
+                                        <div className="flex justify-between items-start gap-2">
+                                            <div className="space-y-1 min-w-0 flex-1">
+                                                <CardTitle className="line-clamp-1 text-sm font-semibold leading-tight" title={row.original.name}>
+                                                    {row.original.name}
+                                                </CardTitle>
+                                                <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                                                    <span className="truncate max-w-[140px]" title={row.original.organization_name}>{row.original.organization_name}</span>
+                                                    <span className="h-1 w-1 rounded-full bg-border shrink-0" />
+                                                    <span className="shrink-0">{row.original.event_type}</span>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-center gap-0 -mr-2 -mt-1 shrink-0">
+                                                {row.original.active_domain && (
+                                                    <Button variant="ghost" size="icon" className="size-8 text-muted-foreground hover:text-primary" asChild>
+                                                        <a href={row.original.active_domain} target="_blank" rel="noreferrer" title="Visit Site">
+                                                            <IconExternalLink className="size-4" />
+                                                        </a>
+                                                    </Button>
+                                                )}
+                                                <DropdownMenu>
+                                                    <DropdownMenuTrigger asChild>
+                                                        <Button variant="ghost" size="icon" className="size-8 text-muted-foreground">
+                                                            <IconDotsVertical className="size-4" />
+                                                        </Button>
+                                                    </DropdownMenuTrigger>
+                                                    <DropdownMenuContent align="end">
+                                                        <DropdownMenuItem>Edit</DropdownMenuItem>
+                                                        <DropdownMenuItem>Make a copy</DropdownMenuItem>
+                                                        <DropdownMenuItem>Favorite</DropdownMenuItem>
+                                                        <DropdownMenuSeparator />
+                                                        <DropdownMenuItem variant="destructive">Delete</DropdownMenuItem>
+                                                    </DropdownMenuContent>
+                                                </DropdownMenu>
+                                            </div>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent className="p-3 pt-3">
+                                        <div className="flex items-end justify-between text-xs text-muted-foreground">
+                                            <div className="flex flex-col gap-2 min-w-0">
+                                                <div className="flex items-center gap-1.5">
+                                                    <IconCalendar className="size-3.5 shrink-0" />
+                                                    <span className="truncate">{new Date(row.original.start_date).toLocaleDateString()}</span>
+                                                </div>
+                                                <div className="flex items-center gap-1.5">
+                                                    <IconMapPin className="size-3.5 shrink-0" />
+                                                    <span className="truncate max-w-[150px]" title={row.original.location}>{row.original.location}</span>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-center gap-1.5 bg-muted/50 px-2.5 py-1 rounded-md mb-0.5">
+                                                <IconUsers className="size-3.5 shrink-0" />
+                                                <span className="font-medium">{row.original.registered}</span>
+                                            </div>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            ))
+                        ) : (
+                            <div className="col-span-full h-24 flex items-center justify-center text-muted-foreground border rounded-lg border-dashed">
+                                No results found.
+                            </div>
+                        )}
+                    </div>
+                )}
+
                 <div className="flex items-center justify-between px-4">
                     <div className="text-muted-foreground hidden flex-1 text-sm lg:flex">
                         {table.getFilteredSelectedRowModel().rows.length} of{" "}
@@ -477,7 +586,7 @@ export function OrgEventsTable({
             >
                 <div className="aspect-video w-full flex-1 rounded-lg border border-dashed"></div>
             </TabsContent>
-        </Tabs>
+        </Tabs >
     )
 }
 

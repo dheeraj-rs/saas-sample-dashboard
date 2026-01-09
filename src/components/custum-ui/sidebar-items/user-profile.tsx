@@ -41,8 +41,6 @@ export function UserProfile({
   const { isMobile } = useSidebar()
   const { logout, isLoading, user: authUser } = useAuthStore()
   const navigate = useNavigate()
-
-  // Use authenticated user data if available, otherwise use prop
   const displayUser = authUser || user
 
   const handleLogout = async () => {
@@ -130,7 +128,7 @@ export function UserProfile({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleLogout} disabled={isLoading}>
+            <DropdownMenuItem onClick={handleLogout} disabled={isLoading} className="cursor-pointer">
               <IconLogout />
               {isLoading ? "Logging out..." : "Log out"}
             </DropdownMenuItem>

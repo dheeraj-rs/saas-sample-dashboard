@@ -14,12 +14,16 @@ interface AppConfigStore {
     hideToast: () => void;
 }
 
-export const useAppConfigStore = create<AppConfigStore>((set) => ({
+const initialState = {
     toast: {
         isVisible: false,
         message: '',
-        type: 'info',
+        type: 'info' as ToastType,
     },
+};
+
+export const useAppConfigStore = create<AppConfigStore>((set) => ({
+    ...initialState,
 
     showToast: (message: string, type: ToastType = 'info') => {
         set((state) => ({

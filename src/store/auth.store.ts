@@ -1,9 +1,14 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import type { AuthState, LoginCredentials, User } from '@/types/auth.types';
+import type { LoginCredentials, User } from '@/types/auth.types';
 import * as authService from '@/services/auth.service';
 
-interface AuthActions {
+interface AuthStore {
+    user: User | null;
+    token: string | null;
+    isAuthenticated: boolean;
+    isLoading: boolean;
+    error: string | null;
     login: (credentials: LoginCredentials) => Promise<void>;
     logout: () => Promise<void>;
     setUser: (user: User, token: string) => void;
@@ -12,9 +17,7 @@ interface AuthActions {
     setLoading: (isLoading: boolean) => void;
 }
 
-type AuthStore = AuthState & AuthActions;
-
-const initialState: AuthState = {
+const initialState = {
     user: null,
     token: null,
     isAuthenticated: false,
@@ -64,7 +67,6 @@ export const useAuthStore = create<AuthStore>()(
                     }
                 } catch (error) {
                     console.error('Logout error:', error);
-                    // Continue with logout even if API call fails
                 } finally {
                     set({
                         ...initialState,

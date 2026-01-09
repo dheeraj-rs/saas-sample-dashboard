@@ -4,7 +4,6 @@ import type { LoginCredentials, AuthResponse, LogoutResponse, ForgotPasswordRequ
 export async function login(credentials: LoginCredentials): Promise<AuthResponse> {
     // MOCK RESPONSE FOR TESTING
     await new Promise(resolve => setTimeout(resolve, 1000));
-
     if (credentials.email === "admin@gmail.com" && credentials.password === "password") {
         const mockResponse: AuthResponse = {
             status: "success",
@@ -90,9 +89,14 @@ export async function logout(_token: string): Promise<LogoutResponse> {
     */
 }
 
-export async function forgotPassword(_request: ForgotPasswordRequest): Promise<ForgotPasswordResponse> {
+export async function forgotPassword(request: ForgotPasswordRequest): Promise<ForgotPasswordResponse> {
     // MOCK RESPONSE FOR TESTING
     await new Promise(resolve => setTimeout(resolve, 1000));
+
+    if (request.email === "error@gmail.com") {
+        throw new Error("We can't find a user with that e-mail address.");
+    }
+
     const mockResponse: ForgotPasswordResponse = {
         status: "success",
         data: {

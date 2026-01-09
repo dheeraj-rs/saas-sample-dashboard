@@ -13,7 +13,8 @@ import { useState } from "react"
 import { toast } from "sonner"
 import { forgotPassword } from "@/services/auth.service"
 import { Link } from "react-router"
-import { Mail, Loader2, CheckCircle2, Send, ArrowLeft, Info } from "lucide-react"
+import { Mail, Loader2, CheckCircle2, Send, ArrowLeft, Info, AlertCircle } from "lucide-react"
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 
 const forgotPasswordSchema = z.object({
     email: z.string().nonempty("Email is required").email("Please enter a valid email address"),
@@ -24,6 +25,7 @@ type ForgotPasswordFormData = z.infer<typeof forgotPasswordSchema>
 export function ForgotPasswordForm({ className, ...props }: React.ComponentProps<"form">) {
     const [isLoading, setIsLoading] = useState(false)
     const [isSuccess, setIsSuccess] = useState(false)
+    const [error, setError] = useState<string | null>(null)
 
     const { register, handleSubmit, formState: { errors } } = useForm<ForgotPasswordFormData>({
         resolver: zodResolver(forgotPasswordSchema),
@@ -31,13 +33,14 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
 
     const onSubmit = async (data: ForgotPasswordFormData) => {
         setIsLoading(true)
+        setError(null)
         try {
             const response = await forgotPassword({ email: data.email })
             toast.success(response.data.message, { position: "top-right", duration: 4000 })
             setIsSuccess(true)
         } catch (error) {
             const errorMessage = error instanceof Error ? error.message : "Failed to send reset link"
-            toast.error(errorMessage, { position: "top-right", duration: 4000 })
+            setError(errorMessage)
         } finally {
             setIsLoading(false)
         }
@@ -45,39 +48,41 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
 
     if (isSuccess) {
         return (
-            <form className={cn("flex flex-col gap-6", className)} {...props} onSubmit={(e) => e.preventDefault()}>
-                <div className="flex flex-col items-center gap-2 text-center">
-                    <div className="flex items-center justify-center w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 mb-2 p-3">
+            <Card className="w-full max-w-md mx-auto shadow-sm border-0 bg-white/50 backdrop-blur-sm dark:bg-zinc-950/50">
+                <CardHeader className="flex flex-col items-center text-center space-y-2 pb-6">
+                    <div className="flex items-center justify-center w-16 h-16 rounded-full bg-green-100 dark:bg-green-900/30 mb-4 p-3 animate-in zoom-in duration-300">
                         <CheckCircle2 className="w-8 h-8 text-green-600 dark:text-green-400" />
                     </div>
-                    <h1 className="text-2xl font-bold tracking-tight">Check Your Email</h1>
-                    <p className="text-muted-foreground text-sm text-balance">
-                        We have sent a password reset link to your email address.
-                    </p>
-                </div>
-
-                <div className="rounded-lg bg-green-50 dark:bg-green-950 p-4 text-sm text-green-800 dark:text-green-200 border border-green-200 dark:border-green-900">
-                    <div className="flex items-center gap-2 font-medium mb-1">
-                        <Info className="h-4 w-4" />
-                        <p>Testing Information:</p>
+                    <CardTitle className="text-2xl font-bold tracking-tight">Check Your Email</CardTitle>
+                    <CardDescription className="text-base text-balance">
+                        We have sent a password reset link to <span className="font-medium text-foreground">your email address</span>.
+                    </CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-6">
+                    <div className="rounded-lg bg-green-50 dark:bg-green-950/50 p-4 text-sm text-green-800 dark:text-green-200 border border-green-200 dark:border-green-900">
+                        <div className="flex items-center gap-2 font-medium mb-1">
+                            <Info className="h-4 w-4" />
+                            <p>Testing Information:</p>
+                        </div>
+                        <p className="text-xs opacity-90 break-all pl-6">
+                            <Link
+                                to="/reset-password?token=53c95c81dec7339d9800091ad575c457a3cad71803de9fe885e30d4ee2f96c49"
+                                className="underline hover:no-underline"
+                            >
+                                /reset-password?token=53c95c81dec7339d9800091ad575c457a3cad71803de9fe885e30d4ee2f96c49
+                            </Link>
+                        </p>
                     </div>
-                    <p className="text-xs opacity-90 break-all pl-6">
-                        <Link
-                            to="/reset-password?token=53c95c81dec7339d9800091ad575c457a3cad71803de9fe885e30d4ee2f96c49"
-                            className="underline hover:no-underline"
-                        >
-                            /reset-password?token=53c95c81dec7339d9800091ad575c457a3cad71803de9fe885e30d4ee2f96c49
+                </CardContent>
+                <CardFooter>
+                    <Button className="w-full h-11 gap-2 shadow-sm" variant="outline" asChild>
+                        <Link to="/login">
+                            <ArrowLeft className="h-4 w-4" />
+                            Back to Login
                         </Link>
-                    </p>
-                </div>
-
-                <Button className="w-full h-11 gap-2" variant="outline" asChild>
-                    <Link to="/login">
-                        <ArrowLeft className="h-4 w-4" />
-                        Back to Login
-                    </Link>
-                </Button>
-            </form>
+                    </Button>
+                </CardFooter>
+            </Card>
         )
     }
 
@@ -126,7 +131,16 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
                     )}
                 </Field>
 
-                <Field className="pt-2">
+                {error && (
+                    <div className="rounded-md bg-red-50 border border-red-200 p-3 flex items-center gap-3">
+                        <AlertCircle className="h-4 w-4 text-red-600" />
+                        <p className="text-sm text-red-600">
+                            {error}
+                        </p>
+                    </div>
+                )}
+
+                <Field>
                     <Button
                         type="submit"
                         disabled={isLoading}

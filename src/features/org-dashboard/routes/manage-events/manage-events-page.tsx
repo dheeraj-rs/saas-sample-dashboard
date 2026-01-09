@@ -1,6 +1,6 @@
-import { OrgEventsTable } from "@/features/org-dashboard/components/dashboard/org-events-table"
 import eventsData from "@/features/event-dashboard/data/events-data.json"
 import OrgDashboardLayout from "../../layouts/dashboard-layout"
+import { OrgEventsTable } from "../../components/dashboard-page/org-events-table"
 
 export default function ManageEventsPage() {
     return (

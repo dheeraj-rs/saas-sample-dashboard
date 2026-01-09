@@ -1,7 +1,7 @@
-import { ChartAreaInteractive } from "../components/dashboard-pages/chart-area-interactive"
-import { SectionCards } from "../components/dashboard-pages/section-cards"
-import data from "../data/events-data.json"
-import EventDashboardLayout from "../layouts/dashboard-layout"
+import { ChartAreaInteractive } from "../../components/dashboard-pages/chart-area-interactive"
+import { SectionCards } from "../../components/dashboard-pages/section-cards"
+import data from "../../data/events-data.json"
+import EventDashboardLayout from "../../layouts/dashboard-layout"
 
 export default function EventDashboardPage() {
     return (

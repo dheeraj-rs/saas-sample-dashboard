@@ -87,9 +87,9 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
                             {...register("email")}
                             disabled={isLoading}
                             className={cn(
-                                "pl-10 h-11 transition-all",
+                                "pl-10 h-11 transition-all focus-visible:ring-0 focus-visible:ring-offset-0",
                                 errors.email
-                                    ? "border-destructive focus-visible:ring-destructive/20"
+                                    ? "border-destructive"
                                     : "focus-visible:ring-primary/20"
                             )}
                         />
@@ -123,9 +123,9 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
                             {...register("password")}
                             disabled={isLoading}
                             className={cn(
-                                "pl-10 pr-10 h-11 transition-all",
+                                "pl-10 pr-10 h-11 transition-all focus-visible:ring-0 focus-visible:ring-offset-0",
                                 errors.password
-                                    ? "border-destructive focus-visible:ring-destructive/20"
+                                    ? "border-destructive"
                                     : "focus-visible:ring-primary/20"
                             )}
                         />

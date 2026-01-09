@@ -1,0 +1,21 @@
+import { ChartAreaInteractive } from "../components/dashboard-pages/chart-area-interactive"
+import { SectionCards } from "../components/dashboard-pages/section-cards"
+import data from "../data/events-data.json"
+import EventDashboardLayout from "../layouts/dashboard-layout"
+
+export default function EventDashboardPage() {
+    return (
+        <EventDashboardLayout>
+            <div className="flex flex-1 flex-col">
+                <div className="@container/main flex flex-1 flex-col gap-2">
+                    <div className="flex flex-col gap-3 py-3 px-2 sm:gap-4 sm:py-4 md:gap-6 md:py-6 md:px-0">
+                        <SectionCards events={data} />
+                        <div className="px-2 sm:px-4 lg:px-6">
+                            <ChartAreaInteractive events={data} />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </EventDashboardLayout>
+    )
+}

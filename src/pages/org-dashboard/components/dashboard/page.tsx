@@ -1,7 +1,7 @@
 import { OrgOverviewCards } from "./org-overview-cards"
 import { OrgRecentActivity } from "./org-recent-activity"
 import { OrgRevenueChart } from "./org-revenue-chart"
-import eventsData from "@/page/event-dashboard/data/events-data.json"
+import eventsData from "@/pages/event-dashboard/data/events-data.json"
 import orgData from "../../data/org-data.json"
 
 export default function OrgDashboard() {

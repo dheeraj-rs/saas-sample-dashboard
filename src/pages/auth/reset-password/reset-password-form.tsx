@@ -24,9 +24,11 @@ type ResetPasswordFormData = z.infer<typeof resetPasswordSchema>
 export function ResetPasswordForm({ className, ...props }: React.ComponentProps<"div">) {
     const [searchParams] = useSearchParams()
     const navigate = useNavigate()
+
     const [isLoading, setIsLoading] = useState(false)
     const [isSuccess, setIsSuccess] = useState(false)
     const [token, setToken] = useState<string | null>(null)
+
     const { register, handleSubmit, formState: { errors } } = useForm<ResetPasswordFormData>({
         resolver: zodResolver(resetPasswordSchema),
     })
@@ -44,12 +46,11 @@ export function ResetPasswordForm({ className, ...props }: React.ComponentProps<
         }
     }, [searchParams, navigate])
 
-    const onSubmit = async (data: ResetPasswordFormData) => {
+    const handleResetPassword = async (data: ResetPasswordFormData) => {
         if (!token) {
             toast.error("Invalid reset token", { position: "top-right", duration: 4000 })
             return
         }
-
         setIsLoading(true)
         try {
             const response = await resetPassword({
@@ -86,6 +87,56 @@ export function ResetPasswordForm({ className, ...props }: React.ComponentProps<
         )
     }
 
+    const SuccessView = () => (
+        <div className="space-y-4">
+            <div className="rounded-lg bg-green-50 dark:bg-green-950 p-4 text-sm text-green-800 dark:text-green-200">
+                Your password has been reset. Redirecting to login...
+            </div>
+            <Link to="/login">
+                <Button className="w-full">
+                    Go to Login
+                </Button>
+            </Link>
+        </div>
+    )
+
+    const ResetFormView = () => (
+        <form onSubmit={handleSubmit(handleResetPassword)}>
+            <div className="grid gap-4">
+                <div className="grid gap-2">
+                    <Label htmlFor="password">New Password <span className="text-destructive">*</span></Label>
+                    <InputPassword
+                        id="password"
+                        placeholder="Enter new password"
+                        {...register("password")}
+                        disabled={isLoading}
+                        className={errors.password ? "border-red-500 focus-visible:ring-0 focus-visible:ring-offset-0" : "focus-visible:ring-0 focus-visible:ring-offset-0"}
+                    />
+                    {errors.password && <p className="text-sm text-destructive">{errors.password.message}</p>}
+                </div>
+                <div className="grid gap-2">
+                    <Label htmlFor="password_confirmation">Confirm Password <span className="text-destructive">*</span></Label>
+                    <InputPassword
+                        id="password_confirmation"
+                        placeholder="Confirm new password"
+                        {...register("password_confirmation")}
+                        disabled={isLoading}
+                        className={errors.password_confirmation ? "border-red-500 focus-visible:ring-0 focus-visible:ring-offset-0" : "focus-visible:ring-0 focus-visible:ring-offset-0"}
+                    />
+                    {errors.password_confirmation && <p className="text-sm text-destructive">{errors.password_confirmation.message}</p>}
+                </div>
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                    {isLoading ? "Resetting..." : "Reset Password"}
+                </Button>
+                <Link to="/login">
+                    <Button className="w-full" variant="outline" type="button">
+                        Back to Login
+                    </Button>
+                </Link>
+            </div>
+        </form>
+    )
+
     return (
         <div className={cn("flex flex-col gap-6", className)} {...props}>
             <Card>
@@ -99,53 +150,7 @@ export function ResetPasswordForm({ className, ...props }: React.ComponentProps<
                     </CardDescription>
                 </CardHeader>
                 <CardContent>
-                    {isSuccess ? (
-                        <div className="space-y-4">
-                            <div className="rounded-lg bg-green-50 dark:bg-green-950 p-4 text-sm text-green-800 dark:text-green-200">
-                                Your password has been reset. Redirecting to login...
-                            </div>
-                            <Link to="/login">
-                                <Button className="w-full">
-                                    Go to Login
-                                </Button>
-                            </Link>
-                        </div>
-                    ) : (
-                        <form onSubmit={handleSubmit(onSubmit)}>
-                            <div className="grid gap-4">
-                                <div className="grid gap-2">
-                                    <Label htmlFor="password">New Password <span className="text-destructive">*</span></Label>
-                                    <InputPassword
-                                        id="password"
-                                        placeholder="Enter new password"
-                                        {...register("password")}
-                                        disabled={isLoading}
-                                        className={errors.password ? "border-red-500 focus-visible:ring-0 focus-visible:ring-offset-0" : "focus-visible:ring-0 focus-visible:ring-offset-0"}
-                                    />
-                                    {errors.password && <p className="text-sm text-destructive">{errors.password.message}</p>}
-                                </div>
-                                <div className="grid gap-2">
-                                    <Label htmlFor="password_confirmation">Confirm Password <span className="text-destructive">*</span></Label>
-                                    <InputPassword
-                                        id="password_confirmation"
-                                        placeholder="Confirm new password"
-                                        {...register("password_confirmation")}
-                                        disabled={isLoading}
-                                        className={errors.password_confirmation ? "border-red-500 focus-visible:ring-0 focus-visible:ring-offset-0" : "focus-visible:ring-0 focus-visible:ring-offset-0"}
-                                    />
-                                    {errors.password_confirmation && <p className="text-sm text-destructive">{errors.password_confirmation.message}</p>}
-                                </div>
-                                <Button type="submit" className="w-full" disabled={isLoading}>
-                                    {isLoading ? "Resetting..." : "Reset Password"}
-                                </Button>
-                                <Link to="/login">
-                                    <Button className="w-full" variant="outline" type="button">
-                                        Back to Login
-                                    </Button>
-                                </Link>
-                            </div>
-                        </form>
-                    )}
+                    {isSuccess ? <SuccessView /> : <ResetFormView />}
                 </CardContent>
             </Card>
         </div>

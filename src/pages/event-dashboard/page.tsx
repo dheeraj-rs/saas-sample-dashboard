@@ -1,5 +1,5 @@
-import { ChartAreaInteractive } from "@/page/event-dashboard/components/dashboard-pages/chart-area-interactive"
-import { SectionCards } from "@/page/event-dashboard/components/dashboard-pages/section-cards"
+import { ChartAreaInteractive } from "@/pages/event-dashboard/components/dashboard-pages/chart-area-interactive"
+import { SectionCards } from "@/pages/event-dashboard/components/dashboard-pages/section-cards"
 import data from "./data/events-data.json"
 import EventDashboardLayout from "./layout"
 

@@ -1,12 +1,10 @@
-import { UnderDevelopment } from "@/components/common/reusing-pages/under-development"
 import EventDashboardLayout from "../../layouts/dashboard-layout"
+import UnderDevelopmentPage from "@/components/common/reusing-pages/under-development-page"
 
 export default function AttendeeFieldsPage() {
     return (
         <EventDashboardLayout>
-            <div className="flex h-full w-full flex-col items-center justify-center min-h-[calc(100vh-100px)]">
-                <UnderDevelopment pageName="Attendee Fields" />
-            </div>
+            <UnderDevelopmentPage pageName="Attendee Fields" />
         </EventDashboardLayout>
     )
 }

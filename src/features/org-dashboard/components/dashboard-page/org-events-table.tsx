@@ -6,7 +6,6 @@ import {
     IconChevronsLeft,
     IconChevronsRight,
     IconCircleCheckFilled,
-    IconEdit,
     IconLayoutColumns,
     IconLoader,
     IconPlus,

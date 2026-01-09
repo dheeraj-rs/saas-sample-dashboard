@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router";
-import { EmptyPage } from "./empty-page";
+import { EmptyPageLayout } from "./empty-page-layout";
 
-export function NotFound() {
+export default function NotFoundPage() {
     const navigate = useNavigate();
 
     return (
         <div className="flex h-screen w-full flex-col items-center justify-center bg-background">
-            <EmptyPage
+            <EmptyPageLayout
                 title="Page Not Found"
                 description="The page you are looking for does not exist or has been moved."
                 actionLabel="Go Home"

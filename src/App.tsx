@@ -21,7 +21,7 @@ import LoginFormPage from "./features/auth/routes/login-form-page";
 import ForgotPasswordPage from "./features/auth/routes/forgot-password-page";
 import ResetPasswordPage from "./features/auth/routes/reset-password-page";
 
-import EventDashboardPage from "./features/event-dashboard/routes/dashbord-pages/dashboard-page";
+import EventDashboardPage from "./features/event-dashboard/routes/dashbord-pages/event-dashboard-page";
 import UsersListPage from "./features/event-dashboard/routes/event-create-pages/users-list-page";
 import AppSupportPage from "./features/event-dashboard/routes/event-create-pages/app-support-page";
 import RegistrationPage from "./features/event-dashboard/routes/event-create-pages/registration-page";
@@ -58,7 +58,7 @@ import OrgNotificationsPage from "./features/org-dashboard/routes/dashbord-pages
 import SecurityPage from "./features/org-dashboard/routes/dashbord-pages/security-page";
 import OrgSupportPage from "./features/org-dashboard/routes/dashbord-pages/support-page";
 import OrgSearchPage from "./features/org-dashboard/routes/dashbord-pages/search-page";
-import { NotFound } from "./components/common/reusing-pages/not-found";
+import NotFoundPage from "./components/common/reusing-pages/not-found-page";
 
 function App() {
   return (
@@ -128,7 +128,7 @@ function App() {
                     <Route path="/org-dashboard/search" element={<OrgSearchPage />} />
                   </Route>
 
-                  <Route path="*" element={<NotFound />} />
+                  <Route path="*" element={<NotFoundPage />} />
                 </Routes>
                 <Toaster />
                 <RefineKbar />

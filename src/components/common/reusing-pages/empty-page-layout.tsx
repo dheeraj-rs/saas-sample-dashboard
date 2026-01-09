@@ -11,7 +11,7 @@ interface EmptyPageProps {
     className?: string;
 }
 
-export function EmptyPage({
+export function EmptyPageLayout({
     title,
     description,
     actionLabel,

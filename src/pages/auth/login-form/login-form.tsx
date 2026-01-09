@@ -1,16 +1,20 @@
 import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+    Field,
+    FieldGroup,
+    FieldLabel,
+} from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { InputPassword } from "@/components/refine-ui/form/input-password"
-import { Label } from "@/components/ui/label"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
+import { LogIn, Mail, Lock, Loader2, KeyRound } from "lucide-react"
 import { useAuthStore } from "@/store/auth.store"
 import { useNavigate } from "react-router"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { toast } from "sonner"
+import { Eye, EyeOff } from "lucide-react"
 
 type LoginFormData = z.infer<typeof loginSchema>
 
@@ -20,8 +24,9 @@ const loginSchema = z.object({
 })
 
 
-export function LoginForm({ className, ...props }: React.ComponentProps<"div">) {
+export function LoginForm({ className, ...props }: React.ComponentProps<"form">) {
     const navigate = useNavigate()
+    const [showPassword, setShowPassword] = useState(false)
 
     const { login, isLoading, error, setError, isAuthenticated } = useAuthStore()
 
@@ -53,49 +58,119 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"div">) 
     }
 
     return (
-        <div className={cn("flex flex-col gap-6", className)} {...props}>
-            <Card>
-                <CardHeader>
-                    <CardTitle>Login to your account</CardTitle>
-                    <CardDescription>Enter your email below to login to your account</CardDescription>
-                </CardHeader>
-                <CardContent>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className="grid gap-4">
-                            <div className="grid gap-2">
-                                <Label htmlFor="email">Email <span className="text-destructive">*</span></Label>
-                                <Input
-                                    id="email"
-                                    type="email"
-                                    placeholder="admin@example.com"
-                                    {...register("email")}
-                                    disabled={isLoading}
-                                    className={errors.email ? "border-red-500 focus-visible:ring-0 focus-visible:ring-offset-0" : "focus-visible:ring-0 focus-visible:ring-offset-0"}
-                                />
-                                {errors.email && <p className="text-sm text-destructive">{errors.email.message}</p>}
-                            </div>
-                            <div className="grid gap-2">
-                                <div className="flex items-center">
-                                    <Label htmlFor="password">Password <span className="text-destructive">*</span></Label>
-                                    <a href="/forgot-password" className="ml-auto inline-block text-primary text-sm underline-offset-4 hover:underline">
-                                        Forgot your password?
-                                    </a>
-                                </div>
-                                <InputPassword
-                                    id="password"
-                                    {...register("password")}
-                                    disabled={isLoading}
-                                    className={errors.password ? "border-red-500 focus-visible:ring-0 focus-visible:ring-offset-0" : "focus-visible:ring-0 focus-visible:ring-offset-0"}
-                                />
-                                {errors.password && <p className="text-sm text-destructive">{errors.password.message}</p>}
-                            </div>
-                            <Button type="submit" className="w-full" disabled={isLoading}>
-                                {isLoading ? "Logging in..." : "Login"}
-                            </Button>
-                        </div>
-                    </form>
-                </CardContent>
-            </Card>
-        </div>
+        <form className={cn("flex flex-col gap-6", className)} {...props} onSubmit={handleSubmit(onSubmit)}>
+            <FieldGroup>
+                <div className="flex flex-col items-center gap-2 text-center">
+                    <div className="flex items-center justify-center w-16 h-16 rounded-full bg-primary/10 mb-2 p-3">
+                        <img
+                            src="/cp-logo.png"
+                            alt="Conference Prime Logo"
+                            className="w-full h-full object-contain"
+                        />
+                    </div>
+                    <h1 className="text-2xl font-bold tracking-tight">Welcome Back</h1>
+                    <p className="text-muted-foreground text-sm text-balance">
+                        Enter your credentials to access your account
+                    </p>
+                </div>
+
+                <Field>
+                    <FieldLabel htmlFor="email" className="text-sm font-medium">
+                        Email Address <span className="text-destructive">*</span>
+                    </FieldLabel>
+                    <div className="relative">
+                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+                        <Input
+                            id="email"
+                            type="email"
+                            placeholder="name@example.com"
+                            {...register("email")}
+                            disabled={isLoading}
+                            className={cn(
+                                "pl-10 h-11 transition-all",
+                                errors.email
+                                    ? "border-destructive focus-visible:ring-destructive/20"
+                                    : "focus-visible:ring-primary/20"
+                            )}
+                        />
+                    </div>
+                    {errors.email && (
+                        <p className="text-xs text-destructive flex items-center gap-1 mt-1">
+                            <span className="inline-block w-1 h-1 rounded-full bg-destructive"></span>
+                            {errors.email.message}
+                        </p>
+                    )}
+                </Field>
+
+                <Field>
+                    <div className="flex items-center justify-between">
+                        <FieldLabel htmlFor="password" className="text-sm font-medium">
+                            Password <span className="text-destructive">*</span>
+                        </FieldLabel>
+                        <a
+                            href="/forgot-password"
+                            className="text-xs text-primary hover:text-primary/80 underline-offset-4 hover:underline transition-colors"
+                        >
+                            Forgot password?
+                        </a>
+                    </div>
+                    <div className="relative">
+                        <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
+                        <Input
+                            id="password"
+                            type={showPassword ? "text" : "password"}
+                            placeholder="Enter your password"
+                            {...register("password")}
+                            disabled={isLoading}
+                            className={cn(
+                                "pl-10 pr-10 h-11 transition-all",
+                                errors.password
+                                    ? "border-destructive focus-visible:ring-destructive/20"
+                                    : "focus-visible:ring-primary/20"
+                            )}
+                        />
+                        <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                            disabled={isLoading}
+                            tabIndex={-1}
+                        >
+                            {showPassword ? (
+                                <EyeOff className="h-4 w-4" />
+                            ) : (
+                                <Eye className="h-4 w-4" />
+                            )}
+                        </button>
+                    </div>
+                    {errors.password && (
+                        <p className="text-xs text-destructive flex items-center gap-1 mt-1">
+                            <span className="inline-block w-1 h-1 rounded-full bg-destructive"></span>
+                            {errors.password.message}
+                        </p>
+                    )}
+                </Field>
+
+                <Field className="pt-2">
+                    <Button
+                        type="submit"
+                        disabled={isLoading}
+                        className="w-full h-11 gap-2 font-medium transition-all hover:shadow-md"
+                    >
+                        {isLoading ? (
+                            <>
+                                <Loader2 className="h-4 w-4 animate-spin" />
+                                Signing in...
+                            </>
+                        ) : (
+                            <>
+                                <LogIn className="h-4 w-4" />
+                                Sign In
+                            </>
+                        )}
+                    </Button>
+                </Field>
+            </FieldGroup>
+        </form>
     )
 }

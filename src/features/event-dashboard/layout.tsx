@@ -1,6 +1,6 @@
 import { DashboardLayout } from "@/components/layouts/dashboard-layout"
-import { EventSidebar } from "../components/event-layout/event-sidebar"
-import { EventHeader } from "../components/event-layout/event-header"
+import { EventSidebar } from "@/pages/event-dashboard/components/event-layout/event-sidebar"
+import { EventHeader } from "@/pages/event-dashboard/components/event-layout/event-header"
 import ImportantToast from "@/components/common/toast/important-toast"
 
 export default function EventDashboardLayout({ children }: { children: React.ReactNode }) {

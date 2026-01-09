@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import type { LoginCredentials, User } from '@/types/auth.types';
-import * as authService from '@/services/auth.service';
+import * as authService from '@/features/auth/services/auth.service';
 
 interface AuthStore {
     user: User | null;

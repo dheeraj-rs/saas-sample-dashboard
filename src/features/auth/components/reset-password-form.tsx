@@ -11,7 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
 import { useState, useEffect } from "react"
 import { toast } from "sonner"
-import { resetPassword } from "@/services/auth.service"
+import { resetPassword } from "@/features/auth/services/auth.service"
 import { Link, useSearchParams, useNavigate } from "react-router"
 import { Lock, Loader2, Eye, EyeOff, Check, ArrowLeft } from "lucide-react"
 

@@ -23,11 +23,11 @@ import {
     SidebarFooter,
     SidebarHeader,
 } from "@/components/ui/sidebar"
-import { NavCloudList } from "@/components/custum-ui/sidebar-items/nav-cloud-list"
-import { NavMainList } from "@/components/custum-ui/sidebar-items/nav-main-list"
-import { NavSecondaryList } from "@/components/custum-ui/sidebar-items/nav-secondary-list"
-import { UserProfile } from "@/components/custum-ui/sidebar-items/user-profile"
-import { OrgSwitchDropdown } from "@/components/custum-ui/sidebar-items/org-switch-dropdown"
+import { NavCloudList } from "@/components/common/sidebar-listing-models/nav-cloud-list"
+import { NavMainList } from "@/components/common/sidebar-listing-models/nav-main-list"
+import { NavSecondaryList } from "@/components/common/sidebar-listing-models/nav-secondary-list"
+import { UserProfile } from "@/components/common/sidebar-listing-models/user-profile"
+import { OrgSwitchDropdown } from "./org-switch-dropdown"
 
 const sidebarData = {
     organizations: [

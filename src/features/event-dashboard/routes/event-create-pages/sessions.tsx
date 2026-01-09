@@ -1,4 +1,4 @@
-import { UnderDevelopment } from "@/components/custum-ui/reusing-pages/under-development"
+import { UnderDevelopment } from "@/components/common/reusing-pages/under-development"
 import EventDashboardLayout from "../../layouts/dashboard-layout"
 
 export default function SessionsPage() {

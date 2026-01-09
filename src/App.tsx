@@ -58,7 +58,7 @@ import OrgNotificationsPage from "./features/org-dashboard/routes/dashbord-pages
 import SecurityPage from "./features/org-dashboard/routes/dashbord-pages/security";
 import OrgSupportPage from "./features/org-dashboard/routes/dashbord-pages/support";
 import OrgSearchPage from "./features/org-dashboard/routes/dashbord-pages/search";
-import { NotFound } from "./components/custum-ui/reusing-pages/not-found";
+import { NotFound } from "./components/common/reusing-pages/not-found";
 
 function App() {
   return (

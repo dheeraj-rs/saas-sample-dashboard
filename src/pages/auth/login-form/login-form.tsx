@@ -9,12 +9,14 @@ import { Input } from "@/components/ui/input"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
-import { LogIn, Mail, Lock, Loader2, KeyRound } from "lucide-react"
+import { LogIn, Mail, Lock, Loader2, KeyRound, AlertCircle } from "lucide-react"
 import { useAuthStore } from "@/store/auth.store"
 import { useNavigate } from "react-router"
 import { useEffect, useState } from "react"
 import { toast } from "sonner"
 import { Eye, EyeOff } from "lucide-react"
+import { Link } from "@refinedev/core"
+import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 
 type LoginFormData = z.infer<typeof loginSchema>
 
@@ -40,13 +42,6 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
         }
     }, [isAuthenticated, navigate])
 
-    useEffect(() => {
-        if (error) {
-            toast.error(error, { position: "top-right", duration: 4000 })
-            setError(null)
-        }
-    }, [error, setError])
-
     const onSubmit = async (data: LoginFormData) => {
         try {
             await login(data)
@@ -68,12 +63,11 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
                             className="w-full h-full object-contain"
                         />
                     </div>
-                    <h1 className="text-2xl font-bold tracking-tight">Welcome Back</h1>
+                    <h1 className="text-2xl font-bold tracking-tight">Welcome Back to Confrance Prime!</h1>
                     <p className="text-muted-foreground text-sm text-balance">
                         Enter your credentials to access your account
                     </p>
                 </div>
-
                 <Field>
                     <FieldLabel htmlFor="email" className="text-sm font-medium">
                         Email Address <span className="text-destructive">*</span>
@@ -107,12 +101,11 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
                         <FieldLabel htmlFor="password" className="text-sm font-medium">
                             Password <span className="text-destructive">*</span>
                         </FieldLabel>
-                        <a
-                            href="/forgot-password"
+                        <Link to="/forgot-password"
                             className="text-xs text-primary hover:text-primary/80 underline-offset-4 hover:underline transition-colors"
                         >
                             Forgot password?
-                        </a>
+                        </Link>
                     </div>
                     <div className="relative">
                         <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground pointer-events-none" />
@@ -151,6 +144,15 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
                     )}
                 </Field>
 
+                {error && (
+                    <div className="rounded-md bg-red-50 border border-red-200 p-3 flex items-center gap-3">
+                        <AlertCircle className="h-4 w-4 text-red-600" />
+                        <p className="text-sm text-red-600">
+                            {error}
+                        </p>
+                    </div>
+                )}
+
                 <Field className="pt-2">
                     <Button
                         type="submit"
@@ -160,12 +162,12 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
                         {isLoading ? (
                             <>
                                 <Loader2 className="h-4 w-4 animate-spin" />
-                                Signing in...
+                                Logging in...
                             </>
                         ) : (
                             <>
                                 <LogIn className="h-4 w-4" />
-                                Sign In
+                                Login
                             </>
                         )}
                     </Button>

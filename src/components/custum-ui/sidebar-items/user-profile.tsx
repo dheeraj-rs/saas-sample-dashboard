@@ -128,8 +128,8 @@ export function UserProfile({
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleLogout} disabled={isLoading} className="cursor-pointer">
-              <IconLogout />
+            <DropdownMenuItem onClick={handleLogout} disabled={isLoading} className="cursor-pointer text-red-500 focus:text-red-600 focus:bg-red-50 transition-colors">
+              <IconLogout className="text-red-500" />
               {isLoading ? "Logging out..." : "Log out"}
             </DropdownMenuItem>
           </DropdownMenuContent>

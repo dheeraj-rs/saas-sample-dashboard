@@ -4,20 +4,24 @@ import type { LoginCredentials, AuthResponse, LogoutResponse, ForgotPasswordRequ
 export async function login(credentials: LoginCredentials): Promise<AuthResponse> {
     // MOCK RESPONSE FOR TESTING
     await new Promise(resolve => setTimeout(resolve, 1000));
-    const mockResponse: AuthResponse = {
-        status: "success",
-        data: {
-            user: {
-                id: "018f2000-a111-b222-c333-000000000027",
-                name: "Joshua Hill",
-                email: credentials.email,
-                avatar: "/avatars/user.jpg"
-            },
-            token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMDE4ZjIwMDAtYTExMS1iMjIyLWMzMzMtMDAwMDAwMDAwMDI3In0.mock_token"
-        }
-    };
 
-    return mockResponse;
+    if (credentials.email === "admin@gmail.com" && credentials.password === "password") {
+        const mockResponse: AuthResponse = {
+            status: "success",
+            data: {
+                user: {
+                    id: "018f2000-a111-b222-c333-000000000027",
+                    name: "Mojgenie",
+                    email: credentials.email,
+                    avatar: "/avatars/user.jpg"
+                },
+                token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMDE4ZjIwMDAtYTExMS1iMjIyLWMzMzMtMDAwMDAwMDAwMDI3In0.mock_token"
+            }
+        };
+        return mockResponse;
+    } else {
+        throw new Error("Invalid email or password");
+    }
 
     /* REAL API CALL 
     try {

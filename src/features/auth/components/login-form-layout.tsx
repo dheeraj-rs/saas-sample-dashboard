@@ -1,34 +1,25 @@
 export default function LoginFormLayout({ children }: { children: React.ReactNode }) {
     return (
         <div className="relative min-h-svh w-full">
-            {/* Top branding bar for mobile/background */}
-            {/* <div className="absolute top-0 left-0 right-0 h-[0.3rem] bg-gradient-to-r from-primary via-primary/80 to-primary/20 z-20"></div> */}
-
-            {/* Main Container */}
             <div className="grid min-h-svh lg:grid-cols-2 w-full">
-                {/* Left Side: Branding/Image */}
                 <div className="relative hidden lg:flex flex-col bg-slate-900 text-white p-10 justify-between overflow-hidden">
-                    {/* Background Image */}
                     <img
                         src="/login-illustration-pro.png"
                         alt="Conference Prime Event"
                         className="absolute inset-0 h-full w-full object-cover opacity-60"
                     />
-                    {/* Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-slate-900/10 mix-blend-multiply"></div>
                     <div className="absolute inset-0 bg-blue-900/30 mix-blend-overlay"></div>
-
-                    {/* Content */}
                     <div className="relative z-10">
                         <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md rounded-full px-3 py-1 mb-6 border border-white/20">
                             <span className="flex h-2 w-2 rounded-full bg-blue-400 animate-pulse"></span>
-                            <span className="text-xs font-medium text-blue-100">Enterprise Edition v2.0</span>
+                            <span className="text-xs font-medium text-blue-100">Conference Prime v2.0</span>
                         </div>
-                        <h2 className="text-4xl font-bold leading-tight mb-4 tracking-tight">
-                            Elevate Your Corporate Events
+                        <h2 className="text-4xl md:text-5xl font-extrabold leading-tight mb-6 tracking-tight text-white">
+                            The Complete Platform for Enterprise Events
                         </h2>
                         <p className="text-blue-100/90 text-lg leading-relaxed max-w-md">
-                            Streamline your conference logistics, manage multiple organizations, and gain actionable insights with Conference Prime's all-in-one platform.
+                            Empower your organization with a unified platform for multi-event orchestration, real-time revenue analytics, and seamless attendee engagement.
                         </p>
                     </div>
 
@@ -41,17 +32,15 @@ export default function LoginFormLayout({ children }: { children: React.ReactNod
                                     </svg>
                                 </div>
                                 <div>
-                                    <p className="text-base font-semibold text-white mb-2">Centralized Management</p>
+                                    <p className="text-base font-semibold text-white mb-2">Global Event Intelligence</p>
                                     <p className="text-sm text-blue-200/80 leading-relaxed">
-                                        "Conference Prime has totally revolutionized our event workflows, from attendee management to real-time analytics. It's the command center we always needed."
+                                        "Conference Prime transformed how we scale our global summits. The ability to manage multiple organizations and visualize revenue streams in real-time is a game changer."
                                     </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                {/* Right Side: Form */}
                 <div className="flex flex-col justify-center p-8 md:p-12 lg:p-16 bg-white dark:bg-zinc-950">
                     <div className="w-full max-w-[400px] mx-auto">
                         {children}

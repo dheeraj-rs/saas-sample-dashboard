@@ -9,7 +9,7 @@ import { Input } from "@/components/ui/input"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
-import { LogIn, Mail, Lock, Loader2, KeyRound, AlertCircle, Eye, EyeOff, AlertTriangle } from "lucide-react"
+import { Loader2, AlertCircle, Eye, EyeOff } from "lucide-react"
 import { useAuthStore } from "@/features/auth/store/auth.store"
 import { useNavigate } from "react-router"
 import { useEffect, useState } from "react"
@@ -28,7 +28,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
     const navigate = useNavigate()
     const [showPassword, setShowPassword] = useState(false)
 
-    const { login, isLoading, error, setError, isAuthenticated } = useAuthStore()
+    const { login, isLoading, error, isAuthenticated } = useAuthStore()
 
     const { register, handleSubmit, formState: { errors } } = useForm<LoginFormData>({
         resolver: zodResolver(loginSchema),
@@ -53,7 +53,6 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
     return (
         <div className={cn("grid gap-6 w-full max-w-[400px] mx-auto", className)}>
             <div className="flex flex-col items-start text-center gap-2 mb-6">
-                {/* Logo Section */}
                 <div className="flex items-center justify-center h-16 mb-2">
                     <img
                         src="/cp-logo-name.png"

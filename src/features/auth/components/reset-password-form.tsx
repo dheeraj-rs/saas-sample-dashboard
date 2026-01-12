@@ -104,8 +104,15 @@ export function ResetPasswordForm({ className, ...props }: React.ComponentProps<
 
     if (isSuccess) {
         return (
-            <Card className="w-full max-w-[400px] mx-auto shadow-sm border-0 bg-white/50 backdrop-blur-sm dark:bg-zinc-950/50">
+            <Card className="w-full max-w-[450px] mx-auto shadow-sm border-0 bg-white/50 backdrop-blur-sm dark:bg-zinc-950/50">
                 <CardHeader className="flex flex-col items-center text-center space-y-2 pb-2">
+                    <div className="flex items-center justify-center h-10 mb-6">
+                        <img
+                            src="/cp-logo-name.png"
+                            alt="Conference Prime"
+                            className="h-full w-auto object-contain"
+                        />
+                    </div>
                     <div className="flex items-center justify-center w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/30 mb-2 p-2 animate-in zoom-in duration-300">
                         <CheckCircle2 className="w-8 h-8 text-green-600 dark:text-green-400" />
                     </div>
@@ -126,13 +133,13 @@ export function ResetPasswordForm({ className, ...props }: React.ComponentProps<
     }
 
     return (
-        <Card className="w-full max-w-[400px] mx-auto shadow-lg border-0 bg-white/50 backdrop-blur-sm dark:bg-zinc-950/50">
+        <Card className="w-full max-w-[450px] mx-auto shadow-lg border-0 bg-white/50 backdrop-blur-sm dark:bg-zinc-950/50">
             <CardHeader className="space-y-1 flex flex-col items-center text-center pb-2">
-                <div className="flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 mb-2 p-2 ring-4 ring-primary/5">
+                <div className="flex items-center justify-center h-10 mb-6">
                     <img
-                        src="/cp-logo.png"
-                        alt="Conference Prime Logo"
-                        className="w-full h-full object-contain"
+                        src="/cp-logo-name.png"
+                        alt="Conference Prime"
+                        className="h-full w-auto object-contain"
                     />
                 </div>
                 <CardTitle className="text-2xl font-bold tracking-tight">Reset Password</CardTitle>
@@ -144,7 +151,7 @@ export function ResetPasswordForm({ className, ...props }: React.ComponentProps<
                 <form className={cn("grid gap-4", className)} {...props} onSubmit={handleSubmit(handleResetPassword)}>
 
                     {error && (
-                        <Alert variant="destructive" className="animate-in fade-in slide-in-from-top-2">
+                        <Alert variant="destructive" className="animate-in fade-in slide-in-from-top-2 border-destructive/50 bg-destructive/5">
                             <AlertCircle className="h-4 w-4" />
                             <AlertTitle>Error</AlertTitle>
                             <AlertDescription>

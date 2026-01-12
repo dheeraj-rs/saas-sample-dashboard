@@ -82,23 +82,24 @@ export default function RegistrationPage() {
     }
 
     return (
-        <EventDashboardLayout>
+        <EventDashboardLayout
+            headerActions={
+                <Button variant="outline" size="sm" className="h-8" onClick={handleReset}>
+                    <IconSettings className="mr-2 h-4 w-4" />
+                    Reset
+                </Button>
+            }
+        >
             <div className="flex flex-1 flex-col">
                 <div className="flex flex-1 flex-col">
                     <div className="flex-1 overflow-auto">
                         <div className="py-6 px-6 space-y-8">
                             <section className="space-y-4">
-                                <div className="flex items-center justify-between">
-                                    <div>
-                                        <h2 className="text-lg font-semibold">Registration Flow</h2>
-                                        <p className="text-sm text-muted-foreground">
-                                            Control the order and requirements for your registration process
-                                        </p>
-                                    </div>
-                                    <Button variant="outline" size="sm" onClick={handleReset}>
-                                        <IconSettings className="mr-2 h-4 w-4" />
-                                        Reset
-                                    </Button>
+                                <div>
+                                    <h2 className="text-lg font-semibold">Registration Flow</h2>
+                                    <p className="text-sm text-muted-foreground">
+                                        Control the order and requirements for your registration process
+                                    </p>
                                 </div>
                                 <div className="grid gap-4 md:grid-cols-2">
                                     <Card>

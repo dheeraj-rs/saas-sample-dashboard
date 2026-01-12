@@ -23,6 +23,7 @@ import {
     type ColumnFiltersState,
     type SortingState,
     type VisibilityState,
+    type Table as TableType,
 } from "@tanstack/react-table"
 import { z } from "zod"
 
@@ -68,6 +69,8 @@ import { Tabs, TabsContent } from "@/components/ui/tabs"
 import { useIsMobile } from "@/hooks/use-mobile"
 import data from "../../data/users-data.json"
 import EventDashboardLayout from "../../layouts/dashboard-layout"
+import { useEventUsersFilterStore } from "@/store/event-users-filter.store"
+import { EventUsersHeaderActions } from "../../components/header-actions/event-users-header-actions"
 
 export const userSchema = z.object({
     id: z.string(),
@@ -254,10 +257,12 @@ function UserCellViewer({ user }: { user: z.infer<typeof userSchema> }) {
     )
 }
 
-function UsersDataTable() {
+function UsersDataTable({
+    onTableReady,
+}: {
+    onTableReady?: (table: ReturnType<typeof useReactTable<z.infer<typeof userSchema>>>) => void
+}) {
     const [rowSelection, setRowSelection] = React.useState({})
-    const [columnVisibility, setColumnVisibility] =
-        React.useState<VisibilityState>({})
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
         []
     )
@@ -266,6 +271,9 @@ function UsersDataTable() {
         pageIndex: 0,
         pageSize: 10,
     })
+
+    // Get filter values from Zustand store
+    const { searchValue, statusFilter, roleFilter, departmentFilter, columnVisibility, setColumnVisibility } = useEventUsersFilterStore()
 
     const table = useReactTable({
         data,
@@ -282,7 +290,10 @@ function UsersDataTable() {
         onRowSelectionChange: setRowSelection,
         onSortingChange: setSorting,
         onColumnFiltersChange: setColumnFilters,
-        onColumnVisibilityChange: setColumnVisibility,
+        onColumnVisibilityChange: (updater) => {
+            const newVisibility = typeof updater === 'function' ? updater(columnVisibility) : updater
+            setColumnVisibility(newVisibility)
+        },
         onPaginationChange: setPagination,
         getCoreRowModel: getCoreRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
@@ -292,119 +303,34 @@ function UsersDataTable() {
         getFacetedUniqueValues: getFacetedUniqueValues(),
     })
 
+    // Sync Zustand store filters with table
+    React.useEffect(() => {
+        table.getColumn("name")?.setFilterValue(searchValue)
+    }, [searchValue, table])
+
+    React.useEffect(() => {
+        table.getColumn("status")?.setFilterValue(statusFilter === "all" ? "" : statusFilter)
+    }, [statusFilter, table])
+
+    React.useEffect(() => {
+        table.getColumn("role")?.setFilterValue(roleFilter === "all" ? "" : roleFilter)
+    }, [roleFilter, table])
+
+    React.useEffect(() => {
+        table.getColumn("department")?.setFilterValue(departmentFilter === "all" ? "" : departmentFilter)
+    }, [departmentFilter, table])
+
+    React.useEffect(() => {
+        if (onTableReady) {
+            onTableReady(table)
+        }
+    }, [table, onTableReady])
+
     return (
         <Tabs
             defaultValue="outline"
             className="w-full flex-col justify-start gap-6"
         >
-            <div className="flex flex-col gap-3 px-4 lg:px-6">
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 flex-1">
-                        <Input
-                            placeholder="Search users..."
-                            value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-                            onChange={(event) =>
-                                table.getColumn("name")?.setFilterValue(event.target.value)
-                            }
-                            className="h-9 w-full max-w-[250px]"
-                        />
-                        <Select
-                            value={(table.getColumn("status")?.getFilterValue() as string) ?? "all"}
-                            onValueChange={(value) =>
-                                table.getColumn("status")?.setFilterValue(value === "all" ? "" : value)
-                            }
-                        >
-                            <SelectTrigger className="h-9 w-[150px]">
-                                <SelectValue placeholder="Status" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="all">All Status</SelectItem>
-                                <SelectItem value="active">Active</SelectItem>
-                                <SelectItem value="inactive">Inactive</SelectItem>
-                                <SelectItem value="pending">Pending</SelectItem>
-                            </SelectContent>
-                        </Select>
-                        <Select
-                            value={(table.getColumn("role")?.getFilterValue() as string) ?? "all"}
-                            onValueChange={(value) =>
-                                table.getColumn("role")?.setFilterValue(value === "all" ? "" : value)
-                            }
-                        >
-                            <SelectTrigger className="h-9 w-[150px]">
-                                <SelectValue placeholder="Role" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="all">All Roles</SelectItem>
-                                <SelectItem value="Admin">Admin</SelectItem>
-                                <SelectItem value="Manager">Manager</SelectItem>
-                                <SelectItem value="Developer">Developer</SelectItem>
-                                <SelectItem value="Designer">Designer</SelectItem>
-                                <SelectItem value="Analyst">Analyst</SelectItem>
-                            </SelectContent>
-                        </Select>
-                        <Select
-                            value={(table.getColumn("department")?.getFilterValue() as string) ?? "all"}
-                            onValueChange={(value) =>
-                                table.getColumn("department")?.setFilterValue(value === "all" ? "" : value)
-                            }
-                        >
-                            <SelectTrigger className="h-9 w-[180px]">
-                                <SelectValue placeholder="Department" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="all">All Departments</SelectItem>
-                                <SelectItem value="Engineering">Engineering</SelectItem>
-                                <SelectItem value="Design">Design</SelectItem>
-                                <SelectItem value="Marketing">Marketing</SelectItem>
-                                <SelectItem value="Sales">Sales</SelectItem>
-                                <SelectItem value="Finance">Finance</SelectItem>
-                                <SelectItem value="HR">HR</SelectItem>
-                                <SelectItem value="IT">IT</SelectItem>
-                                <SelectItem value="Operations">Operations</SelectItem>
-                            </SelectContent>
-                        </Select>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <Button variant="outline" className="h-9">
-                                    <IconLayoutColumns />
-                                    <span className="hidden lg:inline">Customize Columns</span>
-                                    <span className="lg:hidden">Columns</span>
-                                    <IconChevronDown />
-                                </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end" className="w-56">
-                                {table
-                                    .getAllColumns()
-                                    .filter(
-                                        (column) =>
-                                            typeof column.accessorFn !== "undefined" &&
-                                            column.getCanHide()
-                                    )
-                                    .map((column) => {
-                                        return (
-                                            <DropdownMenuCheckboxItem
-                                                key={column.id}
-                                                className="capitalize"
-                                                checked={column.getIsVisible()}
-                                                onCheckedChange={(value) =>
-                                                    column.toggleVisibility(!!value)
-                                                }
-                                            >
-                                                {column.id}
-                                            </DropdownMenuCheckboxItem>
-                                        )
-                                    })}
-                            </DropdownMenuContent>
-                        </DropdownMenu>
-                        <Button variant="outline" className="h-9">
-                            <IconPlus />
-                            <span className="hidden lg:inline">Add User</span>
-                        </Button>
-                    </div>
-                </div>
-            </div>
             <TabsContent
                 value="outline"
                 className="relative flex flex-col gap-4 overflow-auto px-4 lg:px-6"
@@ -539,12 +465,16 @@ function UsersDataTable() {
 }
 
 export default function UsersListPage() {
+    const [table, setTable] = React.useState<TableType<z.infer<typeof userSchema>> | null>(null)
+
     return (
-        <EventDashboardLayout>
+        <EventDashboardLayout
+            headerActions={<EventUsersHeaderActions table={table} />}
+        >
             <div className="flex flex-1 flex-col">
                 <div className="@container/main flex flex-1 flex-col gap-2">
                     <div className="flex flex-col gap-3 py-3 px-2 sm:gap-4 sm:py-4 md:gap-6 md:py-6 md:px-0">
-                        <UsersDataTable />
+                        <UsersDataTable onTableReady={setTable} />
                     </div>
                 </div>
             </div>

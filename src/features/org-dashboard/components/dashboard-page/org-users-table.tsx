@@ -66,6 +66,7 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { Tabs, TabsContent } from "@/components/ui/tabs"
+import { useManageUsersFilterStore } from "@/store/manage-users-filter.store"
 
 import { RemoveUserModal } from "../modals/remove-user-modal"
 export const userSchema = z.object({
@@ -264,13 +265,13 @@ function UserCellViewer({ user }: { user: z.infer<typeof userSchema> }) {
 
 export function OrgUsersTable({
     data: initialData,
+    onTableReady,
 }: {
     data: z.infer<typeof userSchema>[]
+    onTableReady?: (table: ReturnType<typeof useReactTable<z.infer<typeof userSchema>>>) => void
 }) {
     const [data] = React.useState(() => initialData)
     const [rowSelection, setRowSelection] = React.useState({})
-    const [columnVisibility, setColumnVisibility] =
-        React.useState<VisibilityState>({})
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
         []
     )
@@ -279,6 +280,9 @@ export function OrgUsersTable({
         pageIndex: 0,
         pageSize: 10,
     })
+
+    // Get filter values from Zustand store
+    const { searchValue, statusFilter, columnVisibility, setColumnVisibility } = useManageUsersFilterStore()
 
     const table = useReactTable({
         data,
@@ -295,7 +299,10 @@ export function OrgUsersTable({
         onRowSelectionChange: setRowSelection,
         onSortingChange: setSorting,
         onColumnFiltersChange: setColumnFilters,
-        onColumnVisibilityChange: setColumnVisibility,
+        onColumnVisibilityChange: (updater) => {
+            const newVisibility = typeof updater === 'function' ? updater(columnVisibility) : updater
+            setColumnVisibility(newVisibility)
+        },
         onPaginationChange: setPagination,
         getCoreRowModel: getCoreRowModel(),
         getFilteredRowModel: getFilteredRowModel(),
@@ -305,76 +312,26 @@ export function OrgUsersTable({
         getFacetedUniqueValues: getFacetedUniqueValues(),
     })
 
+    // Sync Zustand store filters with table
+    React.useEffect(() => {
+        table.getColumn("name")?.setFilterValue(searchValue)
+    }, [searchValue, table])
+
+    React.useEffect(() => {
+        table.getColumn("status")?.setFilterValue(statusFilter === "all" ? "" : statusFilter)
+    }, [statusFilter, table])
+
+    React.useEffect(() => {
+        if (onTableReady) {
+            onTableReady(table)
+        }
+    }, [table, onTableReady])
+
     return (
         <Tabs
             defaultValue="outline"
             className="w-full flex-col justify-start gap-6"
         >
-            <div className="flex flex-col gap-3 px-4 lg:px-6">
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-2 flex-1">
-                        <Input
-                            placeholder="Search users..."
-                            value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
-                            onChange={(event) =>
-                                table.getColumn("name")?.setFilterValue(event.target.value)
-                            }
-                            className="h-9 w-full max-w-[250px]"
-                        />
-                        <Select
-                            value={(table.getColumn("status")?.getFilterValue() as string) ?? "all"}
-                            onValueChange={(value) =>
-                                table.getColumn("status")?.setFilterValue(value === "all" ? "" : value)
-                            }
-                        >
-                            <SelectTrigger className="h-9 w-[150px]">
-                                <SelectValue placeholder="Status" />
-                            </SelectTrigger>
-                            <SelectContent>
-                                <SelectItem value="all">All Status</SelectItem>
-                                <SelectItem value="active">Active</SelectItem>
-                                <SelectItem value="inactive">Inactive</SelectItem>
-                            </SelectContent>
-                        </Select>
-                    </div>
-                    <div className="flex items-center gap-2">
-                        <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                                <Button variant="outline" className="h-9">
-                                    <IconLayoutColumns />
-                                    <span className="hidden lg:inline">Customize Columns</span>
-                                    <span className="lg:hidden">Columns</span>
-                                    <IconChevronDown />
-                                </Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent align="end" className="w-56">
-                                {table
-                                    .getAllColumns()
-                                    .filter(
-                                        (column) =>
-                                            typeof column.accessorFn !== "undefined" &&
-                                            column.getCanHide()
-                                    )
-                                    .map((column) => {
-                                        return (
-                                            <DropdownMenuCheckboxItem
-                                                key={column.id}
-                                                className="capitalize"
-                                                checked={column.getIsVisible()}
-                                                onCheckedChange={(value) =>
-                                                    column.toggleVisibility(!!value)
-                                                }
-                                            >
-                                                {column.id}
-                                            </DropdownMenuCheckboxItem>
-                                        )
-                                    })}
-                            </DropdownMenuContent>
-                        </DropdownMenu>
-
-                    </div>
-                </div>
-            </div>
             <TabsContent
                 value="outline"
                 className="relative flex flex-col gap-4 overflow-auto px-4 lg:px-6"

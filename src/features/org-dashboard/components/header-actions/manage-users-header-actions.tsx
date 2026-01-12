@@ -1,7 +1,7 @@
+import * as React from "react"
 import {
     IconChevronDown,
     IconLayoutColumns,
-    IconPlus,
     IconSearch,
     IconX,
 } from "@tabler/icons-react"
@@ -21,17 +21,16 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { InviteUserModal } from "../modals/invite-user-modal"
 import type { z } from "zod"
-import type { inviteUserSchema } from "../dashboard-page/org-invite-users-table"
-import { useInviteUsersFilterStore } from "@/store/invite-users-filter.store"
+import type { userSchema } from "../dashboard-page/org-users-table"
+import { useManageUsersFilterStore } from "@/store/manage-users-filter.store"
 
-interface InviteUsersHeaderActionsProps {
-    table: Table<z.infer<typeof inviteUserSchema>> | null
+interface ManageUsersHeaderActionsProps {
+    table: Table<z.infer<typeof userSchema>> | null
 }
 
-export function InviteUsersHeaderActions({ table }: InviteUsersHeaderActionsProps) {
-    const { searchValue, statusFilter, columnVisibility, setSearchValue, setStatusFilter, setColumnVisibility } = useInviteUsersFilterStore()
+export function ManageUsersHeaderActions({ table }: ManageUsersHeaderActionsProps) {
+    const { searchValue, statusFilter, columnVisibility, setSearchValue, setStatusFilter, setColumnVisibility } = useManageUsersFilterStore()
 
     return (
         <>
@@ -63,9 +62,8 @@ export function InviteUsersHeaderActions({ table }: InviteUsersHeaderActionsProp
                 </SelectTrigger>
                 <SelectContent>
                     <SelectItem value="all">All Status</SelectItem>
-                    <SelectItem value="invite_sent">Invite Sent</SelectItem>
-                    <SelectItem value="rejected">Rejected</SelectItem>
-                    <SelectItem value="pending">Pending</SelectItem>
+                    <SelectItem value="active">Active</SelectItem>
+                    <SelectItem value="inactive">Inactive</SelectItem>
                 </SelectContent>
             </Select>
             {table && (
@@ -87,7 +85,9 @@ export function InviteUsersHeaderActions({ table }: InviteUsersHeaderActionsProp
                                     column.getCanHide()
                             )
                             .map((column) => {
+                                // Read visibility from store, defaulting to true if not set
                                 const isVisible = columnVisibility[column.id] !== false
+
                                 return (
                                     <DropdownMenuCheckboxItem
                                         key={column.id}
@@ -106,14 +106,6 @@ export function InviteUsersHeaderActions({ table }: InviteUsersHeaderActionsProp
                     </DropdownMenuContent>
                 </DropdownMenu>
             )}
-            <InviteUserModal
-                trigger={
-                    <Button size="sm" className="h-8">
-                        <IconPlus className="size-4" />
-                        <span className="hidden sm:inline">Invite User</span>
-                    </Button>
-                }
-            />
         </>
     )
 }

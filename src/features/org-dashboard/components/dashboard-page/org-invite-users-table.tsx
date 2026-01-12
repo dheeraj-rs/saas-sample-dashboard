@@ -305,7 +305,6 @@ export function OrgInviteUsersTable({
         onColumnFiltersChange: setColumnFilters,
         onColumnVisibilityChange: (updater) => {
             const newVisibility = typeof updater === 'function' ? updater(columnVisibility) : updater
-            console.log('Column visibility changing:', { old: columnVisibility, new: newVisibility })
             setColumnVisibility(newVisibility)
         },
         onPaginationChange: setPagination,

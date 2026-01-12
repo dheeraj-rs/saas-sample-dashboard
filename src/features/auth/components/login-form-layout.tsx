@@ -1,73 +1,63 @@
 export default function LoginFormLayout({ children }: { children: React.ReactNode }) {
     return (
-        <div className="relative min-h-svh">
-            <div className="absolute top-0 left-0 right-0 h-[0.3rem] bg-gradient-to-l from-[#014799] via-[#014799]/95 to-[#014799]/5 z-10"></div>
+        <div className="relative min-h-svh w-full">
+            {/* Top branding bar for mobile/background */}
+            {/* <div className="absolute top-0 left-0 right-0 h-[0.3rem] bg-gradient-to-r from-primary via-primary/80 to-primary/20 z-20"></div> */}
 
-            <div className="grid min-h-svh lg:grid-cols-2">
-                <div className="relative hidden lg:flex flex-col overflow-hidden bg-primary">
+            {/* Main Container */}
+            <div className="grid min-h-svh lg:grid-cols-2 w-full">
+                {/* Left Side: Branding/Image */}
+                <div className="relative hidden lg:flex flex-col bg-slate-900 text-white p-10 justify-between overflow-hidden">
+                    {/* Background Image */}
                     <img
                         src="/login-illustration-pro.png"
-                        alt="Conference Prime - Professional conference management platform"
-                        className="absolute inset-0 h-full w-full object-cover"
+                        alt="Conference Prime Event"
+                        className="absolute inset-0 h-full w-full object-cover opacity-60"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-b from-primary/35 via-primary/15 to-primary/25"></div>
-                    <div className="relative z-10 flex flex-col justify-end p-12 h-full">
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent"></div>
-                        <div className="relative max-w-xl space-y-6">
-                            <div className="space-y-4">
-                                <h1 className="text-4xl font-bold leading-tight text-blue-50">
-                                    Streamline Your Conference Management
-                                </h1>
-                                <p className="text-lg text-blue-100/90 leading-relaxed">
-                                    Conference Prime empowers organizers to create exceptional events with powerful tools for registration, scheduling, and attendee engagement.
-                                </p>
-                            </div>
-                            <div className="space-y-3 pt-2">
-                                <div className="flex items-start gap-3">
-                                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-100/20 flex items-center justify-center mt-1">
-                                        <svg className="w-3 h-3 text-blue-100" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h3 className="font-semibold text-blue-50">Seamless Registration</h3>
-                                        <p className="text-sm text-blue-100/80">Effortless attendee registration and payment processing</p>
-                                    </div>
+                    {/* Gradient Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-slate-900/10 mix-blend-multiply"></div>
+                    <div className="absolute inset-0 bg-blue-900/30 mix-blend-overlay"></div>
+
+                    {/* Content */}
+                    <div className="relative z-10">
+                        <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md rounded-full px-3 py-1 mb-6 border border-white/20">
+                            <span className="flex h-2 w-2 rounded-full bg-blue-400 animate-pulse"></span>
+                            <span className="text-xs font-medium text-blue-100">Enterprise Edition v2.0</span>
+                        </div>
+                        <h2 className="text-4xl font-bold leading-tight mb-4 tracking-tight">
+                            Elevate Your Corporate Events
+                        </h2>
+                        <p className="text-blue-100/90 text-lg leading-relaxed max-w-md">
+                            Streamline your conference logistics, manage multiple organizations, and gain actionable insights with Conference Prime's all-in-one platform.
+                        </p>
+                    </div>
+
+                    <div className="relative z-10 mt-auto pt-10">
+                        <div className="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/10 shadow-2xl">
+                            <div className="flex gap-4 items-start">
+                                <div className="h-12 w-12 rounded-full bg-indigo-500/30 flex items-center justify-center shrink-0 border border-white/20">
+                                    <svg className="w-6 h-6 text-indigo-200" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                    </svg>
                                 </div>
-                                <div className="flex items-start gap-3">
-                                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-100/20 flex items-center justify-center mt-1">
-                                        <svg className="w-3 h-3 text-blue-100" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h3 className="font-semibold text-blue-50">Smart Scheduling</h3>
-                                        <p className="text-sm text-blue-100/80">Intelligent session planning and conflict resolution</p>
-                                    </div>
-                                </div>
-                                <div className="flex items-start gap-3">
-                                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-blue-100/20 flex items-center justify-center mt-1">
-                                        <svg className="w-3 h-3 text-blue-100" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
-                                        </svg>
-                                    </div>
-                                    <div>
-                                        <h3 className="font-semibold text-blue-50">Real-time Analytics</h3>
-                                        <p className="text-sm text-blue-100/80">Comprehensive insights and engagement metrics</p>
-                                    </div>
+                                <div>
+                                    <p className="text-base font-semibold text-white mb-2">Centralized Management</p>
+                                    <p className="text-sm text-blue-200/80 leading-relaxed">
+                                        "Conference Prime has totally revolutionized our event workflows, from attendee management to real-time analytics. It's the command center we always needed."
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col gap-4 p-6 md:p-10 bg-gradient-to-br from-primary/10 via-primary/5 to-background">
-                    <div className="flex flex-1 items-center justify-center">
-                        <div className="w-full max-w-xs">
-                            {children}
-                        </div>
+
+                {/* Right Side: Form */}
+                <div className="flex flex-col justify-center p-8 md:p-12 lg:p-16 bg-white dark:bg-zinc-950">
+                    <div className="w-full max-w-[400px] mx-auto">
+                        {children}
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
     )
 }

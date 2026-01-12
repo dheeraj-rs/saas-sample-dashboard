@@ -48,7 +48,6 @@ import {
     DropdownMenuCheckboxItem,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
@@ -70,6 +69,8 @@ import {
 } from "@/components/ui/table"
 import { Tabs, TabsContent } from "@/components/ui/tabs"
 import { InviteUserModal } from "../modals/invite-user-modal"
+import { ResendInviteModal } from "../modals/resend-invite-modal"
+import { CancelInviteModal } from "../modals/cancel-invite-modal"
 
 export const inviteUserSchema = z.object({
     id: z.string(),
@@ -179,26 +180,39 @@ const columns: ColumnDef<z.infer<typeof inviteUserSchema>>[] = [
     {
         id: "actions",
         header: "Actions",
-        cell: () => (
-            <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                    <Button
-                        variant="outline"
-                        size="sm"
-                        className="data-[state=open]:bg-muted h-6 text-xs border-primary"
-                    >
-                        Actions
-                        <IconChevronDown className="size-3" />
-                    </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end" className="w-32">
-                    <DropdownMenuItem>Resend Invite</DropdownMenuItem>
-                    <DropdownMenuItem variant="destructive">Cancel Invite</DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
-        ),
+        cell: ({ row, table }) => <ActionsCell row={row} table={table} />,
     },
 ]
+
+function ActionsCell({ row, table }: { row: any, table: any }) {
+    const meta = table.options.meta as { onResend: (user: any) => void, onCancel: (user: any) => void }
+
+    return (
+        <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+                <Button
+                    variant="outline"
+                    size="sm"
+                    className="data-[state=open]:bg-muted h-6 text-xs border-primary"
+                >
+                    Actions
+                    <IconChevronDown className="size-3" />
+                </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-32">
+                <DropdownMenuItem onClick={() => meta?.onResend(row.original)}>
+                    Resend Invite
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                    variant="destructive"
+                    onClick={() => meta?.onCancel(row.original)}
+                >
+                    Cancel Invite
+                </DropdownMenuItem>
+            </DropdownMenuContent>
+        </DropdownMenu>
+    )
+}
 
 function UserCellViewer({ user }: { user: z.infer<typeof inviteUserSchema> }) {
     const isMobile = useIsMobile()
@@ -293,7 +307,14 @@ export function OrgInviteUsersTable({
         getSortedRowModel: getSortedRowModel(),
         getFacetedRowModel: getFacetedRowModel(),
         getFacetedUniqueValues: getFacetedUniqueValues(),
+        meta: {
+            onResend: (user: any) => setResendUser(user),
+            onCancel: (user: any) => setCancelUser(user),
+        }
     })
+
+    const [resendUser, setResendUser] = React.useState<z.infer<typeof inviteUserSchema> | null>(null)
+    const [cancelUser, setCancelUser] = React.useState<z.infer<typeof inviteUserSchema> | null>(null)
 
     return (
         <Tabs
@@ -502,6 +523,18 @@ export function OrgInviteUsersTable({
                     </div>
                 </div>
             </TabsContent>
+
+            <ResendInviteModal
+                user={resendUser}
+                open={!!resendUser}
+                onOpenChange={(open) => !open && setResendUser(null)}
+            />
+
+            <CancelInviteModal
+                user={cancelUser}
+                open={!!cancelUser}
+                onOpenChange={(open) => !open && setCancelUser(null)}
+            />
         </Tabs>
     )
 }

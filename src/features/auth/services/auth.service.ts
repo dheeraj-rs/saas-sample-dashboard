@@ -1,5 +1,5 @@
 // import { getApiUrl, getAuthHeaders, handleApiError } from '@/lib/api.utils';
-import type { LoginCredentials, AuthResponse, LogoutResponse, ForgotPasswordRequest, ForgotPasswordResponse, ResetPasswordRequest, ResetPasswordResponse } from '@/types/auth.types';
+import type { LoginCredentials, AuthResponse, LogoutResponse, ForgotPasswordRequest, ForgotPasswordResponse, ResetPasswordRequest, ResetPasswordResponse, UpdateProfileRequest, UpdateProfileResponse, ChangePasswordRequest, ChangePasswordResponse } from '@/types/auth.types';
 
 export async function login(credentials: LoginCredentials): Promise<AuthResponse> {
     // MOCK RESPONSE FOR TESTING
@@ -176,4 +176,34 @@ export async function resetPassword(_request: ResetPasswordRequest): Promise<Res
         throw new Error(handleApiError(error));
     }
     */
+}
+
+export async function updateProfile(request: UpdateProfileRequest): Promise<UpdateProfileResponse> {
+    // MOCK RESPONSE
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    const mockResponse: UpdateProfileResponse = {
+        status: "success",
+        data: {
+            user: {
+                id: "018f2000-a111-b222-c333-000000000027",
+                name: request.name,
+                email: "admin@gmail.com", // Mock email
+                avatar: "/avatars/user.jpg"
+            },
+            message: "Profile updated successfully."
+        }
+    };
+    return mockResponse;
+}
+
+export async function changePassword(_request: ChangePasswordRequest): Promise<ChangePasswordResponse> {
+    // MOCK RESPONSE
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    const mockResponse: ChangePasswordResponse = {
+        status: "success",
+        data: {
+            message: "Password changed successfully."
+        }
+    };
+    return mockResponse;
 }

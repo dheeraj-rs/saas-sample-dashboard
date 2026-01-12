@@ -59,6 +59,8 @@ import OrgNotificationsPage from "./features/org-dashboard/routes/dashbord-pages
 import SecurityPage from "./features/org-dashboard/routes/dashbord-pages/security-page";
 import OrgSupportPage from "./features/org-dashboard/routes/dashbord-pages/support-page";
 import OrgSearchPage from "./features/org-dashboard/routes/dashbord-pages/search-page";
+import ProfilePage from "./features/org-dashboard/routes/profile/profile-page";
+import UserDetailsPage from "./features/org-dashboard/routes/manage-users/user-details-page";
 import NotFoundPage from "./components/common/reusing-pages/not-found-page";
 
 function App() {
@@ -127,6 +129,8 @@ function App() {
                   <Route path="/org-dashboard/security" element={<SecurityPage />} />
                   <Route path="/org-dashboard/support" element={<OrgSupportPage />} />
                   <Route path="/org-dashboard/search" element={<OrgSearchPage />} />
+                  <Route path="/org-dashboard/profile" element={<ProfilePage />} />
+                  <Route path="/org-dashboard/users/:id" element={<UserDetailsPage />} />
                 </Route>
 
                 <Route path="*" element={<NotFoundPage />} />

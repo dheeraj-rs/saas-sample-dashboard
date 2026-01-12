@@ -306,4 +306,12 @@ export const ORG_DASHBOARD_RESOURCES: ResourceProps[] = [
             parent: "org-dashboard",
         },
     },
+    {
+        name: "profile",
+        list: "/org-dashboard/profile",
+        meta: {
+            label: "Profile",
+            parent: "org-dashboard",
+        },
+    },
 ];

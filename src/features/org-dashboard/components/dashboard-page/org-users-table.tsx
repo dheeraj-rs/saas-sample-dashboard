@@ -8,7 +8,6 @@ import {
     IconCircleCheckFilled,
     IconLayoutColumns,
     IconLoader,
-    IconPlus,
 } from "@tabler/icons-react"
 import {
     flexRender,
@@ -25,6 +24,7 @@ import {
     type VisibilityState,
 } from "@tanstack/react-table"
 import { z } from "zod"
+import { useNavigate } from "react-router"
 
 import { useIsMobile } from "@/hooks/use-mobile"
 import { Badge } from "@/components/ui/badge"
@@ -66,8 +66,8 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { Tabs, TabsContent } from "@/components/ui/tabs"
-import { CreateUserModal } from "../modals/create-user-modal"
 
+import { RemoveUserModal } from "../modals/remove-user-modal"
 export const userSchema = z.object({
     id: z.string(),
     name: z.string(),
@@ -159,7 +159,16 @@ const columns: ColumnDef<z.infer<typeof userSchema>>[] = [
     {
         id: "actions",
         header: "Actions",
-        cell: () => (
+        cell: ({ row }) => <UserActionsCell user={row.original} />,
+    },
+]
+
+function UserActionsCell({ user }: { user: z.infer<typeof userSchema> }) {
+    const navigate = useNavigate()
+    const [isRemoveModalOpen, setIsRemoveModalOpen] = React.useState(false)
+
+    return (
+        <>
             <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                     <Button
@@ -172,15 +181,24 @@ const columns: ColumnDef<z.infer<typeof userSchema>>[] = [
                     </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-32">
-                    <DropdownMenuItem>Edit</DropdownMenuItem>
-                    <DropdownMenuItem>View Profile</DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => navigate(`/org-dashboard/users/${user.id}`)}>
+                        View Profile
+                    </DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem variant="destructive">Deactivate</DropdownMenuItem>
+                    <DropdownMenuItem variant="destructive" onClick={() => setIsRemoveModalOpen(true)}>
+                        Remove
+                    </DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
-        ),
-    },
-]
+
+            <RemoveUserModal
+                user={user}
+                open={isRemoveModalOpen}
+                onOpenChange={setIsRemoveModalOpen}
+            />
+        </>
+    )
+}
 
 function UserCellViewer({ user }: { user: z.infer<typeof userSchema> }) {
     const isMobile = useIsMobile()
@@ -353,14 +371,7 @@ export function OrgUsersTable({
                                     })}
                             </DropdownMenuContent>
                         </DropdownMenu>
-                        <CreateUserModal
-                            trigger={
-                                <Button variant="outline" className="h-9">
-                                    <IconPlus className="size-4" />
-                                    <span className="hidden lg:inline">Add User</span>
-                                </Button>
-                            }
-                        />
+
                     </div>
                 </div>
             </div>

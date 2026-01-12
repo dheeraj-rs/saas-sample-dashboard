@@ -57,3 +57,27 @@ export interface ResetPasswordResponse {
     };
 }
 
+export interface UpdateProfileRequest {
+    name: string;
+}
+
+export interface UpdateProfileResponse {
+    status: string;
+    data: {
+        user: User;
+        message: string;
+    };
+}
+
+export interface ChangePasswordRequest {
+    current_password: string;
+    password: string;
+    password_confirmation: string;
+}
+
+export interface ChangePasswordResponse {
+    status: string;
+    data: {
+        message: string;
+    };
+}

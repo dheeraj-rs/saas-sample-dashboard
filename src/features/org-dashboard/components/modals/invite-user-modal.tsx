@@ -93,11 +93,11 @@ export function InviteUserModal({ trigger }: { trigger?: React.ReactNode }) {
                             >
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                                 <polyline points="22 4 12 14.01 9 11.01" />
-                            </svg>
+                            </svg>for <span className="font-medium text-foreground">{form.getValues("name")}</span>
                         </div>
                         <h2 className="mb-2 text-xl font-semibold tracking-tight">Success!</h2>
                         <p className="mb-6 max-w-[350px] text-sm text-muted-foreground">
-                            User <span className="font-medium text-foreground">"{form.getValues("name")}"</span> has been invited successfully.
+                            An invitation has been sent to <span className="font-medium text-foreground">{form.getValues("email")}</span>
                         </p>
                         <Button onClick={handleClose} size="sm" className="min-w-[120px]">
                             OK
@@ -115,7 +115,7 @@ export function InviteUserModal({ trigger }: { trigger?: React.ReactNode }) {
                             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                                 <div className="space-y-4">
                                     <div className="grid gap-4">
-                                        <div className="grid grid-cols-2 gap-4">
+                                        <div className="grid grid-cols-2 gap-4 items-start">
                                             <FormField
                                                 control={form.control}
                                                 name="name"

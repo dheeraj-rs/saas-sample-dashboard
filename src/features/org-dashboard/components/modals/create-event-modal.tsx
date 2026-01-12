@@ -74,8 +74,7 @@ export function CreateEventModal({ trigger }: { trigger?: React.ReactNode }) {
     const [isSuccess, setIsSuccess] = useState(false)
 
     const defaultValues: Partial<EventFormValues> = {
-        organization: "Conference Prime", // Pre-filled active organization
-        // Status field should be empty to show validation
+        organization: "Conference Prime",
     }
 
     const form = useForm<EventFormValues>({
@@ -84,9 +83,6 @@ export function CreateEventModal({ trigger }: { trigger?: React.ReactNode }) {
     })
 
     function onSubmit(data: EventFormValues) {
-        // toast.success("Event created successfully", {
-        //     description: `${data.name} has been scheduled.`,
-        // })
         console.log("Form submitted:", data)
         setIsSuccess(true)
     }

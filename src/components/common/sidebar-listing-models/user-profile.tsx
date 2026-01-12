@@ -4,6 +4,7 @@ import {
   IconNotification,
   IconUserCircle,
 } from "@tabler/icons-react"
+import { User } from "lucide-react"
 
 import {
   Avatar,
@@ -118,9 +119,9 @@ export function UserProfile({
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem>
-                <IconUserCircle />
-                Account
+              <DropdownMenuItem onClick={() => navigate("/org-dashboard/profile")}>
+                <User className="mr-2 h-4 w-4" />
+                Profile
               </DropdownMenuItem>
               <DropdownMenuItem>
                 <IconNotification />

@@ -5,7 +5,7 @@ import { Separator } from "@/components/ui/separator"
 import { SidebarTrigger } from "@/components/ui/sidebar"
 import { useAppConfigStore } from "@/store/app-config.store"
 
-export function OrgHeader() {
+export function OrgHeader({ actions }: { actions?: React.ReactNode }) {
     const { showToast } = useAppConfigStore()
 
     return (
@@ -15,16 +15,18 @@ export function OrgHeader() {
                 <Separator orientation="vertical" className="mr-2 h-4" />
                 <Breadcrumb homePath="/org-dashboard" />
                 <div className="ml-auto flex items-center gap-2">
-                    <Button
-                        size="sm"
-                        className="h-7 flex"
-                        onClick={() => {
-                            showToast('Add new employee to the organization', 'info')
-                        }}
-                    >
-                        <IconCirclePlusFilled />
-                        <span className="hidden sm:inline">New Event</span>
-                    </Button>
+                    {actions || (
+                        <Button
+                            size="sm"
+                            className="h-7 flex"
+                            onClick={() => {
+                                showToast('Add new employee to the organization', 'info')
+                            }}
+                        >
+                            <IconCirclePlusFilled />
+                            <span className="hidden sm:inline">New Event</span>
+                        </Button>
+                    )}
                 </div>
             </div>
         </header>

@@ -1,17 +1,20 @@
 import * as React from "react"
 import {
     IconChevronDown,
+    IconFilter,
     IconLayoutColumns,
     IconPlus,
     IconSearch,
     IconX,
 } from "@tabler/icons-react"
-import type { Table } from "@tanstack/react-table"
+import type { Table as TableType } from "@tanstack/react-table"
 import { Button } from "@/components/ui/button"
 import {
     DropdownMenu,
     DropdownMenuCheckboxItem,
     DropdownMenuContent,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
@@ -27,7 +30,7 @@ import type { userSchema } from "../../routes/event-create-pages/users-list-page
 import { useEventUsersFilterStore } from "@/store/event-users-filter.store"
 
 interface EventUsersHeaderActionsProps {
-    table: Table<z.infer<typeof userSchema>> | null
+    table: TableType<z.infer<typeof userSchema>> | null
 }
 
 export function EventUsersHeaderActions({ table }: EventUsersHeaderActionsProps) {
@@ -44,6 +47,14 @@ export function EventUsersHeaderActions({ table }: EventUsersHeaderActionsProps)
         setColumnVisibility
     } = useEventUsersFilterStore()
 
+    const hasActiveFilters = statusFilter !== 'all' || roleFilter !== 'all' || departmentFilter !== 'all'
+
+    const clearAllFilters = () => {
+        setStatusFilter('all')
+        setRoleFilter('all')
+        setDepartmentFilter('all')
+    }
+
     return (
         <>
             <div className="relative">
@@ -52,7 +63,7 @@ export function EventUsersHeaderActions({ table }: EventUsersHeaderActionsProps)
                     placeholder="Search users..."
                     value={searchValue}
                     onChange={(event) => setSearchValue(event.target.value)}
-                    className="h-8 w-full max-w-[200px] pl-8 pr-8"
+                    className="h-8 w-full max-w-[300px] pl-8 pr-8"
                 />
                 {searchValue && (
                     <Button
@@ -65,55 +76,89 @@ export function EventUsersHeaderActions({ table }: EventUsersHeaderActionsProps)
                     </Button>
                 )}
             </div>
-            <Select
-                value={statusFilter}
-                onValueChange={setStatusFilter}
-            >
-                <SelectTrigger className="h-8 w-[130px]">
-                    <SelectValue placeholder="Status" />
-                </SelectTrigger>
-                <SelectContent>
-                    <SelectItem value="all">All Status</SelectItem>
-                    <SelectItem value="active">Active</SelectItem>
-                    <SelectItem value="inactive">Inactive</SelectItem>
-                    <SelectItem value="pending">Pending</SelectItem>
-                </SelectContent>
-            </Select>
-            <Select
-                value={roleFilter}
-                onValueChange={setRoleFilter}
-            >
-                <SelectTrigger className="h-8 w-[130px]">
-                    <SelectValue placeholder="Role" />
-                </SelectTrigger>
-                <SelectContent>
-                    <SelectItem value="all">All Roles</SelectItem>
-                    <SelectItem value="Admin">Admin</SelectItem>
-                    <SelectItem value="Manager">Manager</SelectItem>
-                    <SelectItem value="Developer">Developer</SelectItem>
-                    <SelectItem value="Designer">Designer</SelectItem>
-                    <SelectItem value="Analyst">Analyst</SelectItem>
-                </SelectContent>
-            </Select>
-            <Select
-                value={departmentFilter}
-                onValueChange={setDepartmentFilter}
-            >
-                <SelectTrigger className="h-8 w-[150px]">
-                    <SelectValue placeholder="Department" />
-                </SelectTrigger>
-                <SelectContent>
-                    <SelectItem value="all">All Departments</SelectItem>
-                    <SelectItem value="Engineering">Engineering</SelectItem>
-                    <SelectItem value="Design">Design</SelectItem>
-                    <SelectItem value="Marketing">Marketing</SelectItem>
-                    <SelectItem value="Sales">Sales</SelectItem>
-                    <SelectItem value="Finance">Finance</SelectItem>
-                    <SelectItem value="HR">HR</SelectItem>
-                    <SelectItem value="IT">IT</SelectItem>
-                    <SelectItem value="Operations">Operations</SelectItem>
-                </SelectContent>
-            </Select>
+            <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                    <Button variant="outline" size="sm" className="h-8">
+                        <IconFilter className={`size-4 ${hasActiveFilters ? 'text-blue-500' : ''}`} />
+                        <span>Filters</span>
+                        <IconChevronDown className="size-4" />
+                    </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-64">
+                    <div className="flex items-center justify-between px-2 py-1.5">
+                        <DropdownMenuLabel className="p-0">Filter by Status</DropdownMenuLabel>
+                        {hasActiveFilters && (
+                            <Button
+                                variant="ghost"
+                                size="sm"
+                                className="h-6 px-2 text-xs text-blue-500 hover:text-blue-600 hover:bg-blue-50"
+                                onClick={clearAllFilters}
+                            >
+                                Clear All
+                            </Button>
+                        )}
+                    </div>
+                    <div className="px-2 py-1.5">
+                        <Select
+                            value={statusFilter}
+                            onValueChange={setStatusFilter}
+                        >
+                            <SelectTrigger className="h-8 w-full">
+                                <SelectValue placeholder="Status" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="all">All Status</SelectItem>
+                                <SelectItem value="active">Active</SelectItem>
+                                <SelectItem value="inactive">Inactive</SelectItem>
+                                <SelectItem value="pending">Pending</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuLabel>Filter by Role</DropdownMenuLabel>
+                    <div className="px-2 py-1.5">
+                        <Select
+                            value={roleFilter}
+                            onValueChange={setRoleFilter}
+                        >
+                            <SelectTrigger className="h-8 w-full">
+                                <SelectValue placeholder="Role" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="all">All Roles</SelectItem>
+                                <SelectItem value="Admin">Admin</SelectItem>
+                                <SelectItem value="Manager">Manager</SelectItem>
+                                <SelectItem value="Developer">Developer</SelectItem>
+                                <SelectItem value="Designer">Designer</SelectItem>
+                                <SelectItem value="Analyst">Analyst</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuLabel>Filter by Department</DropdownMenuLabel>
+                    <div className="px-2 py-1.5">
+                        <Select
+                            value={departmentFilter}
+                            onValueChange={setDepartmentFilter}
+                        >
+                            <SelectTrigger className="h-8 w-full">
+                                <SelectValue placeholder="Department" />
+                            </SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="all">All Departments</SelectItem>
+                                <SelectItem value="Engineering">Engineering</SelectItem>
+                                <SelectItem value="Design">Design</SelectItem>
+                                <SelectItem value="Marketing">Marketing</SelectItem>
+                                <SelectItem value="Sales">Sales</SelectItem>
+                                <SelectItem value="Finance">Finance</SelectItem>
+                                <SelectItem value="HR">HR</SelectItem>
+                                <SelectItem value="IT">IT</SelectItem>
+                                <SelectItem value="Operations">Operations</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
+                </DropdownMenuContent>
+            </DropdownMenu>
             {table && (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>

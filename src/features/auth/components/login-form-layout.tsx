@@ -1,7 +1,7 @@
 export default function LoginFormLayout({ children }: { children: React.ReactNode }) {
     return (
         <div className="relative min-h-svh">
-            {/* <div className="absolute top-0 left-0 right-0 h-[0.3rem] bg-gradient-to-l from-[#014799] via-[#014799]/95 to-[#014799]/5 z-10"></div> */}
+            <div className="absolute top-0 left-0 right-0 h-[0.3rem] bg-gradient-to-l from-[#014799] via-[#014799]/95 to-[#014799]/5 z-10"></div>
 
             <div className="grid min-h-svh lg:grid-cols-2">
                 <div className="relative hidden lg:flex flex-col overflow-hidden bg-primary">

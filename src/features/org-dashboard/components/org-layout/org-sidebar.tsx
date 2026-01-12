@@ -14,6 +14,7 @@ import {
     IconFolders,
     IconTrendingUp,
     IconCalendar,
+    IconUserPlus,
 } from "@tabler/icons-react"
 import { useLocation } from "react-router"
 
@@ -84,6 +85,11 @@ const sidebarData = {
             title: "Manage Users",
             url: "/org-dashboard/users",
             icon: IconUsers,
+        },
+        {
+            title: "Invite Users",
+            url: "/org-dashboard/invite-users",
+            icon: IconUserPlus,
         },
     ],
     navClouds: [

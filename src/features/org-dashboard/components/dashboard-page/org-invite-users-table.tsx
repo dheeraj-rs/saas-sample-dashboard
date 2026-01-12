@@ -9,6 +9,9 @@ import {
     IconLayoutColumns,
     IconLoader,
     IconPlus,
+    IconMailForward,
+    IconX,
+    IconClock,
 } from "@tabler/icons-react"
 import {
     flexRender,
@@ -66,21 +69,18 @@ import {
     TableRow,
 } from "@/components/ui/table"
 import { Tabs, TabsContent } from "@/components/ui/tabs"
-import { CreateUserModal } from "../modals/create-user-modal"
+import { InviteUserModal } from "../modals/invite-user-modal"
 
-export const userSchema = z.object({
+export const inviteUserSchema = z.object({
     id: z.string(),
     name: z.string(),
     email: z.string(),
-    role: z.string(),
     status: z.string(),
-    department: z.string(),
-    joined_date: z.string(),
-    phone: z.string(),
-    total_organizations: z.number(),
+    invite_sent_date: z.string().optional(),
+    invite_expiring_date: z.string().optional(),
 })
 
-const columns: ColumnDef<z.infer<typeof userSchema>>[] = [
+const columns: ColumnDef<z.infer<typeof inviteUserSchema>>[] = [
     {
         id: "select",
         header: ({ table }) => (
@@ -125,34 +125,54 @@ const columns: ColumnDef<z.infer<typeof userSchema>>[] = [
         ),
     },
     {
-        accessorKey: "total_organizations",
-        header: "Total organization",
+        accessorKey: "status",
+        header: "Status",
+        cell: ({ row }) => {
+            const status = row.original.status;
+            let variant: "default" | "secondary" | "destructive" | "outline" = "outline";
+            let icon = <IconLoader className="size-3" />;
+            let className = "capitalize text-muted-foreground px-1.5 gap-1";
+
+            if (status === "active") {
+                variant = "outline";
+                icon = <IconCircleCheckFilled className="size-3 fill-green-500 dark:fill-green-400" />;
+            } else if (status === "invite_sent") {
+                variant = "outline";
+                className = "capitalize text-blue-600 border-blue-200 bg-blue-50 dark:bg-blue-900/20 dark:border-blue-800 dark:text-blue-400 px-1.5 gap-1";
+                icon = <IconMailForward className="size-3" />;
+            } else if (status === "rejected") {
+                variant = "outline";
+                className = "capitalize text-red-600 border-red-200 bg-red-50 dark:bg-red-900/20 dark:border-red-800 dark:text-red-400 px-1.5 gap-1";
+                icon = <IconX className="size-3" />;
+            } else if (status === "pending") {
+                variant = "outline";
+                className = "capitalize text-yellow-600 border-yellow-200 bg-yellow-50 dark:bg-yellow-900/20 dark:border-yellow-800 dark:text-yellow-400 px-1.5 gap-1";
+                icon = <IconClock className="size-3" />;
+            }
+
+            return (
+                <Badge variant={variant} className={className}>
+                    {icon}
+                    {status.replace("_", " ")}
+                </Badge>
+            );
+        },
+    },
+    {
+        accessorKey: "invite_sent_date",
+        header: "Invite Sent Date",
         cell: ({ row }) => (
-            <div className="font-medium">
-                {row.original.total_organizations}
+            <div>
+                {row.original.invite_sent_date ? new Date(row.original.invite_sent_date).toLocaleDateString() : "-"}
             </div>
         ),
     },
     {
-        accessorKey: "status",
-        header: "Status",
-        cell: ({ row }) => (
-            <Badge variant="outline" className="capitalize text-muted-foreground px-1.5 gap-1">
-                {row.original.status === "active" ? (
-                    <IconCircleCheckFilled className="size-3 fill-green-500 dark:fill-green-400" />
-                ) : (
-                    <IconLoader className="size-3" />
-                )}
-                {row.original.status}
-            </Badge>
-        ),
-    },
-    {
-        accessorKey: "joined_date",
-        header: "Joined Date",
+        accessorKey: "invite_expiring_date",
+        header: "Invite Expiring Date",
         cell: ({ row }) => (
             <div>
-                {new Date(row.original.joined_date).toLocaleDateString()}
+                {row.original.invite_expiring_date ? new Date(row.original.invite_expiring_date).toLocaleDateString() : "-"}
             </div>
         ),
     },
@@ -172,17 +192,15 @@ const columns: ColumnDef<z.infer<typeof userSchema>>[] = [
                     </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-32">
-                    <DropdownMenuItem>Edit</DropdownMenuItem>
-                    <DropdownMenuItem>View Profile</DropdownMenuItem>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem variant="destructive">Deactivate</DropdownMenuItem>
+                    <DropdownMenuItem>Resend Invite</DropdownMenuItem>
+                    <DropdownMenuItem variant="destructive">Cancel Invite</DropdownMenuItem>
                 </DropdownMenuContent>
             </DropdownMenu>
         ),
     },
 ]
 
-function UserCellViewer({ user }: { user: z.infer<typeof userSchema> }) {
+function UserCellViewer({ user }: { user: z.infer<typeof inviteUserSchema> }) {
     const isMobile = useIsMobile()
 
     return (
@@ -209,27 +227,17 @@ function UserCellViewer({ user }: { user: z.infer<typeof userSchema> }) {
                             <Label htmlFor="email">Email</Label>
                             <Input id="email" type="email" defaultValue={user.email} />
                         </div>
-                        <div className="grid grid-cols-2 gap-4">
-                            <div className="flex flex-col gap-3">
-                                <Label htmlFor="role">Role</Label>
-                                <Input id="role" defaultValue={user.role} />
-                            </div>
-                            <div className="flex flex-col gap-3">
-                                <Label htmlFor="status">Status</Label>
-                                <Input id="status" defaultValue={user.status} />
-                            </div>
+                        <div className="flex flex-col gap-3">
+                            <Label htmlFor="status">Status</Label>
+                            <Input id="status" defaultValue={user.status} />
                         </div>
                         <div className="flex flex-col gap-3">
-                            <Label htmlFor="department">Department</Label>
-                            <Input id="department" defaultValue={user.department} />
+                            <Label htmlFor="invite_sent">Invite Sent</Label>
+                            <Input id="invite_sent" defaultValue={user.invite_sent_date || "-"} />
                         </div>
                         <div className="flex flex-col gap-3">
-                            <Label htmlFor="phone">Phone</Label>
-                            <Input id="phone" defaultValue={user.phone} />
-                        </div>
-                        <div className="flex flex-col gap-3">
-                            <Label htmlFor="joined_date">Joined Date</Label>
-                            <Input id="joined_date" type="date" defaultValue={user.joined_date} />
+                            <Label htmlFor="invite_expiry">Invite Expires</Label>
+                            <Input id="invite_expiry" defaultValue={user.invite_expiring_date || "-"} />
                         </div>
                     </form>
                 </div>
@@ -244,10 +252,10 @@ function UserCellViewer({ user }: { user: z.infer<typeof userSchema> }) {
     )
 }
 
-export function OrgUsersTable({
+export function OrgInviteUsersTable({
     data: initialData,
 }: {
-    data: z.infer<typeof userSchema>[]
+    data: z.infer<typeof inviteUserSchema>[]
 }) {
     const [data] = React.useState(() => initialData)
     const [rowSelection, setRowSelection] = React.useState({})
@@ -314,8 +322,9 @@ export function OrgUsersTable({
                             </SelectTrigger>
                             <SelectContent>
                                 <SelectItem value="all">All Status</SelectItem>
-                                <SelectItem value="active">Active</SelectItem>
-                                <SelectItem value="inactive">Inactive</SelectItem>
+                                <SelectItem value="invite_sent">Invite Sent</SelectItem>
+                                <SelectItem value="rejected">Rejected</SelectItem>
+                                <SelectItem value="pending">Pending</SelectItem>
                             </SelectContent>
                         </Select>
                     </div>
@@ -353,11 +362,11 @@ export function OrgUsersTable({
                                     })}
                             </DropdownMenuContent>
                         </DropdownMenu>
-                        <CreateUserModal
+                        <InviteUserModal
                             trigger={
                                 <Button variant="outline" className="h-9">
                                     <IconPlus className="size-4" />
-                                    <span className="hidden lg:inline">Add User</span>
+                                    <span className="hidden lg:inline">Invite User</span>
                                 </Button>
                             }
                         />

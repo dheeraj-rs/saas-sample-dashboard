@@ -171,6 +171,14 @@ export const ORG_DASHBOARD_RESOURCES: ResourceProps[] = [
         },
     },
     {
+        name: "invite-users",
+        list: "/org-dashboard/invite-users",
+        meta: {
+            label: "Invite Users",
+            parent: "org-dashboard",
+        },
+    },
+    {
         name: "team-members",
         list: "/org-dashboard/team-members",
         meta: {

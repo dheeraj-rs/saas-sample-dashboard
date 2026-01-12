@@ -23,13 +23,6 @@ import {
     FormMessage,
 } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
 
 const userFormSchema = z.object({
     name: z.string().min(2, {
@@ -42,13 +35,11 @@ const userFormSchema = z.object({
 
 type UserFormValues = z.infer<typeof userFormSchema>
 
-export function CreateUserModal({ trigger }: { trigger?: React.ReactNode }) {
+export function InviteUserModal({ trigger }: { trigger?: React.ReactNode }) {
     const [open, setOpen] = useState(false)
     const [isSuccess, setIsSuccess] = useState(false)
 
-    const defaultValues: Partial<UserFormValues> = {
-        // Status field should be empty to show validation
-    }
+    const defaultValues: Partial<UserFormValues> = {}
 
     const form = useForm<UserFormValues>({
         resolver: zodResolver(userFormSchema),
@@ -82,7 +73,7 @@ export function CreateUserModal({ trigger }: { trigger?: React.ReactNode }) {
                 ) : (
                     <Button>
                         <Plus className="mr-2 size-4" />
-                        Add User
+                        Invite User
                     </Button>
                 )}
             </DialogTrigger>
@@ -106,7 +97,7 @@ export function CreateUserModal({ trigger }: { trigger?: React.ReactNode }) {
                         </div>
                         <h2 className="mb-2 text-xl font-semibold tracking-tight">Success!</h2>
                         <p className="mb-6 max-w-[350px] text-sm text-muted-foreground">
-                            User <span className="font-medium text-foreground">"{form.getValues("name")}"</span> has been added successfully.
+                            User <span className="font-medium text-foreground">"{form.getValues("name")}"</span> has been invited successfully.
                         </p>
                         <Button onClick={handleClose} size="sm" className="min-w-[120px]">
                             OK
@@ -115,50 +106,48 @@ export function CreateUserModal({ trigger }: { trigger?: React.ReactNode }) {
                 ) : (
                     <>
                         <DialogHeader>
-                            <DialogTitle>Add New User</DialogTitle>
+                            <DialogTitle>Invite User</DialogTitle>
                             <DialogDescription>
-                                Enter user details to add them to your organization.
+                                Enter user details to invite them to your organization.
                             </DialogDescription>
                         </DialogHeader>
                         <Form {...form}>
                             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                                 <div className="space-y-4">
-                                    <div className="space-y-4">
-                                        <div className="grid gap-4">
-                                            <div className="grid grid-cols-2 gap-4">
-                                                <FormField
-                                                    control={form.control}
-                                                    name="name"
-                                                    render={({ field }) => (
-                                                        <FormItem>
-                                                            <FormLabel>Full Name <span className="text-destructive">*</span></FormLabel>
-                                                            <div className="relative">
-                                                                <User className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none" />
-                                                                <FormControl>
-                                                                    <Input className="pl-9" placeholder="John Doe" {...field} />
-                                                                </FormControl>
-                                                            </div>
-                                                            <FormMessage />
-                                                        </FormItem>
-                                                    )}
-                                                />
-                                                <FormField
-                                                    control={form.control}
-                                                    name="email"
-                                                    render={({ field }) => (
-                                                        <FormItem>
-                                                            <FormLabel>Email <span className="text-destructive">*</span></FormLabel>
-                                                            <div className="relative">
-                                                                <Mail className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none" />
-                                                                <FormControl>
-                                                                    <Input className="pl-9" placeholder="john@example.com" {...field} />
-                                                                </FormControl>
-                                                            </div>
-                                                            <FormMessage />
-                                                        </FormItem>
-                                                    )}
-                                                />
-                                            </div>
+                                    <div className="grid gap-4">
+                                        <div className="grid grid-cols-2 gap-4">
+                                            <FormField
+                                                control={form.control}
+                                                name="name"
+                                                render={({ field }) => (
+                                                    <FormItem>
+                                                        <FormLabel>Full Name <span className="text-destructive">*</span></FormLabel>
+                                                        <div className="relative">
+                                                            <User className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none" />
+                                                            <FormControl>
+                                                                <Input className="pl-9" placeholder="John Doe" {...field} />
+                                                            </FormControl>
+                                                        </div>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                )}
+                                            />
+                                            <FormField
+                                                control={form.control}
+                                                name="email"
+                                                render={({ field }) => (
+                                                    <FormItem>
+                                                        <FormLabel>Email <span className="text-destructive">*</span></FormLabel>
+                                                        <div className="relative">
+                                                            <Mail className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none" />
+                                                            <FormControl>
+                                                                <Input className="pl-9" placeholder="john@example.com" {...field} />
+                                                            </FormControl>
+                                                        </div>
+                                                        <FormMessage />
+                                                    </FormItem>
+                                                )}
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -169,7 +158,7 @@ export function CreateUserModal({ trigger }: { trigger?: React.ReactNode }) {
                                     </Button>
                                     <Button type="submit">
                                         <Plus className="mr-2 size-4" />
-                                        Add User
+                                        Invite User
                                     </Button>
                                 </DialogFooter>
                             </form>

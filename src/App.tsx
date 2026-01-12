@@ -42,6 +42,7 @@ import SearchPage from "./features/event-dashboard/routes/dashbord-pages/search-
 import OrgDashboardPage from "./features/org-dashboard/routes/dashbord-pages/dashboard-page";
 import ManageEventsPage from "./features/org-dashboard/routes/manage-events/manage-events-page";
 import ManageUsersPage from "./features/org-dashboard/routes/manage-users/manage-users-page";
+import InviteUsersPage from "./features/org-dashboard/routes/invite-users/invite-users-page";
 import TeamMembersPage from "./features/org-dashboard/routes/dashbord-pages/team-members-page";
 import RolesPermissionsPage from "./features/org-dashboard/routes/dashbord-pages/roles-permissions-page";
 import DepartmentsPage from "./features/org-dashboard/routes/dashbord-pages/departments-page";
@@ -109,6 +110,7 @@ function App() {
                   <Route path="/org-dashboard" element={<OrgDashboardPage />} />
                   <Route path="/org-dashboard/events" element={<ManageEventsPage />} />
                   <Route path="/org-dashboard/users" element={<ManageUsersPage />} />
+                  <Route path="/org-dashboard/invite-users" element={<InviteUsersPage />} />
                   <Route path="/org-dashboard/team-members" element={<TeamMembersPage />} />
                   <Route path="/org-dashboard/roles-permissions" element={<RolesPermissionsPage />} />
                   <Route path="/org-dashboard/departments" element={<DepartmentsPage />} />

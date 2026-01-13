@@ -56,7 +56,7 @@ export function EventUsersHeaderActions({ table }: EventUsersHeaderActionsProps)
     }
 
     return (
-        <>
+        <div className="flex w-full items-center gap-2">
             <div className="relative">
                 <IconSearch className="absolute left-2 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
                 <Input
@@ -197,10 +197,6 @@ export function EventUsersHeaderActions({ table }: EventUsersHeaderActionsProps)
                     </DropdownMenuContent>
                 </DropdownMenu>
             )}
-            <Button variant="outline" size="sm" className="h-8">
-                <IconPlus />
-                <span className="hidden lg:inline">Add User</span>
-            </Button>
-        </>
+        </div>
     )
 }

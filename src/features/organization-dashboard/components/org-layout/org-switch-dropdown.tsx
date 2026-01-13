@@ -40,7 +40,7 @@ export function OrgSwitchDropdown({ organizations, events }: { organizations: Te
                                     <span className="truncate font-semibold">{activeOrg.name}</span>
                                     <ChevronDown className="size-3 text-muted-foreground" />
                                 </div>
-                                <span className="truncate text-xs text-muted-foreground">{activeOrg.plan}</span>
+                                <span className="truncate text-xs text-muted-foreground">Organization</span>
                             </div>
                         </SidebarMenuButton>
                     </DropdownMenuTrigger>

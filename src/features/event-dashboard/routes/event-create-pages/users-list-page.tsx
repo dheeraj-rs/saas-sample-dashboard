@@ -467,13 +467,21 @@ function UsersDataTable({
 export default function UsersListPage() {
     const [table, setTable] = React.useState<TableType<z.infer<typeof userSchema>> | null>(null)
 
+    const headerActions = (
+        <Button size="sm">
+            <IconPlus className="size-4 mr-2" />
+            Add User
+        </Button>
+    )
+
     return (
-        <EventDashboardLayout
-            headerActions={<EventUsersHeaderActions table={table} />}
-        >
+        <EventDashboardLayout headerActions={headerActions}>
             <div className="flex flex-1 flex-col">
                 <div className="@container/main flex flex-1 flex-col gap-2">
                     <div className="flex flex-col gap-3 py-3 px-2 sm:gap-4 sm:py-4 md:gap-6 md:py-6 md:px-0">
+                        <div className="px-4 lg:px-6">
+                            <EventUsersHeaderActions table={table} />
+                        </div>
                         <UsersDataTable onTableReady={setTable} />
                     </div>
                 </div>

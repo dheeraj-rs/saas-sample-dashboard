@@ -10,6 +10,7 @@ import { Separator } from "@/components/ui/separator"
 import { IconCheck, IconClock, IconSettings, IconShieldCheck } from "@tabler/icons-react"
 import { toast } from "sonner"
 import configData from "../../data/registraction-config.json"
+import { RefreshCcw } from "lucide-react"
 
 interface ConfigOption {
     key: string
@@ -85,7 +86,7 @@ export default function RegistrationPage() {
         <EventDashboardLayout
             headerActions={
                 <Button variant="outline" size="sm" className="h-8" onClick={handleReset}>
-                    <IconSettings className="mr-2 h-4 w-4" />
+                    <RefreshCcw className="mr-2 h-4 w-4" />
                     Reset
                 </Button>
             }

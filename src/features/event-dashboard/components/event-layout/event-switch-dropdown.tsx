@@ -39,7 +39,7 @@ export function EventSwitchDropdown({ events, organizations }: { events: Team[],
                                     <span className="truncate font-semibold">{activeEvent.name}</span>
                                     <ChevronDown className="size-3 text-muted-foreground" />
                                 </div>
-                                <span className="truncate text-xs text-muted-foreground">{activeEvent.plan}</span>
+                                <span className="truncate text-xs text-muted-foreground">Event</span>
                             </div>
                         </SidebarMenuButton>
                     </DropdownMenuTrigger>

@@ -9,7 +9,7 @@ interface EventCardWithImageProps {
     description?: string;
 }
 
-export function EventCardWithImage({ title, date, attendees, imageUrl, description }: EventCardWithImageProps) {
+export function EventCardWithImage({ title, date, attendees, imageUrl }: EventCardWithImageProps) {
     const navigate = useNavigate();
 
     const handleClick = () => {

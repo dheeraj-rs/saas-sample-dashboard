@@ -71,7 +71,7 @@ export function EventStatusChart({ events }: EventStatusChartProps) {
                             verticalAlign="bottom"
                             height={36}
                             iconType="circle"
-                            formatter={(value, entry: any) => (
+                            formatter={(value) => (
                                 <span className="text-xs font-medium text-muted-foreground ml-1">{value}</span>
                             )}
                         />

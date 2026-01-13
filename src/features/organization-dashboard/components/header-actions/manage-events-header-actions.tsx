@@ -1,7 +1,7 @@
+import * as React from "react"
 import {
     IconChevronDown,
     IconLayoutColumns,
-    IconPlus,
     IconSearch,
     IconX,
 } from "@tabler/icons-react"
@@ -21,17 +21,16 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select"
-import { InviteUserModal } from "../modals/invite-user-modal"
 import type { z } from "zod"
-import type { inviteUserSchema } from "../dashboard-page/org-invite-users-table"
-import { useInviteUsersFilterStore } from "@/store/invite-users-filter.store"
+import type { schema } from "../dashboard-page/org-events-table"
+import { useManageEventsFilterStore } from "@/store/manage-events-filter.store"
 
-interface InviteUsersHeaderActionsProps {
-    table: Table<z.infer<typeof inviteUserSchema>> | null
+interface ManageEventsHeaderActionsProps {
+    table: Table<z.infer<typeof schema>> | null
 }
 
-export function InviteUsersHeaderActions({ table }: InviteUsersHeaderActionsProps) {
-    const { searchValue, statusFilter, columnVisibility, setSearchValue, setStatusFilter, setColumnVisibility } = useInviteUsersFilterStore()
+export function ManageEventsHeaderActions({ table }: ManageEventsHeaderActionsProps) {
+    const { searchValue, statusFilter, columnVisibility, setSearchValue, setStatusFilter, setColumnVisibility } = useManageEventsFilterStore()
 
     return (
         <div className="flex w-full items-center justify-between gap-2">
@@ -39,7 +38,7 @@ export function InviteUsersHeaderActions({ table }: InviteUsersHeaderActionsProp
                 <div className="relative">
                     <IconSearch className="absolute left-2 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
                     <Input
-                        placeholder="Search users..."
+                        placeholder="Search events..."
                         value={searchValue}
                         onChange={(event) => setSearchValue(event.target.value)}
                         className="h-9 w-full max-w-[300px] pl-8 pr-8"
@@ -64,9 +63,10 @@ export function InviteUsersHeaderActions({ table }: InviteUsersHeaderActionsProp
                     </SelectTrigger>
                     <SelectContent>
                         <SelectItem value="all">All Status</SelectItem>
-                        <SelectItem value="invite_sent">Invite Sent</SelectItem>
-                        <SelectItem value="rejected">Rejected</SelectItem>
-                        <SelectItem value="pending">Pending</SelectItem>
+                        <SelectItem value="active">Active</SelectItem>
+                        <SelectItem value="upcoming">Upcoming</SelectItem>
+                        <SelectItem value="past">Past</SelectItem>
+                        <SelectItem value="cancelled">Cancelled</SelectItem>
                     </SelectContent>
                 </Select>
             </div>
@@ -96,7 +96,6 @@ export function InviteUsersHeaderActions({ table }: InviteUsersHeaderActionsProp
                                         className="capitalize"
                                         checked={isVisible}
                                         onCheckedChange={(value) => {
-                                            // Update store directly
                                             const newVisibility = { ...columnVisibility, [column.id]: !!value }
                                             setColumnVisibility(newVisibility)
                                         }}

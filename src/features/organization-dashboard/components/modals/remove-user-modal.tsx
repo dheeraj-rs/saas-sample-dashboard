@@ -58,7 +58,7 @@ export function RemoveUserModal({ user, open, onOpenChange }: RemoveUserModalPro
                 ) : (
                     <>
                         <DialogHeader>
-                            <div className="mx-auto mb-4 rounded-full bg-red-100 p-3 dark:bg-red-900/30">
+                            <div className="mx-auto rounded-full bg-red-100 p-3 dark:bg-red-900/30">
                                 <AlertTriangle className="h-6 w-6 text-red-600 dark:text-red-400" />
                             </div>
                             <DialogTitle className="text-center">Remove User</DialogTitle>
@@ -67,7 +67,7 @@ export function RemoveUserModal({ user, open, onOpenChange }: RemoveUserModalPro
                             </DialogDescription>
                         </DialogHeader>
 
-                        <div className="py-4 text-center">
+                        <div className="pb-4 text-center">
                             <p className="text-sm text-muted-foreground">
                                 Are you sure you want to remove <span className="font-medium text-foreground">{user.name}</span> from the organization? They will lose access to all resources immediately.
                             </p>

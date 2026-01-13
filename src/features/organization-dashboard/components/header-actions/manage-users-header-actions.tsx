@@ -33,43 +33,45 @@ export function ManageUsersHeaderActions({ table }: ManageUsersHeaderActionsProp
     const { searchValue, statusFilter, columnVisibility, setSearchValue, setStatusFilter, setColumnVisibility } = useManageUsersFilterStore()
 
     return (
-        <>
-            <div className="relative">
-                <IconSearch className="absolute left-2 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-                <Input
-                    placeholder="Search users..."
-                    value={searchValue}
-                    onChange={(event) => setSearchValue(event.target.value)}
-                    className="h-8 w-full max-w-[300px] pl-8 pr-8"
-                />
-                {searchValue && (
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        className="absolute right-0 top-1/2 size-8 -translate-y-1/2 hover:bg-transparent"
-                        onClick={() => setSearchValue("")}
-                    >
-                        <IconX className="size-4 text-muted-foreground hover:text-foreground" />
-                    </Button>
-                )}
+        <div className="flex w-full items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+                <div className="relative">
+                    <IconSearch className="absolute left-2 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
+                    <Input
+                        placeholder="Search users..."
+                        value={searchValue}
+                        onChange={(event) => setSearchValue(event.target.value)}
+                        className="h-9 w-full max-w-[300px] pl-8 pr-8"
+                    />
+                    {searchValue && (
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            className="absolute right-0 top-1/2 size-8 -translate-y-1/2 hover:bg-transparent"
+                            onClick={() => setSearchValue("")}
+                        >
+                            <IconX className="size-4 text-muted-foreground hover:text-foreground" />
+                        </Button>
+                    )}
+                </div>
+                <Select
+                    value={statusFilter}
+                    onValueChange={setStatusFilter}
+                >
+                    <SelectTrigger className="h-9 w-[150px]">
+                        <SelectValue placeholder="Status" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectItem value="all">All Status</SelectItem>
+                        <SelectItem value="active">Active</SelectItem>
+                        <SelectItem value="inactive">Inactive</SelectItem>
+                    </SelectContent>
+                </Select>
             </div>
-            <Select
-                value={statusFilter}
-                onValueChange={setStatusFilter}
-            >
-                <SelectTrigger className="h-8 w-[150px]">
-                    <SelectValue placeholder="Status" />
-                </SelectTrigger>
-                <SelectContent>
-                    <SelectItem value="all">All Status</SelectItem>
-                    <SelectItem value="active">Active</SelectItem>
-                    <SelectItem value="inactive">Inactive</SelectItem>
-                </SelectContent>
-            </Select>
             {table && (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                        <Button variant="outline" size="sm" className="h-8">
+                        <Button variant="outline" size="sm" className="h-9 ml-auto">
                             <IconLayoutColumns />
                             <span className="hidden lg:inline">Customize Columns</span>
                             <span className="lg:hidden">Columns</span>
@@ -106,6 +108,6 @@ export function ManageUsersHeaderActions({ table }: ManageUsersHeaderActionsProp
                     </DropdownMenuContent>
                 </DropdownMenu>
             )}
-        </>
+        </div>
     )
 }

@@ -93,7 +93,7 @@ export function InviteUserModal({ trigger }: { trigger?: React.ReactNode }) {
                             >
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
                                 <polyline points="22 4 12 14.01 9 11.01" />
-                            </svg>for <span className="font-medium text-foreground">{form.getValues("name")}</span>
+                            </svg>
                         </div>
                         <h2 className="mb-2 text-xl font-semibold tracking-tight">Success!</h2>
                         <p className="mb-6 max-w-[350px] text-sm text-muted-foreground">

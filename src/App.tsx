@@ -68,7 +68,7 @@ function App() {
   return (
     <BrowserRouter>
       <RefineKbarProvider>
-        <ThemeProvider>
+        <ThemeProvider defaultTheme="light">
           <DevtoolsProvider>
             <Refine
               dataProvider={dataProvider("https://api.fake-rest.refine.dev")}

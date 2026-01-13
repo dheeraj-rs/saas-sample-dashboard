@@ -129,122 +129,120 @@ export function AddUserModal({ trigger }: { trigger?: React.ReactNode }) {
                             </DialogDescription>
                         </DialogHeader>
                         <Form {...form}>
-                            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-                                <div className="space-y-4">
-                                    <div className="grid gap-4">
-                                        <div className="grid grid-cols-2 gap-4 items-start">
-                                            <FormField
-                                                control={form.control}
-                                                name="name"
-                                                render={({ field }) => (
-                                                    <FormItem>
-                                                        <FormLabel>Full Name <span className="text-destructive">*</span></FormLabel>
-                                                        <div className="relative">
-                                                            <IconUser className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none" />
-                                                            <FormControl>
-                                                                <Input className="pl-9" placeholder="John Doe" {...field} />
-                                                            </FormControl>
-                                                        </div>
-                                                        <FormMessage />
-                                                    </FormItem>
-                                                )}
-                                            />
-                                            <FormField
-                                                control={form.control}
-                                                name="email"
-                                                render={({ field }) => (
-                                                    <FormItem>
-                                                        <FormLabel>Email <span className="text-destructive">*</span></FormLabel>
-                                                        <div className="relative">
-                                                            <IconMail className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none" />
-                                                            <FormControl>
-                                                                <Input className="pl-9" placeholder="john@example.com" {...field} />
-                                                            </FormControl>
-                                                        </div>
-                                                        <FormMessage />
-                                                    </FormItem>
-                                                )}
-                                            />
-                                        </div>
-
-                                        <div className="grid grid-cols-2 gap-4 items-start">
-                                            <FormField
-                                                control={form.control}
-                                                name="phone"
-                                                render={({ field }) => (
-                                                    <FormItem>
-                                                        <FormLabel>Phone</FormLabel>
-                                                        <div className="relative">
-                                                            <IconPhone className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none" />
-                                                            <FormControl>
-                                                                <Input className="pl-9" placeholder="+1 (555) 000-0000" {...field} />
-                                                            </FormControl>
-                                                        </div>
-                                                        <FormMessage />
-                                                    </FormItem>
-                                                )}
-                                            />
-                                            <FormField
-                                                control={form.control}
-                                                name="role"
-                                                render={({ field }) => (
-                                                    <FormItem>
-                                                        <FormLabel>Role <span className="text-destructive">*</span></FormLabel>
-                                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                                            <FormControl>
-                                                                <SelectTrigger>
-                                                                    <SelectValue placeholder="Select a role" />
-                                                                </SelectTrigger>
-                                                            </FormControl>
-                                                            <SelectContent>
-                                                                <SelectItem value="Admin">Admin</SelectItem>
-                                                                <SelectItem value="Manager">Manager</SelectItem>
-                                                                <SelectItem value="Developer">Developer</SelectItem>
-                                                                <SelectItem value="Designer">Designer</SelectItem>
-                                                                <SelectItem value="Analyst">Analyst</SelectItem>
-                                                            </SelectContent>
-                                                        </Select>
-                                                        <FormMessage />
-                                                    </FormItem>
-                                                )}
-                                            />
-                                        </div>
-
+                            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+                                <div className="grid gap-4">
+                                    <div className="grid grid-cols-2 gap-4">
                                         <FormField
                                             control={form.control}
-                                            name="department"
+                                            name="name"
                                             render={({ field }) => (
                                                 <FormItem>
-                                                    <FormLabel>Department <span className="text-destructive">*</span></FormLabel>
+                                                    <FormLabel>Full Name <span className="text-destructive">*</span></FormLabel>
                                                     <div className="relative">
-                                                        <IconBriefcase className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none z-10" />
-                                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                                            <FormControl>
-                                                                <SelectTrigger className="pl-9">
-                                                                    <SelectValue placeholder="Select a department" />
-                                                                </SelectTrigger>
-                                                            </FormControl>
-                                                            <SelectContent>
-                                                                <SelectItem value="Engineering">Engineering</SelectItem>
-                                                                <SelectItem value="Design">Design</SelectItem>
-                                                                <SelectItem value="Marketing">Marketing</SelectItem>
-                                                                <SelectItem value="Sales">Sales</SelectItem>
-                                                                <SelectItem value="Finance">Finance</SelectItem>
-                                                                <SelectItem value="HR">HR</SelectItem>
-                                                                <SelectItem value="IT">IT</SelectItem>
-                                                                <SelectItem value="Operations">Operations</SelectItem>
-                                                            </SelectContent>
-                                                        </Select>
+                                                        <IconUser className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none" />
+                                                        <FormControl>
+                                                            <Input className="pl-9" placeholder="John Doe" {...field} />
+                                                        </FormControl>
+                                                    </div>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+                                        <FormField
+                                            control={form.control}
+                                            name="email"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel>Email <span className="text-destructive">*</span></FormLabel>
+                                                    <div className="relative">
+                                                        <IconMail className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none" />
+                                                        <FormControl>
+                                                            <Input className="pl-9" type="email" placeholder="john@example.com" {...field} />
+                                                        </FormControl>
                                                     </div>
                                                     <FormMessage />
                                                 </FormItem>
                                             )}
                                         />
                                     </div>
+
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <FormField
+                                            control={form.control}
+                                            name="phone"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel>Phone Number</FormLabel>
+                                                    <div className="relative">
+                                                        <IconPhone className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none" />
+                                                        <FormControl>
+                                                            <Input className="pl-9" type="tel" placeholder="+1 (555) 000-0000" {...field} />
+                                                        </FormControl>
+                                                    </div>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+                                        <FormField
+                                            control={form.control}
+                                            name="role"
+                                            render={({ field }) => (
+                                                <FormItem>
+                                                    <FormLabel>Role <span className="text-destructive">*</span></FormLabel>
+                                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                        <FormControl>
+                                                            <SelectTrigger className="w-full">
+                                                                <SelectValue placeholder="Select a role" />
+                                                            </SelectTrigger>
+                                                        </FormControl>
+                                                        <SelectContent>
+                                                            <SelectItem value="Admin">Admin</SelectItem>
+                                                            <SelectItem value="Manager">Manager</SelectItem>
+                                                            <SelectItem value="Developer">Developer</SelectItem>
+                                                            <SelectItem value="Designer">Designer</SelectItem>
+                                                            <SelectItem value="Analyst">Analyst</SelectItem>
+                                                        </SelectContent>
+                                                    </Select>
+                                                    <FormMessage />
+                                                </FormItem>
+                                            )}
+                                        />
+                                    </div>
+
+                                    <FormField
+                                        control={form.control}
+                                        name="department"
+                                        render={({ field }) => (
+                                            <FormItem>
+                                                <FormLabel>Department <span className="text-destructive">*</span></FormLabel>
+                                                <div className="relative">
+                                                    <IconBriefcase className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground pointer-events-none z-10" />
+                                                    <Select onValueChange={field.onChange} defaultValue={field.value}>
+                                                        <FormControl>
+                                                            <SelectTrigger className="w-full pl-9">
+                                                                <SelectValue placeholder="Select a department" />
+                                                            </SelectTrigger>
+                                                        </FormControl>
+                                                        <SelectContent>
+                                                            <SelectItem value="Engineering">Engineering</SelectItem>
+                                                            <SelectItem value="Design">Design</SelectItem>
+                                                            <SelectItem value="Marketing">Marketing</SelectItem>
+                                                            <SelectItem value="Sales">Sales</SelectItem>
+                                                            <SelectItem value="Finance">Finance</SelectItem>
+                                                            <SelectItem value="HR">HR</SelectItem>
+                                                            <SelectItem value="IT">IT</SelectItem>
+                                                            <SelectItem value="Operations">Operations</SelectItem>
+                                                        </SelectContent>
+                                                    </Select>
+                                                </div>
+                                                <FormMessage />
+                                            </FormItem>
+                                        )}
+                                    />
                                 </div>
 
-                                <DialogFooter>
-                                    <Button type="button" variant="secondary" onClick={() => setOpen(false)}>
+                                <DialogFooter className="flex flex-row justify-end gap-2 pt-4">
+                                    <Button type="button" variant="outline" onClick={() => setOpen(false)}>
                                         Cancel
                                     </Button>
                                     <Button type="submit">

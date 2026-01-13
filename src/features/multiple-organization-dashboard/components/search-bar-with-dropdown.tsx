@@ -34,7 +34,6 @@ export function SearchBarWithDropdown({
     const searchRef = useRef<HTMLDivElement>(null);
     const navigate = useNavigate();
 
-    // Filter events and organizations based on search query
     const filteredEvents = searchQuery.trim()
         ? events.filter((event) =>
             event.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -49,7 +48,6 @@ export function SearchBarWithDropdown({
 
     const hasResults = filteredEvents.length > 0 || filteredOrganizations.length > 0;
 
-    // Close dropdown when clicking outside
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
@@ -94,12 +92,10 @@ export function SearchBarWithDropdown({
                 />
             </div>
 
-            {/* Dropdown Results */}
             {isOpen && searchQuery.trim() && (
                 <div className="absolute top-full mt-2 w-full bg-card border-2 border-border rounded-xl shadow-2xl overflow-hidden z-[9999] max-h-[500px] overflow-y-auto">
                     {hasResults ? (
                         <div className="p-2">
-                            {/* Events Section */}
                             {filteredEvents.length > 0 && (
                                 <div className="mb-2">
                                     <div className="px-3 py-2 text-sm font-semibold text-muted-foreground">
@@ -139,7 +135,6 @@ export function SearchBarWithDropdown({
                                 </div>
                             )}
 
-                            {/* Organizations Section */}
                             {filteredOrganizations.length > 0 && (
                                 <div>
                                     <div className="px-3 py-2 text-sm font-semibold text-muted-foreground">

@@ -2,11 +2,8 @@ import { useState } from "react";
 import { SearchBarWithDropdown } from "../components/search-bar-with-dropdown";
 import { EventCardWithImage } from "../components/event-card-with-image";
 import { OrganizationCardWithImage } from "../components/organization-card-with-image";
-import { EventListItem } from "../components/event-list-item";
-import { OrganizationListItem } from "../components/organization-list-item";
 import { ChevronRight } from "lucide-react";
 
-// Mock data for events with proper image paths
 const MOCK_EVENTS = [
     {
         id: "1",
@@ -64,7 +61,6 @@ const MOCK_EVENTS = [
     },
 ];
 
-// Mock data for organizations with proper image paths
 const MOCK_ORGANIZATIONS = [
     {
         id: "1",
@@ -116,14 +112,10 @@ export default function MultiOrganizationLandingPage() {
 
     return (
         <div className="min-h-screen bg-gradient-to-br from-background via-background to-muted/20">
-            {/* Hero Section */}
-            <div className="relative overflow-hidden pb-6">
-                {/* Animated Background Gradient */}
+            <div className="relative overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
-
                 <div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
-                    {/* Header */}
-                    <div className="text-center space-y-4 mb-8">
+                    <div className="text-center space-y-4">
                         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground tracking-tight">
                             Choose organization or event to work with
                         </h1>
@@ -134,7 +126,6 @@ export default function MultiOrganizationLandingPage() {
                 </div>
             </div>
 
-            {/* Search Bar - Outside hero section for proper z-index */}
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 -mt-3 mb-10">
                 <div className="relative z-[1000]">
                     <SearchBarWithDropdown
@@ -145,13 +136,11 @@ export default function MultiOrganizationLandingPage() {
                 </div>
             </div>
 
-            {/* Content Section - Card Grid Layout */}
             <div className="container mx-auto px-4 sm:px-6 lg:px-8 pb-12 space-y-10">
-                {/* Events Section */}
                 <section className="space-y-5">
                     <div className="flex items-center gap-3">
                         <h2 className="text-xl sm:text-2xl font-bold text-foreground">
-                            Events
+                            Recent Events
                         </h2>
                         <div className="h-px flex-1 bg-gradient-to-r from-border to-transparent" />
                         {!showAllEvents && MOCK_EVENTS.length > 4 && (
@@ -180,11 +169,10 @@ export default function MultiOrganizationLandingPage() {
                     </div>
                 </section>
 
-                {/* Organizations Section */}
                 <section className="space-y-5">
                     <div className="flex items-center gap-3">
                         <h2 className="text-xl sm:text-2xl font-bold text-foreground">
-                            Organizations
+                            Recent Organizations
                         </h2>
                         <div className="h-px flex-1 bg-gradient-to-r from-border to-transparent" />
                         {!showAllOrganizations && MOCK_ORGANIZATIONS.length > 4 && (

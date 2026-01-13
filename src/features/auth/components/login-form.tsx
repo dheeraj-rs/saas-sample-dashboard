@@ -36,7 +36,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
 
     useEffect(() => {
         if (isAuthenticated) {
-            navigate("/event-dashboard")
+            navigate("/")
         }
     }, [isAuthenticated, navigate])
 
@@ -44,7 +44,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
         try {
             await login(data)
             toast.success("Login successful! Redirecting...", { position: "top-right", duration: 2000 })
-            navigate("/event-dashboard")
+            navigate("/")
         } catch (error) {
             console.error("Login failed:", error)
         }
@@ -52,7 +52,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
 
     return (
         <div className={cn("grid gap-6 w-full max-w-[400px] mx-auto", className)}>
-            <div className="flex flex-col items-start text-center gap-2 mb-6">
+            <div className="flex flex-col items-start text-start gap-2">
                 <div className="flex items-center justify-center h-16 mb-2">
                     <img
                         src="/cp-logo-name.png"
@@ -60,17 +60,15 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
                         className="h-full w-auto object-contain"
                     />
                 </div>
-                <h1 className="text-2xl font-bold tracking-tight">Login to Dashboard</h1>
+                <h1 className="text-2xl font-bold tracking-tight">Welcome Back</h1>
                 <p className="text-muted-foreground text-sm">
-                    Welcome back! Please enter your details.
+                    Sign in to access your dashboard
                 </p>
             </div>
 
             <form className="flex flex-col gap-5" {...props} onSubmit={handleSubmit(onSubmit)}>
                 {error && (
                     <Alert variant="destructive" className="animate-in fade-in slide-in-from-top-2 border-destructive/50 bg-destructive/5">
-                        <AlertCircle className="h-4 w-4" />
-                        <AlertTitle>Authentication Error</AlertTitle>
                         <AlertDescription>
                             {error}
                         </AlertDescription>

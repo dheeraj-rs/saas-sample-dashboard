@@ -51,21 +51,14 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
 
     if (isSuccess) {
         return (
-            <Card className="w-full max-w-[450px] mx-auto shadow-sm border-0 bg-white/50 backdrop-blur-sm dark:bg-zinc-950/50">
-                <CardHeader className="flex flex-col items-center text-center space-y-2 pb-2">
-                    <div className="flex items-center justify-center h-10 mb-6">
-                        <img
-                            src="/cp-logo-name.png"
-                            alt="Conference Prime"
-                            className="h-full w-auto object-contain"
-                        />
+            <Card className="w-full max-w-[450px] mx-auto shadow-xl border-0 bg-white/90 backdrop-blur-md dark:bg-zinc-950/90 overflow-hidden">
+                <CardHeader className="flex flex-col items-center text-center space-y-3 pb-6 pt-8 px-8">
+                    <div className="flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500/20 to-green-500/10 mb-2 p-3 animate-in zoom-in duration-500">
+                        <CheckCircle2 className="w-10 h-10 text-green-600 dark:text-green-400" />
                     </div>
-                    <div className="flex items-center justify-center w-12 h-12 rounded-full bg-green-100 dark:bg-green-900/30 mb-2 p-2 animate-in zoom-in duration-300">
-                        <CheckCircle2 className="w-8 h-8 text-green-600 dark:text-green-400" />
-                    </div>
-                    <CardTitle className="text-2xl font-bold tracking-tight">Check Your Email</CardTitle>
-                    <CardDescription className="text-base text-balance">
-                        We have sent a password reset link to <span className="font-medium text-foreground">your email address</span>.
+                    <CardTitle className="text-3xl font-bold tracking-tight">Check Your Email</CardTitle>
+                    <CardDescription className="text-base leading-relaxed">
+                        We've sent password reset instructions to <span className="font-semibold text-foreground">your email address</span>
                     </CardDescription>
                 </CardHeader>
                 <CardContent className="space-y-4">
@@ -97,18 +90,16 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
     }
 
     return (
-        <Card className="w-full max-w-[450px] mx-auto shadow-lg border-0 bg-white/50 backdrop-blur-sm dark:bg-zinc-950/50">
-            <CardHeader className="space-y-1 flex flex-col items-center text-center pb-2">
-                <div className="flex items-center justify-center h-10 mb-6">
-                    <img
-                        src="/cp-logo-name.png"
-                        alt="Conference Prime"
-                        className="h-full w-auto object-contain"
-                    />
-                </div>
-                <CardTitle className="text-2xl font-bold tracking-tight">Forgot Password?</CardTitle>
-                <CardDescription className="text-base text-balance max-w-xs mx-auto">
-                    Enter your email address and we'll send you a reset link
+        <Card className="w-full max-w-[450px] mx-auto shadow-xl border-0 bg-white/90 backdrop-blur-md dark:bg-zinc-950/90 overflow-hidden">
+            <CardHeader className="space-y-3 flex flex-col items-center text-center px-8">
+                {/* <div className="flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-primary/10 mb-2">
+                    <Mail className="w-8 h-8 text-primary" />
+                </div> */}
+                <CardTitle className="text-3xl font-bold tracking-tight bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text">
+                    Forgot Password?
+                </CardTitle>
+                <CardDescription className="text-base leading-relaxed max-w-sm mx-auto text-muted-foreground/90">
+                    No worries! Enter your email and we'll send you reset instructions
                 </CardDescription>
             </CardHeader>
             <CardContent>
@@ -118,8 +109,6 @@ export function ForgotPasswordForm({ className, ...props }: React.ComponentProps
                     <form className={cn("grid gap-4", className)} {...props} onSubmit={handleSubmit(onSubmit)}>
                         {error && (
                             <Alert variant="destructive" className="animate-in fade-in slide-in-from-top-2 border-destructive/50 bg-destructive/5">
-                                <AlertCircle className="h-4 w-4" />
-                                <AlertTitle>Error</AlertTitle>
                                 <AlertDescription>
                                     {error}
                                 </AlertDescription>

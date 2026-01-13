@@ -28,25 +28,25 @@ export function StatsCards({ events }: StatsCardsProps) {
     const totalRevenue = totalTickets * 150
 
     return (
-        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {/* Total Users & Active Users Card */}
-            <Card className="shadow-sm p-2">
-                <div className="flex flex-row items-center justify-between">
-                    <span className="text-xs font-medium text-muted-foreground">
+            <Card className="shadow-sm p-4">
+                <div className="flex flex-row items-center justify-between mb-2">
+                    <span className="text-sm font-bold text-foreground">
                         Users
                     </span>
-                    <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10">
-                        <IconUsers className="h-3 w-3 text-primary" />
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10">
+                        <IconUsers className="h-4 w-4 text-primary" />
                     </div>
                 </div>
-                <div className="space-y-0">
-                    <div className="flex items-baseline gap-1.5">
-                        <div className="text-2xl font-bold leading-none">{totalUsers.toLocaleString()}</div>
-                        <div className="text-[10px] text-muted-foreground">Total</div>
+                <div className="space-y-1">
+                    <div className="flex items-baseline gap-2">
+                        <div className="text-2xl font-bold">{totalUsers.toLocaleString()}</div>
+                        <div className="text-xs text-muted-foreground">Total</div>
                     </div>
-                    <div className="flex items-center gap-1 text-[10px] mt-0.5 leading-none">
-                        <div className="flex items-center gap-0.5 text-green-600">
-                            <IconTrendingUp className="h-2.5 w-2.5" />
+                    <div className="flex items-center gap-1.5 text-xs mt-1">
+                        <div className="flex items-center gap-1 text-green-600">
+                            <IconTrendingUp className="h-3 w-3" />
                             <span className="font-medium">{activeUsers}</span>
                         </div>
                         <span className="text-muted-foreground">Active Users</span>
@@ -55,42 +55,42 @@ export function StatsCards({ events }: StatsCardsProps) {
             </Card>
 
             {/* Tickets Card */}
-            <Card className="shadow-sm py-2 px-3">
-                <div className="flex flex-row items-center justify-between mb-0.5">
-                    <span className="text-xs font-medium text-muted-foreground">
+            <Card className="shadow-sm p-4">
+                <div className="flex flex-row items-center justify-between mb-2">
+                    <span className="text-sm font-bold text-foreground">
                         Tickets
                     </span>
-                    <div className="flex h-5 w-5 items-center justify-center rounded-full bg-blue-500/10">
-                        <IconTicket className="h-3 w-3 text-blue-500" />
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-500/10">
+                        <IconTicket className="h-4 w-4 text-blue-500" />
                     </div>
                 </div>
-                <div className="space-y-0">
-                    <div className="flex items-baseline gap-1.5">
-                        <div className="text-2xl font-bold leading-none">{totalTickets.toLocaleString()}</div>
-                        <div className="text-[10px] text-muted-foreground">Sold</div>
+                <div className="space-y-1">
+                    <div className="flex items-baseline gap-2">
+                        <div className="text-2xl font-bold">{totalTickets.toLocaleString()}</div>
+                        <div className="text-xs text-muted-foreground">Sold</div>
                     </div>
-                    <div className="text-[10px] text-muted-foreground mt-0.5 leading-none">
+                    <div className="text-xs text-muted-foreground mt-1">
                         Across {events.length} events
                     </div>
                 </div>
             </Card>
 
             {/* Revenue Card */}
-            <Card className="shadow-sm p-2">
-                <div className="flex flex-row items-center justify-between mb-0.5">
-                    <span className="text-xs font-medium text-muted-foreground">
+            <Card className="shadow-sm p-4">
+                <div className="flex flex-row items-center justify-between mb-2">
+                    <span className="text-sm font-bold text-foreground">
                         Revenue
                     </span>
-                    <div className="flex h-5 w-5 items-center justify-center rounded-full bg-green-500/10">
-                        <IconTrendingUp className="h-3 w-3 text-green-500" />
+                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-green-500/10">
+                        <IconTrendingUp className="h-4 w-4 text-green-500" />
                     </div>
                 </div>
-                <div className="space-y-0">
-                    <div className="flex items-baseline gap-1.5">
-                        <div className="text-2xl font-bold leading-none">${(totalRevenue / 1000).toFixed(1)}K</div>
-                        <div className="text-[10px] text-muted-foreground">Total</div>
+                <div className="space-y-1">
+                    <div className="flex items-baseline gap-2">
+                        <div className="text-2xl font-bold">${(totalRevenue / 1000).toFixed(1)}K</div>
+                        <div className="text-xs text-muted-foreground">Total</div>
                     </div>
-                    <div className="text-[10px] text-muted-foreground mt-0.5 leading-none">
+                    <div className="text-xs text-muted-foreground mt-1">
                         ${totalRevenue.toLocaleString()} generated
                     </div>
                 </div>

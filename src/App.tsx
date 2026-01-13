@@ -39,28 +39,28 @@ import NotificationsPage from "./features/event-dashboard/routes/dashbord-pages/
 import SettingsPage from "./features/event-dashboard/routes/dashbord-pages/settings-page";
 import HelpPage from "./features/event-dashboard/routes/dashbord-pages/help-page";
 import SearchPage from "./features/event-dashboard/routes/dashbord-pages/search-page";
-import OrgDashboardPage from "./features/org-dashboard/routes/dashbord-pages/dashboard-page";
-import ManageEventsPage from "./features/org-dashboard/routes/manage-events/manage-events-page";
-import ManageUsersPage from "./features/org-dashboard/routes/manage-users/manage-users-page";
-import InviteUsersPage from "./features/org-dashboard/routes/invite-users/invite-users-page";
-import TeamMembersPage from "./features/org-dashboard/routes/dashbord-pages/team-members-page";
-import RolesPermissionsPage from "./features/org-dashboard/routes/dashbord-pages/roles-permissions-page";
-import DepartmentsPage from "./features/org-dashboard/routes/dashbord-pages/departments-page";
-import OrganizationSettingsPage from "./features/org-dashboard/routes/dashbord-pages/organization-settings-page";
-import BrandingPage from "./features/org-dashboard/routes/dashbord-pages/branding-page";
-import IntegrationsPage from "./features/org-dashboard/routes/dashbord-pages/integrations-page";
-import SubscriptionPlansPage from "./features/org-dashboard/routes/dashbord-pages/subscription-plans-page";
-import PaymentMethodsPage from "./features/org-dashboard/routes/dashbord-pages/payment-methods-page";
-import InvoicesPage from "./features/org-dashboard/routes/dashbord-pages/invoices-page";
-import EventAnalyticsPage from "./features/org-dashboard/routes/dashbord-pages/event-analytics-page";
-import UserActivityPage from "./features/org-dashboard/routes/dashbord-pages/user-activity-page";
-import RevenueReportsPage from "./features/org-dashboard/routes/dashbord-pages/revenue-reports-page";
-import OrgNotificationsPage from "./features/org-dashboard/routes/dashbord-pages/notifications-page";
-import SecurityPage from "./features/org-dashboard/routes/dashbord-pages/security-page";
-import OrgSupportPage from "./features/org-dashboard/routes/dashbord-pages/support-page";
-import OrgSearchPage from "./features/org-dashboard/routes/dashbord-pages/search-page";
-import ProfilePage from "./features/org-dashboard/routes/profile/profile-page";
-import UserDetailsPage from "./features/org-dashboard/routes/manage-users/user-details-page";
+import OrgDashboardPage from "./features/organization-dashboard/routes/dashbord-pages/dashboard-page";
+import ManageEventsPage from "./features/organization-dashboard/routes/manage-events/manage-events-page";
+import ManageUsersPage from "./features/organization-dashboard/routes/manage-users/manage-users-page";
+import InviteUsersPage from "./features/organization-dashboard/routes/invite-users/invite-users-page";
+import TeamMembersPage from "./features/organization-dashboard/routes/dashbord-pages/team-members-page";
+import RolesPermissionsPage from "./features/organization-dashboard/routes/dashbord-pages/roles-permissions-page";
+import DepartmentsPage from "./features/organization-dashboard/routes/dashbord-pages/departments-page";
+import OrganizationSettingsPage from "./features/organization-dashboard/routes/dashbord-pages/organization-settings-page";
+import BrandingPage from "./features/organization-dashboard/routes/dashbord-pages/branding-page";
+import IntegrationsPage from "./features/organization-dashboard/routes/dashbord-pages/integrations-page";
+import SubscriptionPlansPage from "./features/organization-dashboard/routes/dashbord-pages/subscription-plans-page";
+import PaymentMethodsPage from "./features/organization-dashboard/routes/dashbord-pages/payment-methods-page";
+import InvoicesPage from "./features/organization-dashboard/routes/dashbord-pages/invoices-page";
+import EventAnalyticsPage from "./features/organization-dashboard/routes/dashbord-pages/event-analytics-page";
+import UserActivityPage from "./features/organization-dashboard/routes/dashbord-pages/user-activity-page";
+import RevenueReportsPage from "./features/organization-dashboard/routes/dashbord-pages/revenue-reports-page";
+import OrgNotificationsPage from "./features/organization-dashboard/routes/dashbord-pages/notifications-page";
+import SecurityPage from "./features/organization-dashboard/routes/dashbord-pages/security-page";
+import OrgSupportPage from "./features/organization-dashboard/routes/dashbord-pages/support-page";
+import OrgSearchPage from "./features/organization-dashboard/routes/dashbord-pages/search-page";
+import ProfilePage from "./features/organization-dashboard/routes/profile/profile-page";
+import UserDetailsPage from "./features/organization-dashboard/routes/manage-users/user-details-page";
 import NotFoundPage from "./components/common/reusing-pages/not-found-page";
 
 function App() {
@@ -109,28 +109,28 @@ function App() {
                   <Route path="/event-dashboard/help" element={<HelpPage />} />
                   <Route path="/event-dashboard/search" element={<SearchPage />} />
 
-                  <Route path="/org-dashboard" element={<OrgDashboardPage />} />
-                  <Route path="/org-dashboard/events" element={<ManageEventsPage />} />
-                  <Route path="/org-dashboard/users" element={<ManageUsersPage />} />
-                  <Route path="/org-dashboard/invite-users" element={<InviteUsersPage />} />
-                  <Route path="/org-dashboard/team-members" element={<TeamMembersPage />} />
-                  <Route path="/org-dashboard/roles-permissions" element={<RolesPermissionsPage />} />
-                  <Route path="/org-dashboard/departments" element={<DepartmentsPage />} />
-                  <Route path="/org-dashboard/organization-settings" element={<OrganizationSettingsPage />} />
-                  <Route path="/org-dashboard/branding" element={<BrandingPage />} />
-                  <Route path="/org-dashboard/integrations" element={<IntegrationsPage />} />
-                  <Route path="/org-dashboard/subscription-plans" element={<SubscriptionPlansPage />} />
-                  <Route path="/org-dashboard/payment-methods" element={<PaymentMethodsPage />} />
-                  <Route path="/org-dashboard/invoices" element={<InvoicesPage />} />
-                  <Route path="/org-dashboard/event-analytics" element={<EventAnalyticsPage />} />
-                  <Route path="/org-dashboard/user-activity" element={<UserActivityPage />} />
-                  <Route path="/org-dashboard/revenue-reports" element={<RevenueReportsPage />} />
-                  <Route path="/org-dashboard/notifications" element={<OrgNotificationsPage />} />
-                  <Route path="/org-dashboard/security" element={<SecurityPage />} />
-                  <Route path="/org-dashboard/support" element={<OrgSupportPage />} />
-                  <Route path="/org-dashboard/search" element={<OrgSearchPage />} />
-                  <Route path="/org-dashboard/profile" element={<ProfilePage />} />
-                  <Route path="/org-dashboard/users/:id" element={<UserDetailsPage />} />
+                  <Route path="/organization-dashboard" element={<OrgDashboardPage />} />
+                  <Route path="/organization-dashboard/events" element={<ManageEventsPage />} />
+                  <Route path="/organization-dashboard/users" element={<ManageUsersPage />} />
+                  <Route path="/organization-dashboard/invite-users" element={<InviteUsersPage />} />
+                  <Route path="/organization-dashboard/team-members" element={<TeamMembersPage />} />
+                  <Route path="/organization-dashboard/roles-permissions" element={<RolesPermissionsPage />} />
+                  <Route path="/organization-dashboard/departments" element={<DepartmentsPage />} />
+                  <Route path="/organization-dashboard/organization-settings" element={<OrganizationSettingsPage />} />
+                  <Route path="/organization-dashboard/branding" element={<BrandingPage />} />
+                  <Route path="/organization-dashboard/integrations" element={<IntegrationsPage />} />
+                  <Route path="/organization-dashboard/subscription-plans" element={<SubscriptionPlansPage />} />
+                  <Route path="/organization-dashboard/payment-methods" element={<PaymentMethodsPage />} />
+                  <Route path="/organization-dashboard/invoices" element={<InvoicesPage />} />
+                  <Route path="/organization-dashboard/event-analytics" element={<EventAnalyticsPage />} />
+                  <Route path="/organization-dashboard/user-activity" element={<UserActivityPage />} />
+                  <Route path="/organization-dashboard/revenue-reports" element={<RevenueReportsPage />} />
+                  <Route path="/organization-dashboard/notifications" element={<OrgNotificationsPage />} />
+                  <Route path="/organization-dashboard/security" element={<SecurityPage />} />
+                  <Route path="/organization-dashboard/support" element={<OrgSupportPage />} />
+                  <Route path="/organization-dashboard/search" element={<OrgSearchPage />} />
+                  <Route path="/organization-dashboard/profile" element={<ProfilePage />} />
+                  <Route path="/organization-dashboard/users/:id" element={<UserDetailsPage />} />
                 </Route>
 
                 <Route path="*" element={<NotFoundPage />} />

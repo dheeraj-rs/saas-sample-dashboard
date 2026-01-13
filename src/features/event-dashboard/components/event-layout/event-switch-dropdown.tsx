@@ -89,7 +89,7 @@ export function EventSwitchDropdown({ events, organizations }: { events: Team[],
                                     <DropdownMenuItem
                                         key={org.name}
                                         className="gap-2 p-2"
-                                        onClick={() => navigate("/org-dashboard")}
+                                        onClick={() => navigate("/organization-dashboard")}
                                     >
                                         <div className="flex size-7 items-center justify-center rounded-sm border">
                                             <org.logo className="size-4 shrink-0" />

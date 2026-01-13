@@ -1,4 +1,4 @@
-import usersData from "@/features/org-dashboard/data/users-data.json"
+import usersData from "@/features/organization-dashboard/data/users-data.json"
 import OrgDashboardLayout from "../../layouts/dashboard-layout"
 import { OrgUsersTable } from "../../components/dashboard-page/org-users-table"
 

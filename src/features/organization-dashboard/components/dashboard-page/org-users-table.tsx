@@ -182,7 +182,7 @@ function UserActionsCell({ user }: { user: z.infer<typeof userSchema> }) {
                     </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end" className="w-32">
-                    <DropdownMenuItem onClick={() => navigate(`/org-dashboard/users/${user.id}`)}>
+                    <DropdownMenuItem onClick={() => navigate(`/organization-dashboard/users/${user.id}`)}>
                         View Profile
                     </DropdownMenuItem>
                     <DropdownMenuSeparator />

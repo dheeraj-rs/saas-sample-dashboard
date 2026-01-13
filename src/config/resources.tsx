@@ -148,170 +148,170 @@ export const EVENT_DASHBOARD_RESOURCES: ResourceProps[] = [
 
 export const ORG_DASHBOARD_RESOURCES: ResourceProps[] = [
     {
-        name: "org-dashboard",
-        list: "/org-dashboard",
+        name: "organization-dashboard",
+        list: "/organization-dashboard",
         meta: {
             label: "Organization Dashboard",
         },
     },
     {
         name: "org-events",
-        list: "/org-dashboard/events",
+        list: "/organization-dashboard/events",
         meta: {
             label: "Manage Events",
-            parent: "org-dashboard",
+            parent: "organization-dashboard",
         },
     },
     {
         name: "org-users",
-        list: "/org-dashboard/users",
+        list: "/organization-dashboard/users",
         meta: {
             label: "Manage Users",
-            parent: "org-dashboard",
+            parent: "organization-dashboard",
         },
     },
     {
         name: "invite-users",
-        list: "/org-dashboard/invite-users",
+        list: "/organization-dashboard/invite-users",
         meta: {
             label: "Invite Users",
-            parent: "org-dashboard",
+            parent: "organization-dashboard",
         },
     },
     {
         name: "team-members",
-        list: "/org-dashboard/team-members",
+        list: "/organization-dashboard/team-members",
         meta: {
             label: "Team Members",
-            parent: "org-dashboard",
+            parent: "organization-dashboard",
         },
     },
     {
         name: "roles-permissions",
-        list: "/org-dashboard/roles-permissions",
+        list: "/organization-dashboard/roles-permissions",
         meta: {
             label: "Roles & Permissions",
-            parent: "org-dashboard",
+            parent: "organization-dashboard",
         },
     },
     {
         name: "departments",
-        list: "/org-dashboard/departments",
+        list: "/organization-dashboard/departments",
         meta: {
             label: "Departments",
-            parent: "org-dashboard",
+            parent: "organization-dashboard",
         },
     },
     {
         name: "organization-settings",
-        list: "/org-dashboard/organization-settings",
+        list: "/organization-dashboard/organization-settings",
         meta: {
             label: "Organization Settings",
-            parent: "org-dashboard",
+            parent: "organization-dashboard",
         },
     },
     {
         name: "branding",
-        list: "/org-dashboard/branding",
+        list: "/organization-dashboard/branding",
         meta: {
             label: "Branding",
-            parent: "org-dashboard",
+            parent: "organization-dashboard",
         },
     },
     {
         name: "integrations",
-        list: "/org-dashboard/integrations",
+        list: "/organization-dashboard/integrations",
         meta: {
             label: "Integrations",
-            parent: "org-dashboard",
+            parent: "organization-dashboard",
         },
     },
     {
         name: "subscription-plans",
-        list: "/org-dashboard/subscription-plans",
+        list: "/organization-dashboard/subscription-plans",
         meta: {
             label: "Subscription Plans",
-            parent: "org-dashboard",
+            parent: "organization-dashboard",
         },
     },
     {
         name: "payment-methods",
-        list: "/org-dashboard/payment-methods",
+        list: "/organization-dashboard/payment-methods",
         meta: {
             label: "Payment Methods",
-            parent: "org-dashboard",
+            parent: "organization-dashboard",
         },
     },
     {
         name: "invoices",
-        list: "/org-dashboard/invoices",
+        list: "/organization-dashboard/invoices",
         meta: {
             label: "Invoices",
-            parent: "org-dashboard",
+            parent: "organization-dashboard",
         },
     },
     {
         name: "event-analytics",
-        list: "/org-dashboard/event-analytics",
+        list: "/organization-dashboard/event-analytics",
         meta: {
             label: "Event Analytics",
-            parent: "org-dashboard",
+            parent: "organization-dashboard",
         },
     },
     {
         name: "user-activity",
-        list: "/org-dashboard/user-activity",
+        list: "/organization-dashboard/user-activity",
         meta: {
             label: "User Activity",
-            parent: "org-dashboard",
+            parent: "organization-dashboard",
         },
     },
     {
         name: "revenue-reports",
-        list: "/org-dashboard/revenue-reports",
+        list: "/organization-dashboard/revenue-reports",
         meta: {
             label: "Revenue Reports",
-            parent: "org-dashboard",
+            parent: "organization-dashboard",
         },
     },
     {
         name: "org-notifications",
-        list: "/org-dashboard/notifications",
+        list: "/organization-dashboard/notifications",
         meta: {
             label: "Notifications",
-            parent: "org-dashboard",
+            parent: "organization-dashboard",
         },
     },
     {
         name: "security",
-        list: "/org-dashboard/security",
+        list: "/organization-dashboard/security",
         meta: {
             label: "Security",
-            parent: "org-dashboard",
+            parent: "organization-dashboard",
         },
     },
     {
         name: "org-support",
-        list: "/org-dashboard/support",
+        list: "/organization-dashboard/support",
         meta: {
             label: "Help & Support",
-            parent: "org-dashboard",
+            parent: "organization-dashboard",
         },
     },
     {
         name: "org-search",
-        list: "/org-dashboard/search",
+        list: "/organization-dashboard/search",
         meta: {
             label: "Search",
-            parent: "org-dashboard",
+            parent: "organization-dashboard",
         },
     },
     {
         name: "profile",
-        list: "/org-dashboard/profile",
+        list: "/organization-dashboard/profile",
         meta: {
             label: "Profile",
-            parent: "org-dashboard",
+            parent: "organization-dashboard",
         },
     },
 ];

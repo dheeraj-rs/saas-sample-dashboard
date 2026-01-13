@@ -1,6 +1,6 @@
 import { useParams, useNavigate } from "react-router"
 import { ArrowLeft, Mail, Phone, Building2, Activity } from "lucide-react"
-import usersData from "@/features/org-dashboard/data/users-data.json"
+import usersData from "@/features/organization-dashboard/data/users-data.json"
 import OrgDashboardLayout from "../../layouts/dashboard-layout"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
@@ -17,7 +17,7 @@ export default function UserDetailsPage() {
             <OrgDashboardLayout>
                 <div className="flex flex-col items-center justify-center h-[50vh] space-y-4">
                     <h2 className="text-2xl font-bold">User not found</h2>
-                    <Button onClick={() => navigate("/org-dashboard/users")}>
+                    <Button onClick={() => navigate("/organization-dashboard/users")}>
                         Back to Users
                     </Button>
                 </div>
@@ -39,7 +39,7 @@ export default function UserDetailsPage() {
             <div className="flex flex-col gap-6 p-6">
                 {/* Header with Back Button */}
                 <div className="flex items-center gap-4">
-                    <Button variant="ghost" size="icon" onClick={() => navigate("/org-dashboard/users")}>
+                    <Button variant="ghost" size="icon" onClick={() => navigate("/organization-dashboard/users")}>
                         <ArrowLeft className="h-4 w-4" />
                     </Button>
                     <div>

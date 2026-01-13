@@ -119,7 +119,7 @@ export function UserProfile({
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem onClick={() => navigate("/org-dashboard/profile")}>
+              <DropdownMenuItem onClick={() => navigate("/organization-dashboard/profile")}>
                 <User className="mr-2 h-4 w-4" />
                 Profile
               </DropdownMenuItem>

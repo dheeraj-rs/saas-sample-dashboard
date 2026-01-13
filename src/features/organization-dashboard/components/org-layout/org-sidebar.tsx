@@ -73,22 +73,22 @@ const sidebarData = {
     navMain: [
         {
             title: "Dashboard",
-            url: "/org-dashboard",
+            url: "/organization-dashboard",
             icon: IconDashboard,
         },
         {
             title: "Manage Events",
-            url: "/org-dashboard/events",
+            url: "/organization-dashboard/events",
             icon: IconCalendarEvent,
         },
         {
             title: "Manage Users",
-            url: "/org-dashboard/users",
+            url: "/organization-dashboard/users",
             icon: IconUsers,
         },
         {
             title: "Invite Users",
-            url: "/org-dashboard/invite-users",
+            url: "/organization-dashboard/invite-users",
             icon: IconUserPlus,
         },
     ],
@@ -101,15 +101,15 @@ const sidebarData = {
             items: [
                 {
                     title: "Team Members",
-                    url: "/org-dashboard/team-members",
+                    url: "/organization-dashboard/team-members",
                 },
                 {
                     title: "Roles & Permissions",
-                    url: "/org-dashboard/roles-permissions",
+                    url: "/organization-dashboard/roles-permissions",
                 },
                 {
                     title: "Departments",
-                    url: "/org-dashboard/departments",
+                    url: "/organization-dashboard/departments",
                 },
             ],
         },
@@ -120,15 +120,15 @@ const sidebarData = {
             items: [
                 {
                     title: "Organization Settings",
-                    url: "/org-dashboard/organization-settings",
+                    url: "/organization-dashboard/organization-settings",
                 },
                 {
                     title: "Branding",
-                    url: "/org-dashboard/branding",
+                    url: "/organization-dashboard/branding",
                 },
                 {
                     title: "Integrations",
-                    url: "/org-dashboard/integrations",
+                    url: "/organization-dashboard/integrations",
                 },
             ],
         },
@@ -139,15 +139,15 @@ const sidebarData = {
             items: [
                 {
                     title: "Subscription Plans",
-                    url: "/org-dashboard/subscription-plans",
+                    url: "/organization-dashboard/subscription-plans",
                 },
                 {
                     title: "Payment Methods",
-                    url: "/org-dashboard/payment-methods",
+                    url: "/organization-dashboard/payment-methods",
                 },
                 {
                     title: "Invoices",
-                    url: "/org-dashboard/invoices",
+                    url: "/organization-dashboard/invoices",
                 },
             ],
         },
@@ -158,15 +158,15 @@ const sidebarData = {
             items: [
                 {
                     title: "Event Analytics",
-                    url: "/org-dashboard/event-analytics",
+                    url: "/organization-dashboard/event-analytics",
                 },
                 {
                     title: "User Activity",
-                    url: "/org-dashboard/user-activity",
+                    url: "/organization-dashboard/user-activity",
                 },
                 {
                     title: "Revenue Reports",
-                    url: "/org-dashboard/revenue-reports",
+                    url: "/organization-dashboard/revenue-reports",
                 },
             ],
         },
@@ -174,22 +174,22 @@ const sidebarData = {
     navSecondary: [
         {
             title: "Notifications",
-            url: "/org-dashboard/notifications",
+            url: "/organization-dashboard/notifications",
             icon: IconBell,
         },
         {
             title: "Security",
-            url: "/org-dashboard/security",
+            url: "/organization-dashboard/security",
             icon: IconShield,
         },
         {
             title: "Help & Support",
-            url: "/org-dashboard/support",
+            url: "/organization-dashboard/support",
             icon: IconHelp,
         },
         {
             title: "Search",
-            url: "/org-dashboard/search",
+            url: "/organization-dashboard/search",
             icon: IconSearch,
         },
     ],

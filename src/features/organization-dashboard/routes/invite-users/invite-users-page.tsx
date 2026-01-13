@@ -1,7 +1,7 @@
 import { useState } from "react"
 import type { Table } from "@tanstack/react-table"
 import type { z } from "zod"
-import usersData from "@/features/org-dashboard/data/invite-users-data.json"
+import usersData from "@/features/organization-dashboard/data/invite-users-data.json"
 import OrgDashboardLayout from "../../layouts/dashboard-layout"
 import { OrgInviteUsersTable, inviteUserSchema } from "../../components/dashboard-page/org-invite-users-table"
 import { InviteUsersHeaderActions } from "../../components/header-actions/invite-users-header-actions"

@@ -62,6 +62,7 @@ import OrgSearchPage from "./features/organization-dashboard/routes/dashbord-pag
 import ProfilePage from "./features/organization-dashboard/routes/profile/profile-page";
 import UserDetailsPage from "./features/organization-dashboard/routes/manage-users/user-details-page";
 import NotFoundPage from "./components/common/reusing-pages/not-found-page";
+import MultiOrganizationLandingPage from "./features/multiple-organization-dashboard/routes/multi-organization-landing-page";
 
 function App() {
   return (
@@ -89,7 +90,7 @@ function App() {
                 <Route path="/reset-password" element={<ResetPasswordPage />} />
 
                 <Route element={<ProtectedRoute />}>
-                  <Route path="/" element={<EventDashboardPage />} />
+                  <Route path="/" element={<MultiOrganizationLandingPage />} />
                   <Route path="/event-dashboard" element={<EventDashboardPage />} />
                   <Route path="/event-dashboard/users" element={<UsersListPage />} />
                   <Route path="/event-dashboard/support" element={<AppSupportPage />} />

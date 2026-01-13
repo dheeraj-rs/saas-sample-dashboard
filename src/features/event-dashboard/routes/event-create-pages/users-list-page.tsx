@@ -71,6 +71,7 @@ import data from "../../data/users-data.json"
 import EventDashboardLayout from "../../layouts/dashboard-layout"
 import { useEventUsersFilterStore } from "@/store/event-users-filter.store"
 import { EventUsersHeaderActions } from "../../components/header-actions/event-users-header-actions"
+import { AddUserModal } from "../../components/modals/add-user-modal"
 
 export const userSchema = z.object({
     id: z.string(),
@@ -468,10 +469,14 @@ export default function UsersListPage() {
     const [table, setTable] = React.useState<TableType<z.infer<typeof userSchema>> | null>(null)
 
     const headerActions = (
-        <Button size="sm">
-            <IconPlus className="size-4 mr-2" />
-            Add User
-        </Button>
+        <AddUserModal
+            trigger={
+                <Button size="sm">
+                    <IconPlus className="size-4 mr-2" />
+                    Add User
+                </Button>
+            }
+        />
     )
 
     return (

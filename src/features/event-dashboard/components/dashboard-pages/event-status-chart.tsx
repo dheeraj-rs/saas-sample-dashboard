@@ -47,7 +47,7 @@ export function EventStatusChart({ events }: EventStatusChartProps) {
             <div className="mb-4">
                 <span className="text-sm font-semibold text-muted-foreground">Event Status Distribution</span>
             </div>
-            <div className="flex-1 min-h-0 relative">
+            <div className="flex-1 min-h-[300px] relative">
                 <ResponsiveContainer width="100%" height="100%">
                     <PieChart>
                         <Pie

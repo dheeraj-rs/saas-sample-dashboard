@@ -2,7 +2,7 @@ import { ChartAreaInteractive } from "@/features/event-dashboard/components/dash
 import { StatsCards } from "@/features/event-dashboard/components/dashboard-pages/stats-cards"
 import { RecentEventsCard } from "@/features/event-dashboard/components/dashboard-pages/recent-events-card"
 import { EventStatusChart } from "@/features/event-dashboard/components/dashboard-pages/event-status-chart"
-import eventsData from "@/features/event-dashboard/data/events-data.json"
+import { orgEvents, orgMetrics } from "@/features/organization-dashboard/data/org-dashboard-data"
 
 export default function OrgDashboard() {
     return (
@@ -14,12 +14,12 @@ export default function OrgDashboard() {
                     <div className="flex flex-col gap-6">
                         {/* Stats Cards - Small Height */}
                         <div>
-                            <StatsCards events={eventsData} />
+                            <StatsCards events={orgEvents} metrics={orgMetrics} />
                         </div>
 
                         {/* Event Registrations Chart - Large */}
                         <div className="flex-1">
-                            <ChartAreaInteractive events={eventsData} />
+                            <ChartAreaInteractive events={orgEvents} />
                         </div>
                     </div>
 
@@ -27,12 +27,12 @@ export default function OrgDashboard() {
                     <div className="flex flex-col gap-6">
                         {/* Recent Events - Same height as Event Status Chart */}
                         <div className="flex-1">
-                            <RecentEventsCard events={eventsData} />
+                            <RecentEventsCard events={orgEvents} />
                         </div>
 
                         {/* Event Status Distribution Chart - Same height as Recent Events */}
                         <div className="flex-1">
-                            <EventStatusChart events={eventsData} />
+                            <EventStatusChart events={orgEvents} />
                         </div>
                     </div>
                 </div>

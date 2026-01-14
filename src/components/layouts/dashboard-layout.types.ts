@@ -1,6 +1,7 @@
 import { type Icon } from "@tabler/icons-react"
 
 export interface Team {
+    id?: string
     name: string
     logo: React.ElementType
     plan: string

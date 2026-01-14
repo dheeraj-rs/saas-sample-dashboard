@@ -21,41 +21,38 @@ import { NavMainList } from "@/components/common/sidebar-listing-models/nav-main
 import { NavSecondaryList } from "@/components/common/sidebar-listing-models/nav-secondary-list"
 import { UserProfile } from "@/components/common/sidebar-listing-models/user-profile"
 import { EventSwitchDropdown } from "./event-switch-dropdown"
+import { allEvents } from "@/data/events"
+import { organizations } from "@/data/organizations"
+import type { Event, Organization } from "@/types/store.types"
 
-const getEvents = () => {
+// Helper function to get 3 most recent events
+const getRecentEvents = () => {
+    return allEvents
+        .sort((a, b) => new Date(b.updatedAt || b.createdAt || '').getTime() - new Date(a.updatedAt || a.createdAt || '').getTime())
+        .slice(0, 3)
+        .map((event: Event) => ({
+            id: event.id,
+            name: event.name,
+            logo: IconCalendar,
+            plan: event.status.charAt(0).toUpperCase() + event.status.slice(1),
+        }))
+}
 
+// Helper function to get 3 most recent organizations
+const getRecentOrganizations = () => {
+    return organizations
+        .sort((a, b) => new Date(b.updatedAt || b.createdAt || '').getTime() - new Date(a.updatedAt || a.createdAt || '').getTime())
+        .slice(0, 3)
+        .map((org: Organization) => ({
+            name: org.name,
+            logo: IconCalendar,
+            plan: org.plan,
+        }))
 }
 
 const sidebarData = {
-    events: [
-        {
-            name: "Tech Conference",
-            logo: IconCalendar,
-            plan: "Active",
-        },
-        {
-            name: "Annual Summit",
-            logo: IconCalendar,
-            plan: "Draft",
-        },
-        {
-            name: "Workshop Series",
-            logo: IconCalendar,
-            plan: "Completed",
-        },
-    ],
-    organizations: [
-        {
-            name: "Conference Prime",
-            logo: IconCalendar,
-            plan: "Enterprise",
-        },
-        {
-            name: "Global Operations",
-            logo: IconCalendar,
-            plan: "Pro",
-        },
-    ],
+    events: getRecentEvents(),
+    organizations: getRecentOrganizations(),
     user: {
         name: "shadcn",
         email: "m@example.com",

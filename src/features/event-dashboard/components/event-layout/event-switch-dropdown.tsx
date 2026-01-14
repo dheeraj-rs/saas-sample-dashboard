@@ -17,23 +17,19 @@ import {
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { Team } from "@/components/layouts/dashboard-layout.types"
-import { useAppContextStore } from "@/store/app-context.store"
+import { allEvents } from "@/data/events"
 
 export function EventSwitchDropdown({ events, organizations }: { events: Team[], organizations?: Team[] }) {
     const [activeEvent, setActiveEvent] = React.useState(events[0])
     const navigate = useNavigate()
-    const { currentEvent } = useAppContextStore()
 
-    // Format event type for display
-    const formatEventType = (type: string | undefined) => {
-        if (!type) return "Event"
-        return type.charAt(0).toUpperCase() + type.slice(1)
-    }
-
-    // Get display text for event subtitle (only event type)
-    const getEventSubtitle = () => {
-        if (!currentEvent) return "Event"
-        return formatEventType(currentEvent.eventType)
+    // Get event type from the active event by looking it up in allEvents
+    const getEventType = () => {
+        const fullEvent = allEvents.find(e => e.name === activeEvent.name)
+        if (fullEvent?.eventType) {
+            return fullEvent.eventType.charAt(0).toUpperCase() + fullEvent.eventType.slice(1)
+        }
+        return "Event"
     }
 
     return (
@@ -48,12 +44,12 @@ export function EventSwitchDropdown({ events, organizations }: { events: Team[],
                             <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-black text-white">
                                 <span className="text-sm font-semibold">{activeEvent.name.substring(0, 2).toUpperCase()}</span>
                             </div>
-                            <div className="grid flex-1 text-left text-sm leading-tight">
-                                <div className="flex items-center gap-1">
+                            <div className="grid flex-1 text-left text-sm leading-tight min-w-0">
+                                <div className="flex items-center gap-1 min-w-0">
                                     <span className="truncate font-semibold">{activeEvent.name}</span>
-                                    <ChevronDown className="size-3 text-muted-foreground" />
+                                    <ChevronDown className="size-3 text-muted-foreground shrink-0" />
                                 </div>
-                                <span className="truncate text-xs text-muted-foreground">{getEventSubtitle()}</span>
+                                <span className="truncate text-xs text-muted-foreground">{getEventType()}</span>
                             </div>
                         </SidebarMenuButton>
                     </DropdownMenuTrigger>
@@ -71,14 +67,14 @@ export function EventSwitchDropdown({ events, organizations }: { events: Team[],
                         </DropdownMenuLabel>
                         {events.map((event, index) => (
                             <DropdownMenuItem
-                                key={event.name}
+                                key={event.id || event.name}
                                 onClick={() => setActiveEvent(event)}
                                 className="gap-2 p-2"
                             >
                                 <div className="flex size-7 items-center justify-center rounded-sm border">
                                     <event.logo className="size-4 shrink-0" />
                                 </div>
-                                {event.name}
+                                <div className="flex-1 min-w-0 truncate">{event.name}</div>
                                 {activeEvent.name === event.name ? (
                                     <Check className="ml-auto size-4 text-blue-600" />
                                 ) : (
@@ -108,7 +104,7 @@ export function EventSwitchDropdown({ events, organizations }: { events: Team[],
                                         <div className="flex size-7 items-center justify-center rounded-sm border">
                                             <org.logo className="size-4 shrink-0" />
                                         </div>
-                                        {org.name}
+                                        <div className="flex-1 min-w-0 truncate">{org.name}</div>
                                     </DropdownMenuItem>
                                 ))}
                             </>

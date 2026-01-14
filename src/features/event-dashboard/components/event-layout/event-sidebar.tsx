@@ -167,8 +167,8 @@ export function EventSidebar() {
     }))
 
     return (
-        <Sidebar collapsible="icon" className="h-screen border-r z-50" variant="sidebar">
-            <SidebarHeader className="h-(--header-height) border-b">
+        <Sidebar collapsible="icon" className="h-screen border-r border-sidebar-border z-50" variant="sidebar">
+            <SidebarHeader className="h-(--header-height) border-b border-sidebar-border">
                 <EventSwitchDropdown events={sidebarData.events || []} organizations={sidebarData.organizations || []} />
             </SidebarHeader>
             <SidebarContent>

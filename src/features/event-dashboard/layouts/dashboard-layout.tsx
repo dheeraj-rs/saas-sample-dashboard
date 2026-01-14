@@ -40,6 +40,7 @@ export default function EventDashboardLayout({
         <DashboardLayout
             sidebar={getSidebar()}
             header={<EventHeader actions={headerActions} />}
+            className="theme-event"
         >
             <ImportantToast />
             {children}

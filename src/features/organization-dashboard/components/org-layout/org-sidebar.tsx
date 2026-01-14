@@ -82,7 +82,7 @@ const sidebarData = {
             icon: IconCalendarEvent,
         },
         {
-            title: "Manage Users",
+            title: "Manage Staff",
             url: "/organization-dashboard/users",
             icon: IconUsers,
         },
@@ -223,8 +223,8 @@ export function OrgSidebar() {
     }))
 
     return (
-        <Sidebar collapsible="icon" className="h-screen border-r z-50" variant="sidebar">
-            <SidebarHeader className="h-(--header-height) border-b">
+        <Sidebar collapsible="icon" className="h-screen border-r border-sidebar-border z-50" variant="sidebar">
+            <SidebarHeader className="h-(--header-height) border-b border-sidebar-border">
                 <OrgSwitchDropdown organizations={sidebarData.organizations || []} events={sidebarData.events || []} />
             </SidebarHeader>
             <SidebarContent>

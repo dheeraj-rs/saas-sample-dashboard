@@ -14,6 +14,7 @@ export default function OrgDashboardLayout({
         <DashboardLayout
             sidebar={<OrgSidebar />}
             header={<OrgHeader actions={headerActions} />}
+            className="theme-org"
         >
             <ImportantToast />
             {children}

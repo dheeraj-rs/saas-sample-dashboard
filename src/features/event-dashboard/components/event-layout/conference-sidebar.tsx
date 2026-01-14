@@ -1,6 +1,9 @@
 import {
     IconDashboard,
     IconClipboardList,
+    IconHeadset,
+    IconCalendarEvent,
+    IconTicket,
     IconCreditCard,
     IconSettings,
     IconHelp,
@@ -43,7 +46,7 @@ const sidebarData = {
     organizations: [
         {
             name: "Conference Prime",
-            logo: IconCalendar,
+            logo: IconCalendar, // Using same icon as placeholder or suggest importing IconBuilding if available
             plan: "Enterprise",
         },
         {
@@ -69,36 +72,94 @@ const sidebarData = {
             icon: IconUser,
         },
         {
-            title: "Orders",
-            url: "/event-dashboard/orders",
-            icon: IconClipboardList,
+            title: "Registrations",
+            url: "/event-dashboard/registrations",
+            icon: IconHeadset,
         },
         {
             title: "Payments",
             url: "/event-dashboard/payments",
-            icon: IconCreditCard,
+            icon: IconUser,
         },
     ],
     navClouds: [
+        // {
+        //     title: "Registration & Attendees",
+        //     icon: IconClipboardList,
+        //     isActive: true,
+        //     url: "#",
+        //     items: [
+        //         {
+        //             title: "Registration",
+        //             url: "/event-dashboard/registration",
+        //         },
+        //         {
+        //             title: "Attendee Fields",
+        //             url: "/event-dashboard/attendee-fields",
+        //         },
+        //         {
+        //             title: "Restrictions",
+        //             url: "/event-dashboard/restrictions",
+        //         },
+        //     ],
+        // },
+        // {
+        //     title: "Event Setup",
+        //     icon: IconCalendarEvent,
+        //     url: "#",
+        //     items: [
+        //         {
+        //             title: "Location",
+        //             url: "/event-dashboard/location",
+        //         },
+        //         {
+        //             title: "Sessions",
+        //             url: "/event-dashboard/sessions",
+        //         },
+        //     ],
+        // },
+        // {
+        //     title: "Pricing & Tickets",
+        //     icon: IconTicket,
+        //     url: "#",
+        //     items: [
+        //         {
+        //             title: "Price Slabs",
+        //             url: "/event-dashboard/price-slabs",
+        //         },
+        //         {
+        //             title: "Tickets",
+        //             url: "/event-dashboard/tickets",
+        //         },
+        //         {
+        //             title: "Discounts",
+        //             url: "/event-dashboard/discounts",
+        //         },
+        //         {
+        //             title: "Add-ons",
+        //             url: "/event-dashboard/add-ons",
+        //         },
+        //     ],
+        // },
         {
             title: "Settings",
-            icon: IconSettings,
+            icon: IconCreditCard,
             url: "#",
             items: [
                 {
-                    title: "Event settings",
-                    url: "/event-dashboard/event-settings",
+                    title: "Conference settings",
+                    url: "/event-dashboard/conference-settings",
                 },
                 {
-                    title: "Tickets",
-                    url: "/event-dashboard/tickets",
+                    title: "Categories",
+                    url: "/event-dashboard/categories",
                 },
                 {
                     title: "Coupons",
                     url: "/event-dashboard/coupons",
                 },
                 {
-                    title: "Pricing slabs",
+                    title: "Pricing Slabs",
                     url: "/event-dashboard/pricing-slabs",
                 },
                 {
@@ -106,8 +167,8 @@ const sidebarData = {
                     url: "/event-dashboard/add-ons",
                 },
                 {
-                    title: "Event contacts",
-                    url: "/event-dashboard/event-contacts",
+                    title: "Conference contacts",
+                    url: "/event-dashboard/conference-contacts",
                 },
                 {
                     title: "Leagal documents",
@@ -118,13 +179,18 @@ const sidebarData = {
                     url: "/event-dashboard/website-resources",
                 },
                 {
-                    title: "Event locations",
-                    url: "/event-dashboard/event-locations",
+                    title: "Conference locations",
+                    url: "/event-dashboard/conference-locations",
                 },
             ],
         },
     ],
     navSecondary: [
+        // {
+        //     title: "Settings",
+        //     url: "/event-dashboard/settings",
+        //     icon: IconSettings,
+        // },
         {
             title: "Get Help",
             url: "/event-dashboard/help",
@@ -138,7 +204,7 @@ const sidebarData = {
     ],
 }
 
-export function EventSidebar() {
+export function ConferenceSidebar() {
     const location = useLocation()
     const pathname = location.pathname
 
@@ -170,7 +236,7 @@ export function EventSidebar() {
             <SidebarHeader className="h-(--header-height) border-b">
                 <EventSwitchDropdown events={sidebarData.events || []} organizations={sidebarData.organizations || []} />
             </SidebarHeader>
-            <SidebarContent>
+            <SidebarContent className="gap-0">
                 <NavMainList items={navMain} />
                 {navClouds && navClouds.length > 0 && (
                     <NavCloudList items={navClouds} />

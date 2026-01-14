@@ -1,56 +1,25 @@
-// import { getApiUrl, getAuthHeaders, handleApiError } from '@/lib/api.utils';
 import type { LoginCredentials, AuthResponse, LogoutResponse, ForgotPasswordRequest, ForgotPasswordResponse, ResetPasswordRequest, ResetPasswordResponse, UpdateProfileRequest, UpdateProfileResponse, ChangePasswordRequest, ChangePasswordResponse } from '@/types/auth.types';
+import { authenticateUser, currentUser } from '@/data/users';
 
 export async function login(credentials: LoginCredentials): Promise<AuthResponse> {
-    // MOCK RESPONSE FOR TESTING
     await new Promise(resolve => setTimeout(resolve, 1000));
-    if (credentials.email === "admin@gmail.com" && credentials.password === "password") {
-        const mockResponse: AuthResponse = {
-            status: "success",
-            data: {
-                user: {
-                    id: "018f2000-a111-b222-c333-000000000027",
-                    name: "Mojgenie",
-                    email: credentials.email,
-                    avatar: "/avatars/user.jpg"
-                },
-                token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMDE4ZjIwMDAtYTExMS1iMjIyLWMzMzMtMDAwMDAwMDAwMDI3In0.mock_token"
-            }
-        };
-        return mockResponse;
-    } else {
+    const user = authenticateUser(credentials.email, credentials.password);
+    if (!user) {
         throw new Error("Invalid email or password");
     }
-
-    /* REAL API CALL 
-    try {
-        const response = await fetch(getApiUrl('/auth/login'), {
-            method: 'POST',
-            headers: getAuthHeaders(),
-            body: JSON.stringify({
-                data: {
-                    email: credentials.email,
-                    password: credentials.password,
-                },
-            }),
-        });
-
-        if (!response.ok) {
-            const errorData = await response.json().catch(() => ({}));
-            throw new Error(errorData.message || 'Login failed. Please check your credentials.');
+    const mockResponse: AuthResponse = {
+        status: "success",
+        data: {
+            user: {
+                id: user.user_id || user.id || "user-1",
+                name: user.name,
+                email: user.email,
+                avatar: user.avatar || "/avatars/user.jpg"
+            },
+            token: `eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiJHt1c2VyLnVzZXJfaWR9IiwiZXhwIjoke3VzZXIuZXhwfSwiaWF0Ijoke3VzZXIuaWF0fX0.mock_token_${Date.now()}`
         }
-
-        const data: AuthResponse = await response.json();
-
-        if (data.status !== 'success') {
-            throw new Error('Login failed. Please try again.');
-        }
-
-        return data;
-    } catch (error) {
-        throw new Error(handleApiError(error));
-    }
-    */
+    };
+    return mockResponse;
 }
 
 export async function logout(_token: string): Promise<LogoutResponse> {
@@ -90,13 +59,10 @@ export async function logout(_token: string): Promise<LogoutResponse> {
 }
 
 export async function forgotPassword(request: ForgotPasswordRequest): Promise<ForgotPasswordResponse> {
-    // MOCK RESPONSE FOR TESTING
     await new Promise(resolve => setTimeout(resolve, 1000));
-
     if (request.email === "error@gmail.com") {
         throw new Error("We can't find a user with that e-mail address.");
     }
-
     const mockResponse: ForgotPasswordResponse = {
         status: "success",
         data: {
@@ -185,10 +151,10 @@ export async function updateProfile(request: UpdateProfileRequest): Promise<Upda
         status: "success",
         data: {
             user: {
-                id: "018f2000-a111-b222-c333-000000000027",
+                id: currentUser.user_id || currentUser.id || "user-1",
                 name: request.name,
-                email: "admin@gmail.com", // Mock email
-                avatar: "/avatars/user.jpg"
+                email: currentUser.email,
+                avatar: currentUser.avatar || "/avatars/user.jpg"
             },
             message: "Profile updated successfully."
         }

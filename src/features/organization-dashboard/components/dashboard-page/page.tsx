@@ -6,6 +6,8 @@ import { Users, Ticket, DollarSign, Calendar, TrendingUp, ArrowRight } from "luc
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis, ResponsiveContainer, BarChart, Bar, Cell } from "recharts"
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "@/components/ui/chart"
 import { useNavigate } from "react-router"
+import { useAppContextStore } from "@/store/app-context.store"
+import type { Event } from "@/types/store.types"
 
 // Mock Data for Charts
 const revenueData = [
@@ -80,13 +82,36 @@ const eventTypeConfig = {
 
 export default function OrgDashboard() {
     const navigate = useNavigate()
+    const { switchToEventDashboard } = useAppContextStore()
 
     // Slice reduced to make room for the new chart
     const recentEvents = orgEvents
-        .sort((a, b) => new Date(b.start_date).getTime() - new Date(a.start_date).getTime())
+        .sort((a, b) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime())
         .slice(0, 4)
 
     const handleEventClick = (eventId: string) => {
+        // Find the event details
+        const event = orgEvents.find(e => e.id === eventId)
+
+        if (event) {
+            // Set event context in global store
+            switchToEventDashboard({
+                id: event.id,
+                name: event.name,
+                eventType: event.eventType,
+                organizationId: event.organizationId,
+                organizationName: event.organizationName,
+                status: event.status as Event['status'],
+                startDate: event.startDate,
+                endDate: event.endDate,
+                registered: event.registered,
+                description: event.description,
+                location: event.location,
+                logoUrl: event.logoUrl,
+            })
+        }
+
+        // Navigate to event dashboard
         navigate(`/event-dashboard?eventId=${eventId}`)
     }
 
@@ -273,7 +298,7 @@ export default function OrgDashboard() {
                                             <div className="text-[13px] text-muted-foreground flex items-center gap-3 mt-1">
                                                 <span className="flex items-center gap-1.5">
                                                     <Calendar className="h-3.5 w-3.5 opacity-70" />
-                                                    {new Date(event.start_date).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
+                                                    {new Date(event.startDate).toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}
                                                 </span>
                                                 <span className="flex items-center gap-1.5">
                                                     <Users className="h-3.5 w-3.5 opacity-70" />

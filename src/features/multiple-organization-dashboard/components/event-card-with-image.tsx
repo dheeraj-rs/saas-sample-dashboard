@@ -1,18 +1,26 @@
 import { Calendar, ArrowRight, Building2 } from "lucide-react";
 import { useNavigate } from "react-router";
-
-type EventType = "active" | "upcoming" | "past";
+import { useAppContextStore } from "@/store/app-context.store";
+import type { Event, EventType as StoreEventType, EventStatus } from "@/types/store.types";
 
 interface EventCardWithImageProps {
+    id?: string;
     title: string;
     date: string;
     imageUrl: string;
     description?: string;
-    eventType: EventType;
+    eventType: EventStatus;
     organizationName: string;
+    type?: string; // conference, workshop, etc.
+    attendees?: number;
 }
 
-const eventTypeBadgeStyles: Record<EventType, { bg: string; text: string; label: string }> = {
+const eventTypeBadgeStyles: Record<EventStatus, { bg: string; text: string; label: string }> = {
+    draft: {
+        bg: "bg-gray-400",
+        text: "text-white",
+        label: "Draft"
+    },
     active: {
         bg: "bg-blue-600",
         text: "text-white",
@@ -27,13 +35,44 @@ const eventTypeBadgeStyles: Record<EventType, { bg: string; text: string; label:
         bg: "bg-gray-500",
         text: "text-white",
         label: "Past"
+    },
+    cancelled: {
+        bg: "bg-red-600",
+        text: "text-white",
+        label: "Cancelled"
     }
 };
 
-export function EventCardWithImage({ title, date, imageUrl, eventType, organizationName }: EventCardWithImageProps) {
+export function EventCardWithImage({
+    id,
+    title,
+    date,
+    imageUrl,
+    eventType,
+    organizationName,
+    type = "event",
+    description,
+    attendees
+}: EventCardWithImageProps) {
     const navigate = useNavigate();
+    const { switchToEventDashboard } = useAppContextStore();
 
     const handleClick = () => {
+        // Set event context in global store
+        switchToEventDashboard({
+            id: id || `event-${Date.now()}`,
+            name: title,
+            eventType: type as StoreEventType,
+            organizationId: "org-1", // TODO: Get from context
+            organizationName: organizationName,
+            status: eventType as Event['status'],
+            startDate: date,
+            endDate: date,
+            description: description,
+            registered: attendees,
+            logoUrl: imageUrl,
+        });
+
         navigate("/event-dashboard");
     };
 

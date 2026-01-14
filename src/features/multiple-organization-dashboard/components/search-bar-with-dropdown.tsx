@@ -2,13 +2,14 @@ import { Search, ArrowRight, Calendar, Building2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router";
+import type { EventStatus } from "@/types/store.types";
 
 interface Event {
     id: string;
     title: string;
     date: string;
     logoUrl: string;
-    eventType: "active" | "upcoming" | "past";
+    eventType: EventStatus;
     organizationName: string;
 }
 

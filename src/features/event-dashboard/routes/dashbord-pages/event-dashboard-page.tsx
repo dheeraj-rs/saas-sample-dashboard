@@ -5,6 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Users, Ticket, DollarSign, Calendar, TrendingUp, ArrowRight, LayoutDashboard, FileText, MessageSquare, Mic, Gamepad2, Globe, Settings, ClipboardList, PenTool, BarChart3, Lock, Share2 } from "lucide-react"
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis, ResponsiveContainer, BarChart, Bar, Cell } from "recharts"
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart"
+import { useAppContextStore } from "@/store/app-context.store"
 
 // --- Mock Data for Single Event ---
 
@@ -73,14 +74,22 @@ const ticketTypeConfig = {
 } satisfies ChartConfig
 
 export default function EventDashboardPage() {
+    const { currentEvent } = useAppContextStore()
     return (
         <EventDashboardLayout>
             <div className="flex flex-1 flex-col space-y-4 p-4 md:p-8 overflow-y-auto bg-slate-50/50 dark:bg-slate-950/50">
-                <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 items-start">
+                {/* Welcome Section */}
+                <div className="flex flex-col">
+                    <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-50">
+                        Welcome to Event Dashboard
+                    </h2>
+                    <p className="text-slate-500 dark:text-slate-400 text-base max-w-2xl">
+                        You are currently managing <span className="font-semibold text-indigo-600 dark:text-indigo-400">{currentEvent?.name || "your event"}</span>
+                    </p>
+                </div>
 
-                    {/* Left Column (8 cols) */}
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 items-start">
                     <div className="lg:col-span-8 space-y-6">
-                        {/* Stats Cards Row */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <Card className="hover:shadow-lg transition-all duration-300 bg-white dark:bg-slate-900 overflow-hidden group py-0">
                                 <CardContent className="p-3">

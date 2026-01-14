@@ -82,7 +82,7 @@ const eventTypeConfig = {
 
 export default function OrgDashboard() {
     const navigate = useNavigate()
-    const { switchToEventDashboard } = useAppContextStore()
+    const { switchToEventDashboard, currentOrganization } = useAppContextStore()
 
     // Slice reduced to make room for the new chart
     const recentEvents = orgEvents
@@ -117,6 +117,16 @@ export default function OrgDashboard() {
 
     return (
         <div className="flex flex-1 flex-col space-y-4 p-4 md:p-8 overflow-y-auto bg-slate-50/50 dark:bg-slate-950/50">
+            {/* Welcome Section */}
+            <div className="flex flex-col">
+                <h2 className="text-3xl font-bold tracking-tight text-slate-900 dark:text-slate-50">
+                    Welcome to Organization Dashboard
+                </h2>
+                <p className="text-slate-500 dark:text-slate-400 text-base max-w-2xl">
+                    You are currently managing <span className="font-semibold text-indigo-600 dark:text-indigo-400">{currentOrganization?.name || "organization"}</span>
+                </p>
+            </div>
+
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 items-start">
                 <div className="lg:col-span-8 space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

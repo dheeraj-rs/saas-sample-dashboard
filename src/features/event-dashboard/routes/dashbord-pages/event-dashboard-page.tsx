@@ -82,10 +82,10 @@ export default function EventDashboardPage() {
                     <div className="lg:col-span-8 space-y-6">
                         {/* Stats Cards Row */}
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            <Card className="hover:shadow-lg transition-all duration-300 border-l-4 border-l-indigo-500 bg-white dark:bg-slate-900 overflow-hidden group py-0">
+                            <Card className="hover:shadow-lg transition-all duration-300 bg-white dark:bg-slate-900 overflow-hidden group py-0">
                                 <CardContent className="p-3">
                                     <div className="flex justify-between items-center">
-                                        <div className="space-y-0.5">
+                                        <div className="space-y-3">
                                             <p className="text-xs font-semibold uppercase tracking-wider group-hover:text-indigo-600 transition-colors">Event Revenue</p>
                                             <div className="text-2xl font-bold text-slate-900 dark:text-slate-50">${(eventMetrics.totalRevenue / 1000).toFixed(1)}k</div>
                                         </div>
@@ -93,18 +93,18 @@ export default function EventDashboardPage() {
                                             <DollarSign className="h-5 w-5 text-indigo-600 dark:text-indigo-400" />
                                         </div>
                                     </div>
-                                    <div className="mt-1 flex items-center text-xs text-muted-foreground font-medium">
+                                    {/* <div className="mt-1 flex items-center text-xs text-muted-foreground font-medium">
                                         <TrendingUp className="h-3 w-3 mr-1 text-emerald-500" />
                                         <span className="text-emerald-600">+12%</span>
                                         <span className="ml-1">vs target</span>
-                                    </div>
+                                    </div> */}
                                 </CardContent>
                             </Card>
 
-                            <Card className="hover:shadow-lg transition-all duration-300 border-l-4 border-l-emerald-500 bg-white dark:bg-slate-900 overflow-hidden group py-0">
+                            <Card className="hover:shadow-lg transition-all duration-300 bg-white dark:bg-slate-900 overflow-hidden group py-0">
                                 <CardContent className="p-3">
                                     <div className="flex justify-between items-center">
-                                        <div className="space-y-0.5">
+                                        <div className="space-y-3">
                                             <p className="text-xs font-semibold uppercase tracking-wider group-hover:text-emerald-600 transition-colors">Attendees</p>
                                             <div className="text-2xl font-bold text-slate-900 dark:text-slate-50">{eventMetrics.registeredAttendees}</div>
                                         </div>
@@ -112,18 +112,18 @@ export default function EventDashboardPage() {
                                             <Users className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
                                         </div>
                                     </div>
-                                    <div className="mt-1 flex items-center text-xs text-muted-foreground font-medium">
+                                    {/* <div className="mt-1 flex items-center text-xs text-muted-foreground font-medium">
                                         <TrendingUp className="h-3 w-3 mr-1 text-emerald-500" />
                                         <span className="text-emerald-600">+45</span>
                                         <span className="ml-1">this week</span>
-                                    </div>
+                                    </div> */}
                                 </CardContent>
                             </Card>
 
-                            <Card className="hover:shadow-lg transition-all duration-300 border-l-4 border-l-amber-500 bg-white dark:bg-slate-900 overflow-hidden group py-0">
+                            <Card className="hover:shadow-lg transition-all duration-300 bg-white dark:bg-slate-900 overflow-hidden group py-0">
                                 <CardContent className="p-3">
                                     <div className="flex justify-between items-center">
-                                        <div className="space-y-0.5">
+                                        <div className="space-y-3">
                                             <p className="text-xs font-semibold uppercase tracking-wider group-hover:text-amber-600 transition-colors">Tickets Sold</p>
                                             <div className="text-2xl font-bold text-slate-900 dark:text-slate-50">{eventMetrics.ticketsSold}</div>
                                         </div>
@@ -131,10 +131,10 @@ export default function EventDashboardPage() {
                                             <Ticket className="h-5 w-5 text-amber-600 dark:text-amber-400" />
                                         </div>
                                     </div>
-                                    <div className="mt-1 flex items-center text-xs text-muted-foreground font-medium">
+                                    {/* <div className="mt-1 flex items-center text-xs text-muted-foreground font-medium">
                                         <span className="text-emerald-600">96%</span>
                                         <span className="ml-1">conversion rate</span>
-                                    </div>
+                                    </div> */}
                                 </CardContent>
                             </Card>
                         </div>

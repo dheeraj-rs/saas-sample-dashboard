@@ -22,6 +22,10 @@ import { NavSecondaryList } from "@/components/common/sidebar-listing-models/nav
 import { UserProfile } from "@/components/common/sidebar-listing-models/user-profile"
 import { EventSwitchDropdown } from "./event-switch-dropdown"
 
+const getEvents = () => {
+
+}
+
 const sidebarData = {
     events: [
         {

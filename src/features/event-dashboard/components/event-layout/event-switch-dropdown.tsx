@@ -17,10 +17,24 @@ import {
     SidebarMenuItem,
 } from "@/components/ui/sidebar"
 import { Team } from "@/components/layouts/dashboard-layout.types"
+import { useAppContextStore } from "@/store/app-context.store"
 
 export function EventSwitchDropdown({ events, organizations }: { events: Team[], organizations?: Team[] }) {
     const [activeEvent, setActiveEvent] = React.useState(events[0])
     const navigate = useNavigate()
+    const { currentEvent } = useAppContextStore()
+
+    // Format event type for display
+    const formatEventType = (type: string | undefined) => {
+        if (!type) return "Event"
+        return type.charAt(0).toUpperCase() + type.slice(1)
+    }
+
+    // Get display text for event subtitle (only event type)
+    const getEventSubtitle = () => {
+        if (!currentEvent) return "Event"
+        return formatEventType(currentEvent.eventType)
+    }
 
     return (
         <SidebarMenu>
@@ -39,7 +53,7 @@ export function EventSwitchDropdown({ events, organizations }: { events: Team[],
                                     <span className="truncate font-semibold">{activeEvent.name}</span>
                                     <ChevronDown className="size-3 text-muted-foreground" />
                                 </div>
-                                <span className="truncate text-xs text-muted-foreground">Event</span>
+                                <span className="truncate text-xs text-muted-foreground">{getEventSubtitle()}</span>
                             </div>
                         </SidebarMenuButton>
                     </DropdownMenuTrigger>

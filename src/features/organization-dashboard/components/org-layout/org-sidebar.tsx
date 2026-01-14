@@ -81,95 +81,96 @@ const sidebarData = {
             url: "/organization-dashboard/events",
             icon: IconCalendarEvent,
         },
-        {
-            title: "Manage Staff",
-            url: "/organization-dashboard/users",
-            icon: IconUsers,
-        },
-        {
-            title: "Invite Users",
-            url: "/organization-dashboard/invite-users",
-            icon: IconUserPlus,
-        },
+
     ],
     navClouds: [
         {
-            title: "Teams & Roles",
+            title: "Teams & Employees",
             icon: IconUsersGroup,
             isActive: true,
             url: "#",
             items: [
                 {
-                    title: "Team Members",
-                    url: "/organization-dashboard/team-members",
+                    title: "Manage Staff",
+                    url: "/organization-dashboard/users",
+                    icon: IconUsers,
                 },
                 {
-                    title: "Roles & Permissions",
-                    url: "/organization-dashboard/roles-permissions",
+                    title: "Invite Users",
+                    url: "/organization-dashboard/invite-users",
+                    icon: IconUserPlus,
                 },
-                {
-                    title: "Departments",
-                    url: "/organization-dashboard/departments",
-                },
+                // {
+                //     title: "Team Members",
+                //     url: "/organization-dashboard/team-members",
+                // },
+                // {
+                //     title: "Roles & Permissions",
+                //     url: "/organization-dashboard/roles-permissions",
+                // },
+                // {
+                //     title: "Departments",
+                //     url: "/organization-dashboard/departments",
+                // },
             ],
         },
-        {
-            title: "Settings & Configuration",
-            icon: IconSettings,
-            url: "#",
-            items: [
-                {
-                    title: "Organization Settings",
-                    url: "/organization-dashboard/organization-settings",
-                },
-                {
-                    title: "Branding",
-                    url: "/organization-dashboard/branding",
-                },
-                {
-                    title: "Integrations",
-                    url: "/organization-dashboard/integrations",
-                },
-            ],
-        },
-        {
-            title: "Billing & Subscription",
-            icon: IconCreditCard,
-            url: "#",
-            items: [
-                {
-                    title: "Subscription Plans",
-                    url: "/organization-dashboard/subscription-plans",
-                },
-                {
-                    title: "Payment Methods",
-                    url: "/organization-dashboard/payment-methods",
-                },
-                {
-                    title: "Invoices",
-                    url: "/organization-dashboard/invoices",
-                },
-            ],
-        },
-        {
-            title: "Analytics & Reports",
-            icon: IconChartBar,
-            url: "#",
-            items: [
-                {
-                    title: "Event Analytics",
-                    url: "/organization-dashboard/event-analytics",
-                },
-                {
-                    title: "User Activity",
-                    url: "/organization-dashboard/user-activity",
-                },
-                {
-                    title: "Revenue Reports",
-                    url: "/organization-dashboard/revenue-reports",
-                },
-            ],
-        },
+        // {
+        //     title: "Settings & Configuration",
+        //     icon: IconSettings,
+        //     url: "#",
+        //     items: [
+        //         {
+        //             title: "Organization Settings",
+        //             url: "/organization-dashboard/organization-settings",
+        //         },
+        //         {
+        //             title: "Branding",
+        //             url: "/organization-dashboard/branding",
+        //         },
+        //         {
+        //             title: "Integrations",
+        //             url: "/organization-dashboard/integrations",
+        //         },
+        //     ],
+        // },
+        // {
+        //     title: "Billing & Subscription",
+        //     icon: IconCreditCard,
+        //     url: "#",
+        //     items: [
+        //         {
+        //             title: "Subscription Plans",
+        //             url: "/organization-dashboard/subscription-plans",
+        //         },
+        //         {
+        //             title: "Payment Methods",
+        //             url: "/organization-dashboard/payment-methods",
+        //         },
+        //         {
+        //             title: "Invoices",
+        //             url: "/organization-dashboard/invoices",
+        //         },
+        //     ],
+        // },
+        // {
+        //     title: "Analytics & Reports",
+        //     icon: IconChartBar,
+        //     url: "#",
+        //     items: [
+        //         {
+        //             title: "Event Analytics",
+        //             url: "/organization-dashboard/event-analytics",
+        //         },
+        //         {
+        //             title: "User Activity",
+        //             url: "/organization-dashboard/user-activity",
+        //         },
+        //         {
+        //             title: "Revenue Reports",
+        //             url: "/organization-dashboard/revenue-reports",
+        //         },
+        //     ],
+        // },
     ],
     navSecondary: [
         {

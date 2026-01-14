@@ -1,4 +1,4 @@
-import { Search, ArrowRight, Calendar, Users, Building2 } from "lucide-react";
+import { Search, ArrowRight, Calendar, Building2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router";
@@ -7,8 +7,9 @@ interface Event {
     id: string;
     title: string;
     date: string;
-    attendees: number;
     logoUrl: string;
+    eventType: "active" | "upcoming" | "past";
+    organizationName: string;
 }
 
 interface Organization {
@@ -121,9 +122,8 @@ export function SearchBarWithDropdown({
                                                         <Calendar className="h-3 w-3" />
                                                         {event.date}
                                                     </span>
-                                                    <span className="flex items-center gap-1">
-                                                        <Users className="h-3 w-3" />
-                                                        {event.attendees} attendees
+                                                    <span className="truncate">
+                                                        {event.organizationName}
                                                     </span>
                                                 </div>
                                             </div>

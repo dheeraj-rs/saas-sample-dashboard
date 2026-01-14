@@ -21,7 +21,8 @@ const MOCK_EVENTS = [
         attendees: 1250,
         imageUrl: "/images/events/event1.png",
         description: "Join industry leaders for cutting-edge tech insights and networking",
-        status: "upcoming",
+        eventType: "upcoming" as const,
+        organizationName: "Tech Innovators Inc.",
         type: "conference"
     },
     {
@@ -31,7 +32,8 @@ const MOCK_EVENTS = [
         attendees: 850,
         imageUrl: "/images/events/event2.png",
         description: "Empowering business leaders with strategies for global success",
-        status: "upcoming",
+        eventType: "upcoming" as const,
+        organizationName: "Global Business Leaders",
         type: "summit"
     },
     {
@@ -41,7 +43,8 @@ const MOCK_EVENTS = [
         attendees: 420,
         imageUrl: "/images/events/event3.png",
         description: "Connect with innovative startups and venture capitalists",
-        status: "upcoming",
+        eventType: "upcoming" as const,
+        organizationName: "Startup Accelerator",
         type: "summit"
     },
     {
@@ -51,7 +54,8 @@ const MOCK_EVENTS = [
         attendees: 320,
         imageUrl: "/images/events/event1.png",
         description: "Hands-on workshop for digital transformation strategies",
-        status: "upcoming",
+        eventType: "upcoming" as const,
+        organizationName: "Digital First Consulting",
         type: "workshop"
     },
     {
@@ -61,7 +65,8 @@ const MOCK_EVENTS = [
         attendees: 980,
         imageUrl: "/images/events/event2.png",
         description: "Explore the latest in AI and ML technologies",
-        status: "active",
+        eventType: "active" as const,
+        organizationName: "AI Research Institute",
         type: "conference"
     },
     {
@@ -71,7 +76,8 @@ const MOCK_EVENTS = [
         attendees: 670,
         imageUrl: "/images/events/event3.png",
         description: "Deep dive into cloud infrastructure and services",
-        status: "draft",
+        eventType: "upcoming" as const,
+        organizationName: "Cloud Solutions Corp",
         type: "summit"
     },
 ]
@@ -86,7 +92,7 @@ export default function ManageEventsPage() {
             event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
             event.description.toLowerCase().includes(searchTerm.toLowerCase())
 
-        const matchesStatus = statusFilter === "all" || event.status === statusFilter
+        const matchesStatus = statusFilter === "all" || event.eventType === statusFilter
         const matchesType = typeFilter === "all" || event.type === typeFilter
 
         return matchesSearch && matchesStatus && matchesType

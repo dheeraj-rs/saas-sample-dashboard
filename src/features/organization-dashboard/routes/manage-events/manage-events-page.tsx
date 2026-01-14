@@ -95,8 +95,8 @@ export default function ManageEventsPage() {
     const headerActions = (
         <CreateEventModal
             trigger={
-                <Button className="gap-2">
-                    <Plus className="h-4 w-4" />
+                <Button size="sm">
+                    <Plus className="size-4 mr-2" />
                     Create Event
                 </Button>
             }
@@ -127,7 +127,7 @@ export default function ManageEventsPage() {
                         </div>
                         <div className="flex items-center gap-2">
                             <Select value={statusFilter} onValueChange={setStatusFilter}>
-                                <SelectTrigger className="w-[140px]">
+                                <SelectTrigger className="w-[145px]">
                                     <SelectValue placeholder="Status" />
                                 </SelectTrigger>
                                 <SelectContent>
@@ -140,7 +140,7 @@ export default function ManageEventsPage() {
                             </Select>
 
                             <Select value={typeFilter} onValueChange={setTypeFilter}>
-                                <SelectTrigger className="w-[140px]">
+                                <SelectTrigger className="w-[145px]">
                                     <SelectValue placeholder="Type" />
                                 </SelectTrigger>
                                 <SelectContent>

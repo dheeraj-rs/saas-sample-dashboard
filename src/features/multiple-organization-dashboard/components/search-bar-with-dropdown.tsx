@@ -107,13 +107,11 @@ export function SearchBarWithDropdown({
                                             onClick={() => handleEventClick()}
                                             className="w-full flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-accent transition-colors group"
                                         >
-                                            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                                                <img
-                                                    src={event.logoUrl}
-                                                    alt={event.title}
-                                                    className="w-6 h-6 object-contain"
-                                                />
-                                            </div>
+                                            <img
+                                                src={event.logoUrl}
+                                                alt={event.title}
+                                                className="w-10 h-10 object-contain rounded-lg"
+                                            />
                                             <div className="flex-1 text-left min-w-0">
                                                 <div className="font-medium text-foreground truncate">
                                                     {event.title}
@@ -146,13 +144,11 @@ export function SearchBarWithDropdown({
                                             onClick={() => handleOrgClick()}
                                             className="w-full flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-accent transition-colors group"
                                         >
-                                            <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                                                <img
-                                                    src={org.logoUrl}
-                                                    alt={org.name}
-                                                    className="w-8 h-8 object-contain"
-                                                />
-                                            </div>
+                                            <img
+                                                src={org.logoUrl}
+                                                alt={org.name}
+                                                className="w-10 h-10 object-contain rounded-lg"
+                                            />
                                             <div className="flex-1 text-left min-w-0">
                                                 <div className="font-medium text-foreground truncate">
                                                     {org.name}

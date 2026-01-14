@@ -5,6 +5,7 @@ import { orgMetrics, orgEvents } from "../../data/org-dashboard-data"
 import { Users, Ticket, DollarSign, Calendar, TrendingUp, ArrowRight } from "lucide-react"
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis, ResponsiveContainer, BarChart, Bar, Cell } from "recharts"
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent, ChartLegend, ChartLegendContent } from "@/components/ui/chart"
+import { useNavigate } from "react-router"
 
 // Mock Data for Charts
 const revenueData = [
@@ -78,10 +79,16 @@ const eventTypeConfig = {
 } satisfies ChartConfig
 
 export default function OrgDashboard() {
+    const navigate = useNavigate()
+
     // Slice reduced to make room for the new chart
     const recentEvents = orgEvents
         .sort((a, b) => new Date(b.start_date).getTime() - new Date(a.start_date).getTime())
         .slice(0, 4)
+
+    const handleEventClick = (eventId: string) => {
+        navigate(`/event-dashboard?eventId=${eventId}`)
+    }
 
     return (
         <div className="flex flex-1 flex-col space-y-4 p-4 md:p-8 overflow-y-auto bg-slate-50/50 dark:bg-slate-950/50">
@@ -247,6 +254,7 @@ export default function OrgDashboard() {
                                 {recentEvents.map((event) => (
                                     <div
                                         key={event.id}
+                                        onClick={() => handleEventClick(event.id)}
                                         className="w-full flex items-center gap-3 p-2 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-all group cursor-pointer border border-transparent hover:border-slate-200 dark:hover:border-slate-800"
                                     >
                                         {event.logoUrl ? (

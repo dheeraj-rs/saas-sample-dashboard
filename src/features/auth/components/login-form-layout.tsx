@@ -41,7 +41,7 @@ export default function LoginFormLayout({ children }: { children: React.ReactNod
                         </div>
                     </div>
                 </div>
-                <div className="flex flex-col justify-center p-8 md:p-12 lg:p-16 bg-rose-50/50 dark:bg-zinc-950">
+                <div className="flex flex-col justify-center p-8 md:p-12 lg:p-16 bg-background dark:bg-zinc-950">
                     {/* Logo outside the form */}
                     {/* <div className="w-full max-w-[400px] mx-auto flex items-center justify-start h-12 mb-8 animate-in fade-in slide-in-from-top-4 duration-500">
                         <img

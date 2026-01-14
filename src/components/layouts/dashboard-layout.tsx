@@ -17,7 +17,7 @@ export function DashboardLayout({
             style={
                 {
                     "--sidebar-width": "calc(var(--spacing) * 64)",
-                    "--header-height": "calc(var(--spacing) * 12 + 1px)",
+                    "--header-height": "calc(var(--spacing) * 14 + 1px)",
                 } as React.CSSProperties
             }
         >

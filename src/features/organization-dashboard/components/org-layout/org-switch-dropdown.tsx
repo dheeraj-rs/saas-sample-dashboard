@@ -27,12 +27,12 @@ export function OrgSwitchDropdown({ organizations, events }: { organizations: Te
         <SidebarMenu>
             <SidebarMenuItem>
                 <DropdownMenu >
-                    <DropdownMenuTrigger asChild className="py-0">
+                    <DropdownMenuTrigger asChild className="py-1">
                         <SidebarMenuButton
                             size="lg"
                             className="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground h-full w-full focus-visible:ring-0"
                         >
-                            <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-black text-white">
+                            <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-border text-sidebar-foreground">
                                 <span className="text-sm font-semibold">{activeOrg.name.substring(0, 2).toUpperCase()}</span>
                             </div>
                             <div className="grid flex-1 text-left text-sm leading-tight">

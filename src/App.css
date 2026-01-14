@@ -54,7 +54,7 @@
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 
   --radius: 0.325rem;
-  --background: oklch(0.99 0.002 258.51);
+  --background: oklch(98.294% 0.00594 240.384);
   --foreground: oklch(0.16 0.038 260);
   --card: oklch(0.99 0.002 258.51);
   --card-foreground: oklch(0.16 0.038 260);
@@ -89,45 +89,30 @@
 }
 
 .theme-org {
-  /* Sidebar base */
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.99 0.002 258.51);
-
-  /* Active / primary */
+  --sidebar: oklch(18.23% 0.009 224.02);
+  --sidebar-foreground: rgba(255, 255, 255, 0.87);
   --sidebar-primary: oklch(0.55 0.22 264);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-
-  /* Hover / accent */
-  --sidebar-accent: oklch(0.28 0.008 258.51);
-  --sidebar-accent-foreground: oklch(0.97 0.008 258.51);
-
-  /* Borders & dividers */
-  --sidebar-border: oklch(82.032% 0.00009 271.152 / 0.733);
-  --sidebar-divider: oklch(0.32 0.01 258.51);
-
-  /* Icons / muted text */
-  --sidebar-muted: oklch(0.75 0.01 258.51);
+  --sidebar-accent: oklch(22.55% 0.013 233.17);
+  --sidebar-border: oklch(30.87% 0.019 229.78);
   --sidebar-muted-foreground: oklch(0.65 0.01 258.51);
-
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent-foreground: oklch(0.97 0.008 258.51);
+  --sidebar-divider: oklch(0.32 0.01 258.51);
+  --sidebar-muted: oklch(0.75 0.01 258.51);
   --sidebar-ring: oklch(0.54 0.035 259);
 }
 
 .theme-event {
-  --sidebar: oklch(0.22 0.02 290);
-  --sidebar-foreground: oklch(98.511% 0.00011 271.152 / 0.637);
-
+  --sidebar: #1d1e27;
+  --sidebar-foreground: rgba(255, 255, 255, 0.87);
   --sidebar-primary: oklch(0.60 0.20 290);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-
-  --sidebar-accent: oklch(0.28 0.02 290);
-  --sidebar-accent-foreground: oklch(0.97 0.01 290);
-
-  --sidebar-border: oklch(0.98 0.004 258.51 / 10%);
-  --sidebar-divider: oklch(0.31 0.02 290);
-
-  --sidebar-muted: oklch(0.74 0.02 290);
+  --sidebar-accent: #282936;
+  --sidebar-border: #3e4053;
   --sidebar-muted-foreground: oklch(0.64 0.02 290);
-
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent-foreground: oklch(0.97 0.01 290);
+  --sidebar-divider: oklch(0.31 0.02 290);
+  --sidebar-muted: oklch(0.74 0.02 290);
   --sidebar-ring: oklch(0.55 0.04 290);
 }
 
